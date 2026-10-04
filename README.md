@@ -3,7 +3,7 @@
   Symbolic Detective
 </h1>
 
-![A central motif connected to visual variants across artifacts](assets/motif-constellation-banner.jpg)
+![A central motif connected to visual variants across artifacts](assets/motif-constellation-banner2.jpg)
 
 ### v0.1 — Unknown Motif Finder
 
@@ -86,8 +86,7 @@ symbolic-detective/
 │   │   ├── rosette/          # Hard negative / related radial motif
 │   │   ├── five_pointed/     # Hard negative / related star geometry
 │   │   └── negative_control/ # Other geometric motifs
-│   ├── metadata.json         # Provenance, period, material, museum IDs
-│   └── splits.json           # Index/query assignment
+│   └── metadata.json         # Provenance, period, material, museum IDs
 ├── src/
 │   └── symbolic_detective/
 │       ├── ingestion/            # Museum API harvesters (The Met, Europeana)
@@ -98,11 +97,15 @@ symbolic-detective/
 │       │   ├── shape_features.py # OpenCV contour and moment extraction
 │       │   ├── embeddings.py     # Latent feature generation
 │       │   └── hybrid_search.py  # Similarity computation and ranking
+│       ├── utils/
+│       │   └── image_crop.py     # Script for fast image cropping
 │       └── evaluate.py           # Benchmark script: Recall@K and MRR
 ├── ui/
 │   └── app.py                # Streamlit exploration dashboard
 ├── tests/                    # Unit tests for feature extraction
+├── .gitignore
 ├── requirements.txt
+├── LICENSE
 └── README.md
 ```
 ---
@@ -134,21 +137,24 @@ Retrieval performance is benchmarked against synthetic corruptions approximating
 ## Getting Started
 
 ### 1. Installation
+#### Prerequisites
+* Python 3.12+
+* [uv](https://docs.astral.sh/uv/getting-started/installation/)
+
 ```bash
 git clone https://github.com/AetherMarina/symbolic-detective.git
 cd symbolic-detective
 python -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+uv pip sync requirements-lock.txt
+# uv pip compile pyproject.toml --extra test -o requirements-lock.txt
+uv pip install -e .
 ```
 
 ### 2. Candidate Ingestion
 Harvest candidate artifacts from The Metropolitan Museum of Art Open Access API (using the paginated v1.1 endpoint):
 ```bash
-python -m symbolic_detective.ingestion.met_api \
-    --query "star" \
-    --department 3 \
-    --limit 50
+python -m symbolic_detective.ingestion.met_api --query "star" --department 33 --limit 2
 ```
 
 ### 3. Run Benchmark Evaluation
@@ -164,26 +170,46 @@ streamlit run ui/app.py
 The Streamlit dashboard allows you to upload an arbitrary motif crop, inspect its extracted contour, and examine the top retrieved artifacts alongside available artifact metadata and source provenance.
 
 ---
+## Developer Utilities
+
+If you are modifying the feature extraction logic, you can test individual components of the pipeline on a single cropped motif.
+Replace the path below with a valid crop from your `data/crops/` directory:
+
+```bash
+# 1. Test OpenCV normalization (CLAHE + Padding)
+python -m symbolic_detective.pipeline.preprocess data/crops/eight_pointed/YOUR_IMAGE.jpg
+
+# 2. Extract interpretable geometry and save a debug contour image
+python -m symbolic_detective.pipeline.shape_features data/crops/eight_pointed/YOUR_IMAGE.jpg
+
+# 3. Extract the DINOv2 dense latent representation
+python -m symbolic_detective.pipeline.embeddings data/crops/eight_pointed/YOUR_IMAGE.jpg
+
+# 4. Compare two motifs side-by-side to see the hybrid scoring breakdown
+python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMAGE_1.jpg data/crops/eight_pointed/IMAGE_2.jpg
+```
 
 ## Roadmap
 ### v0.1 — Unknown Motif Finder
-* [ ] Curate initial motif corpus
-* [ ] Implement preprocessing
-* [ ] Implement OpenCV baseline
-* [ ] Implement DINOv2 embedding baseline
-* [ ] Implement hybrid retrieval
-* [ ] Build held-out evaluation set
+* [x] Curate initial motif corpus from Met
+* [x] Implement preprocessing
+* [x] Implement OpenCV baseline
+* [x] Implement DINOv2 embedding baseline
+* [x] Implement hybrid retrieval
+* [x] Build held-out evaluation set
+* [x] Build Streamlit explorer
 * [ ] Run robustness experiments
-* [ ] Build Streamlit explorer
+* [ ] Europeana REST client
+* [ ] 100-150 motifs
 * [ ] Publish Case 001 results
 
 ## Future Horizons
 
 * v0.2 — Related Motif Discrimination: Granular separation of overlapping geometries.
-* v0.3 — Contextual Identity: Investigating whether visually different motif forms can share a historically supported symbolic identity.
-* v0.4 — Automatic Detection: Full artifact → bounding box localization via fine-tuned models.
-* v0.5 — Unknown Motif Memory: Unsupervised clustering of recurring, undocumented motifs.
-* v0.6 — Spatiotemporal Graph: Knowledge graph layer (places, periods, materials).
+* v0.3 — Motif Clustering & Discrimination:Contextual Identity: Investigating whether visually different motif forms can share a historically supported symbolic identity.
+* v0.4 — Motif Clustering & Discrimination:Automatic Detection: Full artifact → bounding box localization via fine-tuned models.
+* v0.5 — Motif Clustering & Discrimination:Unknown Motif Memory: Unsupervised clustering of recurring, undocumented motifs.
+* v0.6 — Motif Clustering & Discrimination: Spatiotemporal Graph: Knowledge graph layer (places, periods, materials).
 * v0.7 — Evidence & Local RAG: Grounded synthesis of scholarly sources using local LLMs.
 * v1.0 — Symbolic Detective: Full-stack computational iconography engine.
 
