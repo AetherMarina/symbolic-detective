@@ -1,5 +1,5 @@
 """
-Pretrained Visual Embedding Extraction for Symbolic Detective v0.1.
+Pretrained Visual Embedding Extraction.
 Uses self-supervised DINOv2 (ViT-S/14) to extract dense latent representations
 from preprocessed 224x224 RGB motif crops.
 """
@@ -8,7 +8,9 @@ from typing import Optional
 import numpy as np
 import torch
 from torchvision import transforms
-from PIL import Image
+
+
+MODEL_NAME = "dinov2_vits14"
 
 # Global model cache to avoid reloading weights per query
 _DINO_MODEL = None
@@ -24,44 +26,40 @@ DINO_TRANSFORMS = transforms.Compose([
 ])
 
 
-def get_dinov2_model(model_name: str = "dinov2_vits14"):
+def get_dinov2_model():
     """
     Loads pretrained DINOv2 via torch.hub in eval mode.
     """
     global _DINO_MODEL
     if _DINO_MODEL is None:
         # Downloads from torch hub cache (~85MB for ViT-S/14)
-        _DINO_MODEL = torch.hub.load("facebookresearch/dinov2", model_name)
+        _DINO_MODEL = torch.hub.load("facebookresearch/dinov2", MODEL_NAME)
         _DINO_MODEL.to(_DEVICE)
         _DINO_MODEL.eval()
     return _DINO_MODEL
 
 
-def extract_visual_embedding(
-        rgb_224_img: np.ndarray,
-        model_name: str = "dinov2_vits14"
-) -> Optional[np.ndarray]:
+def extract_visual_embedding(rgb_224_img: np.ndarray) -> Optional[np.ndarray]:
     """
     Extracts an L2-normalized dense latent representation from a (224, 224, 3) RGB crop.
-
     Returns:
       1D numpy array of shape (384,) for ViT-S/14.
     """
     if rgb_224_img is None or rgb_224_img.shape != (224, 224, 3):
         return None
 
-    model = get_dinov2_model(model_name)
+    model = get_dinov2_model()
 
     # Convert numpy RGB to normalized Torch Tensor: shape (1, 3, 224, 224)
     tensor = DINO_TRANSFORMS(rgb_224_img).unsqueeze(0).to(_DEVICE)
 
-    with torch.no_grad():
+    with torch.inference_mode():
         # Forward pass generates CLS token embedding
         features = model(tensor)
         # L2-normalize feature vector
         features = torch.nn.functional.normalize(features, p=2, dim=1)
 
-    return features.squeeze(0).cpu().numpy()
+    return features.squeeze(0).cpu().numpy().astype(np.float32)
 
 
 def compute_embedding_similarity(vec_a: np.ndarray, vec_b: np.ndarray) -> float:

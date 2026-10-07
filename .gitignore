@@ -220,3 +220,5 @@ __marimo__/
 # Ignore heavy raw downloads and temp debug files
 data/raw/
 data/debug/
+
+docs/

@@ -1,203 +1,532 @@
 """
 OpenCV Geometric Feature Extraction
-Extracts interpretable shape descriptors (Hu Moments + geometric ratios)
-from preprocessed cultural-heritage motif crops.
+
+Extracts interpretable geometric descriptors from manually cropped
+cultural-heritage motifs.
+
+v0.1 deliberately avoids automatic foreground segmentation.
+The manual crop already defines the region of interest.
+
+Features:
+1. Log-transformed Hu moments from the complete edge mask.
+2. Edge density.
+3. Radial edge distribution.
+4. Rotation-invariant angular symmetry spectrum.
+
+Feature standardization is performed later in hybrid_search.py using
+statistics fitted only on the indexed corpus.
 """
+
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
+
 import cv2
 import numpy as np
 
 
-def save_contour_debug_image(
-    original_clahe: np.ndarray,
-    binary: np.ndarray,
-    contour: np.ndarray,
-    output_path: Path
-):
+# Debug visualization
+def save_edge_debug_image(
+    preprocessed_img: np.ndarray,
+    edge_mask: np.ndarray,
+    output_path: Path,
+) -> None:
     """
-    Renders a 3-panel canvas: Enhanced Grayscale, Thresholded Mask, and Extracted Contour.
+    Save a three-panel debug image:
+
+    1. CLAHE-enhanced grayscale crop
+    2. Extracted Canny edge mask
+    3. Edge overlay on the crop
     """
-    vis = cv2.cvtColor(original_clahe, cv2.COLOR_GRAY2BGR)
-    cv2.drawContours(vis, [contour], -1, (0, 0, 255), 2)
-
-    binary_bgr = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
-    clahe_bgr = cv2.cvtColor(original_clahe, cv2.COLOR_GRAY2BGR)
-
-    canvas = np.hstack([clahe_bgr, binary_bgr, vis])
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(str(output_path), canvas)
-
-
-def extract_salient_contour(binary_img: np.ndarray) -> Optional[np.ndarray]:
-    # Look for both external and internal contours
-    contours, hierarchy = cv2.findContours(
-        binary_img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
+    grayscale_bgr = cv2.cvtColor(
+        preprocessed_img,
+        cv2.COLOR_GRAY2BGR,
     )
-    if not contours or hierarchy is None:
-        return None
 
-    h, w = binary_img.shape[:2]
-    center = np.array([w / 2.0, h / 2.0])
-    total_area = float(h * w)
-
-    valid_contours = []
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
-        if area < 0.01 * total_area:
-            continue
-
-        hull = cv2.convexHull(cnt)
-        hull_area = cv2.contourArea(hull)
-        solidity = (area / hull_area) if hull_area > 0 else 0.0
-
-        # Discard bounding box frames or full-crop circles
-        if area > 0.75 * total_area and solidity > 0.92:
-            continue
-
-        M = cv2.moments(cnt)
-        if M["m00"] > 0:
-            cx = M["m10"] / M["m00"]
-            cy = M["m01"] / M["m00"]
-            dist_from_center = np.linalg.norm(np.array([cx, cy]) - center)
-            valid_contours.append((area, dist_from_center, solidity, cnt))
-
-    if not valid_contours:
-        return max(contours, key=cv2.contourArea)
-
-    # Rank: prefer motifs near the center with lower solidity (star/radial geometry)
-    valid_contours.sort(
-        key=lambda x: (x[0] / (1.0 + 0.2 * (x[1] / max(w, h)))) * (1.2 - min(x[2], 0.95)),
-        reverse=True
+    edges_bgr = cv2.cvtColor(
+        edge_mask,
+        cv2.COLOR_GRAY2BGR,
     )
-    return valid_contours[0][3]
 
+    overlay = grayscale_bgr.copy()
 
-def binarize_crop_adaptive(clahe_img: np.ndarray) -> np.ndarray:
-    """
-    Combines adaptive bilateral filtering with Canny edge detection
-    and morphological closing to isolate internal carved lines rather than outer disc borders.
-    """
-    # 1. Bilateral filter preserves sharp relief edges while smoothing stone noise
-    filtered = cv2.bilateralFilter(clahe_img, d=7, sigmaColor=50, sigmaSpace=50)
-
-    # 2. Adaptive thresholding captures local relief changes
-    adaptive = cv2.adaptiveThreshold(
-        filtered,
+    overlay[edge_mask > 0] = (
+        0,
+        0,
         255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY_INV,
-        blockSize=21,
-        C=4
     )
 
-    # 3. Morphological close to bridge broken star rays
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
-    closed = cv2.morphologyEx(adaptive, cv2.MORPH_CLOSE, kernel)
+    canvas = np.hstack(
+        [
+            grayscale_bgr,
+            edges_bgr,
+            overlay,
+        ]
+    )
 
-    return closed
+    output_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    cv2.imwrite(
+        str(output_path),
+        canvas,
+    )
 
 
-def compute_shape_features(clahe_img: np.ndarray, debug_path: Optional[Path] = None) -> Optional[Dict[str, Any]]:
+# Edge extraction
+def extract_edge_mask(
+    preprocessed_img: np.ndarray,
+    blur_kernel: int = 5,
+    canny_sigma: float = 0.33,
+    border_margin_ratio: float = 0.03,
+) -> np.ndarray:
     """
-    Extracts a normalized geometric descriptor vector from a preprocessed crop.
+    Extract geometric edge structure from the complete motif crop.
 
-    Feature Vector Components:
-      - 7 Log-transformed Hu Moments (scale/rotation invariant)
-      - Compactness (4 * pi * Area / Perimeter^2)
-      - Solidity (Contour Area / Convex Hull Area)
-      - Extent (Contour Area / Bounding Box Area)
-      - Defect Count (Number of significant convexity defects)
+    Uses:
+    - Gaussian smoothing to suppress fine surface texture.
+    - Automatic Canny thresholds based on median image intensity.
+    - Border suppression to remove crop/padding artifacts.
     """
-    binary = binarize_crop_adaptive(clahe_img)
-    contour = extract_salient_contour(binary)
-    if contour is None or len(contour) < 5:
+    if blur_kernel % 2 == 0:
+        blur_kernel += 1
+
+    blurred = cv2.GaussianBlur(
+        preprocessed_img,
+        (blur_kernel, blur_kernel),
+        0,
+    )
+
+    median_intensity = float(
+        np.median(blurred)
+    )
+
+    lower = int(max(0,(1.0 - canny_sigma)* median_intensity,))
+
+    upper = int(min(255, (1.0 + canny_sigma) * median_intensity,))
+
+    edges = cv2.Canny(
+        blurred,
+        lower,
+        upper,
+    )
+
+    # Remove any artificial boundary introduced by crop/padding.
+    h, w = edges.shape[:2]
+
+    margin = max(
+        2,
+        int(
+            border_margin_ratio
+            * min(h, w)
+        ),
+    )
+
+    edges[:margin, :] = 0
+    edges[-margin:, :] = 0
+    edges[:, :margin] = 0
+    edges[:, -margin:] = 0
+
+    return edges
+
+
+# Hu moments
+def compute_log_hu(
+    binary_mask: np.ndarray,
+) -> np.ndarray:
+    """
+    Compute sign-preserving log-transformed Hu moments.
+
+    Hu moments provide translation-, scale-, and rotation-invariant
+    global geometric descriptors.
+    """
+    moments = cv2.moments(
+        binary_mask,
+        binaryImage=True,
+    )
+
+    hu = cv2.HuMoments(
+        moments
+    ).flatten()
+
+    log_hu = np.zeros(
+        7,
+        dtype=np.float32,
+    )
+
+    for i, value in enumerate(hu):
+        if value != 0:
+            log_hu[i] = (
+                -np.sign(value)
+                * np.log10(
+                    abs(value)
+                )
+            )
+
+    return log_hu
+
+
+# Radial geometry
+def compute_radial_histogram(
+    edge_mask: np.ndarray,
+    bins: int = 6,
+) -> np.ndarray:
+    """
+    Describe how edge pixels are distributed from the crop center.
+
+    Radius is normalized, making the descriptor largely independent
+    of absolute crop size.
+    """
+    ys, xs = np.nonzero(
+        edge_mask
+    )
+
+    if len(xs) == 0:
+        return np.zeros(
+            bins,
+            dtype=np.float32,
+        )
+
+    h, w = edge_mask.shape[:2]
+
+    cx = (w - 1) / 2.0
+    cy = (h - 1) / 2.0
+
+    dx = xs.astype(np.float32) - cx
+    dy = ys.astype(np.float32) - cy
+
+    radii = np.sqrt(
+        dx ** 2 + dy ** 2
+    )
+
+    max_radius = np.sqrt(
+        cx ** 2 + cy ** 2
+    )
+
+    if max_radius > 0:
+        radii = radii / max_radius
+
+    histogram, _ = np.histogram(
+        radii,
+        bins=bins,
+        range=(0.0, 1.0),
+    )
+
+    histogram = histogram.astype(
+        np.float32
+    )
+
+    total = histogram.sum()
+
+    if total > 0:
+        histogram /= total
+
+    return histogram
+
+
+# Angular / rotational geometry
+def compute_angular_spectrum(
+    edge_mask: np.ndarray,
+    angular_bins: int = 36,
+    harmonics: int = 12,
+) -> np.ndarray:
+    """
+    Compute a rotation-invariant angular symmetry descriptor.
+
+    Edge pixels are represented by their angle around the crop center.
+
+    The angular histogram itself changes when the motif rotates, but
+    the magnitude of its Fourier transform does not. This makes the
+    resulting spectrum useful for comparing rotated radial motifs.
+
+    For example, an eight-rayed motif may produce strong periodic
+    structure around harmonic 8.
+    """
+    ys, xs = np.nonzero(
+        edge_mask
+    )
+
+    if len(xs) == 0:
+        return np.zeros(
+            harmonics,
+            dtype=np.float32,
+        )
+
+    h, w = edge_mask.shape[:2]
+
+    cx = (w - 1) / 2.0
+    cy = (h - 1) / 2.0
+
+    dx = xs.astype(np.float32) - cx
+    dy = ys.astype(np.float32) - cy
+
+    angles = np.arctan2(
+        dy,
+        dx,
+    )
+
+    # Convert [-pi, pi] -> [0, 2pi].
+    angles = (
+        angles
+        + 2.0 * np.pi
+    ) % (
+        2.0 * np.pi
+    )
+
+    angular_hist, _ = np.histogram(
+        angles,
+        bins=angular_bins,
+        range=(
+            0.0,
+            2.0 * np.pi,
+        ),
+    )
+
+    angular_hist = angular_hist.astype(
+        np.float32
+    )
+
+    total = angular_hist.sum()
+
+    if total > 0:
+        angular_hist /= total
+
+    spectrum = np.abs(
+        np.fft.rfft(
+            angular_hist
+        )
+    )
+
+    # Ignore the DC component at index 0.
+    available = spectrum[1:]
+
+    result = np.zeros(
+        harmonics,
+        dtype=np.float32,
+    )
+
+    count = min(
+        harmonics,
+        len(available),
+    )
+
+    result[:count] = available[:count]
+
+    return result
+
+
+# Feature extraction
+def compute_shape_features(
+    preprocessed_img: np.ndarray,
+    debug_path: Optional[Path] = None,
+) -> Optional[Dict[str, Any]]:
+    """
+    Extract an interpretable geometric feature vector.
+
+    Feature vector:
+
+        7  log-transformed Hu moments
+        1  edge density
+        6  radial histogram bins
+        12 angular Fourier magnitudes
+
+    Total: 26 dimensions.
+
+    The vector is returned raw.
+
+    Standardization must later be fitted only on the indexed corpus
+    inside the retrieval/search pipeline.
+    """
+    edge_mask = extract_edge_mask(
+        preprocessed_img
+    )
+
+    edge_count = int(
+        cv2.countNonZero(
+            edge_mask
+        )
+    )
+
+    if edge_count == 0:
         return None
 
-    # Save visual debug canvas if a path was provided
     if debug_path is not None:
-        save_contour_debug_image(clahe_img, binary, contour, debug_path)
+        save_edge_debug_image(
+            preprocessed_img,
+            edge_mask,
+            debug_path,
+        )
 
-    # 1. Hu Moments with sign-preserving log transformation
-    moments = cv2.moments(contour)
-    hu_moments = cv2.HuMoments(moments).flatten()
-    log_hu = np.zeros(7, dtype=np.float32)
-    for i in range(7):
-        val = hu_moments[i]
-        if val != 0:
-            log_hu[i] = -1.0 * np.sign(val) * np.log10(np.abs(val))
+    # 1. Global geometry
+    log_hu = compute_log_hu(
+        edge_mask
+    )
 
-    # 2. Geometric Scalars
-    area = cv2.contourArea(contour)
-    perimeter = cv2.arcLength(contour, closed=True)
-    compactness = (4.0 * np.pi * area) / (perimeter ** 2) if perimeter > 0 else 0.0
+    # 2. Edge density
+    edge_density = (
+        edge_count
+        / float(
+            edge_mask.size
+        )
+    )
 
-    hull = cv2.convexHull(contour)
-    hull_area = cv2.contourArea(hull)
-    solidity = (area / hull_area) if hull_area > 0 else 0.0
+    # 3. Radial structure
+    radial_histogram = (
+        compute_radial_histogram(
+            edge_mask,
+            bins=6,
+        )
+    )
 
-    x, y, w, h = cv2.boundingRect(contour)
-    bbox_area = float(w * h)
-    extent = (area / bbox_area) if bbox_area > 0 else 0.0
+    # 4. Rotational symmetry structure
+    angular_spectrum = (
+        compute_angular_spectrum(
+            edge_mask,
+            angular_bins=36,
+            harmonics=12,
+        )
+    )
 
-    # 3. Convexity defects (captures star points vs. rounded lobes)
-    defect_count = 0
-    try:
-        hull_indices = cv2.convexHull(contour, returnPoints=False)
-        if hull_indices is not None and len(hull_indices) > 3:
-            defects = cv2.convexityDefects(contour, hull_indices)
-            if defects is not None:
-                # Squeeze out any extra dimensions (handles both (N, 1, 4) and (N, 4) shapes safely)
-                defects_squeezed = defects.reshape(-1, 4)
-
-                # Count defects deeper than 5% of bounding dimension
-                threshold_depth = 0.05 * max(w, h) * 256
-                defect_count = sum(1 for d in defects_squeezed if d[3] > threshold_depth)
-    except cv2.error:
-        defect_count = 0
-
-    # Combined 11-dimensional feature vector
-    scalar_features = np.array([compactness, solidity, extent, defect_count / 12.0], dtype=np.float32)
-    feature_vector = np.concatenate([log_hu, scalar_features])
+    # 5. Final descriptor
+    feature_vector = np.concatenate(
+        [
+            log_hu,
+            np.array(
+                [edge_density],
+                dtype=np.float32,
+            ),
+            radial_histogram,
+            angular_spectrum,
+        ]
+    ).astype(
+        np.float32
+    )
 
     return {
         "feature_vector": feature_vector,
-        "contour": contour,
+        "edge_mask": edge_mask,
+
         "log_hu": log_hu,
-        "compactness": float(compactness),
-        "solidity": float(solidity),
-        "extent": float(extent),
-        "defects": int(defect_count)
+        "edge_density": float(
+            edge_density
+        ),
+        "radial_histogram": radial_histogram,
+        "angular_spectrum": angular_spectrum,
     }
 
 
-def compute_shape_similarity(vec_a: np.ndarray, vec_b: np.ndarray, gamma: float = 0.25) -> float:
+def compute_shape_similarity(
+    vec_a: np.ndarray,
+    vec_b: np.ndarray,
+    gamma: float = 0.25,
+) -> float:
     """
-    Computes normalized shape similarity S_shape in [0, 1] using exponential
-    decay over Euclidean distance.
+    Compute geometric similarity in [0, 1].
+
+    IMPORTANT:
+    vec_a and vec_b must already be standardized using statistics
+    fitted from the indexed corpus only.
     """
-    distance = float(np.linalg.norm(vec_a - vec_b))
-    similarity = float(np.exp(-gamma * distance))
-    return max(0.0, min(1.0, similarity))
+    distance = float(
+        np.linalg.norm(
+            vec_a - vec_b
+        )
+    )
+
+    similarity = float(
+        np.exp(
+            -gamma * distance
+        )
+    )
+
+    return float(
+        np.clip(
+            similarity,
+            0.0,
+            1.0,
+        )
+    )
 
 
 if __name__ == "__main__":
     import sys
-    from symbolic_detective.pipeline.preprocess import preprocess_for_opencv
 
-    if len(sys.argv) > 1:
-        test_path = Path(sys.argv[1])
-        processed = preprocess_for_opencv(test_path)
+    from symbolic_detective.pipeline.preprocess import (
+        preprocess_for_opencv,
+    )
 
-        if processed is not None:
-            debug_out = Path("data/debug") / f"debug_{test_path.stem}.png"
-            features = compute_shape_features(processed, debug_path=debug_out)
+    if len(sys.argv) < 2:
+        print(
+            "Usage: python -m "
+            "symbolic_detective.pipeline.shape_features "
+            "<crop_path>"
+        )
+        raise SystemExit(1)
 
-            if features:
-                print(f"Extracted shape features for: {test_path.name}")
-                print(f"Debug image saved to: {debug_out}")
-                print(f"Solidity: {features['solidity']:.4f} | Compactness: {features['compactness']:.4f}")
-                print(f"Significant defects: {features['defects']}")
-                print(f"Log Hu Moments: {np.round(features['log_hu'][:4], 3)}")
-            else:
-                print(f"Failed to extract salient contour for {test_path.name}")
+    test_path = Path(
+        sys.argv[1]
+    )
+
+    processed = preprocess_for_opencv(
+        test_path
+    )
+
+    if processed is None:
+        print(
+            f"Failed to preprocess: "
+            f"{test_path}"
+        )
+        raise SystemExit(1)
+
+    debug_out = (
+        Path("data/debug")
+        / f"debug_{test_path.stem}.png"
+    )
+
+    features = compute_shape_features(
+        processed,
+        debug_path=debug_out,
+    )
+
+    if features is None:
+        print(
+            "Failed to extract geometric features for "
+            f"{test_path.name}"
+        )
+        raise SystemExit(1)
+
+    print(
+        f"Extracted geometric features for: "
+        f"{test_path.name}"
+    )
+
+    print(
+        f"Debug image saved to: "
+        f"{debug_out}"
+    )
+
+    print(
+        f"Edge density: "
+        f"{features['edge_density']:.4f}"
+    )
+
+    print(
+        "Log Hu moments: "
+        f"{np.round(features['log_hu'], 3)}"
+    )
+
+    print(
+        "Radial histogram: "
+        f"{np.round(features['radial_histogram'], 3)}"
+    )
+
+    print(
+        "Angular spectrum: "
+        f"{np.round(features['angular_spectrum'], 3)}"
+    )
+
+    print(
+        f"Feature vector dimension: "
+        f"{len(features['feature_vector'])}"
+    )

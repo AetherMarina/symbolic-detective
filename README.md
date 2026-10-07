@@ -8,7 +8,7 @@
 ### v0.1 — Unknown Motif Finder
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![Status: Experimental](https://img.shields.io/badge/status-v0.1--alpha-orange.svg)]()
 
 **Symbolic Detective** is an open-source computational iconography project for discovering, comparing, and contextualizing visual motifs across cultural heritage collections. 
@@ -41,36 +41,26 @@ The primary test case for v0.1 is the **Eight-Pointed Star**:
 
 ## Pipeline Architecture
 
-```text
-                       [ Input: Cropped Motif ]
-                                  │
-                                  ▼
-                        [ Normalization Layer ]
-                     (Scale, Contrast, Centering)
-                                  │
-                 ┌────────────────┴────────────────┐
-                 ▼                                 ▼
-      [ OpenCV Shape Extraction ]      [ Pretrained Visual Encoder ]
-       - Contour hierarchy              - Self-supervised features (DINOv2)
-       - Hu Moments / Descriptors       - Dense latent representation
-                 │                                 │
-                 └────────────────┬────────────────┘
-                                  ▼
-                     [ Hybrid Similarity Metric ]
-                     S_{hybrid} = α(S_{shape}) + (1 - α)(S_{embed})
-                                  │
-                                  ▼
-                        [ Top-K Retrieval ]
-                                  │
-                                  ▼
-                     [ Streamlit Evaluation UI ]
-                   (Artifact Metadata & Similarity Scores)
+```mermaid
+graph TD
+    Input["Input: Cropped Motif"] --> Norm["Dual-Stream Preprocessing<br/>OpenCV: CLAHE + Neutral Padding<br/>DINOv2: RGB Padding + 224×224 Resize"]
+
+    Norm --> OpenCV["OpenCV Geometric Features<br/>- Canny Edge Structure<br/>- Log Hu Moments<br/>- Edge Density<br/>- Radial Histogram<br/>- Angular Spectrum"]
+
+    Norm --> Encoder["Pretrained Visual Encoder<br/>- DINOv2 ViT-S/14<br/>- L2-Normalized Latent Embedding"]
+
+    OpenCV --> Hybrid["Hybrid Similarity Metric<br/>S<sub>hybrid</sub> = α(S<sub>shape</sub>) + (1 - α)(S<sub>embed</sub>)"]
+    Encoder --> Hybrid
+
+    Hybrid --> Retrieval["Top-K Retrieval"]
+
+    Retrieval --> UI["Streamlit Evaluation UI<br/>(Artifact Metadata & Similarity Scores)"]
 ```
 1. **Manual Crop**: Isolated motif input from an open-access museum artifact.
-2. **Normalization**: Intensity equalization, background attenuation, bounding-square padding, and resolution standardization ($224 \times 224$).
+2. **Normalization:** CLAHE enhancement and neutral padding for the OpenCV stream; aspect-ratio-preserving square padding and 224×224 resizing for DINOv2.
 3. **Dual-Feature Extraction**:
-   * Geometric Descriptors: OpenCV contour extraction, perimeter-to-area ratios, convexity defects, and log-transformed Hu moments (interpretable explicit geometry).
-   * Dense Latent Embeddings: Inference-only forward pass through a self-supervised visual backbone like DINOv2 (appearance-aware learned representation). 
+   * **Geometric Features:** OpenCV extracts edge-based geometry using Canny edges, log-transformed Hu moments, edge density, radial distribution, and a rotation-invariant angular Fourier spectrum.
+   * **Dense Latent Embeddings:** DINOv2 ViT-S/14 generates an L2-normalized learned visual representation using inference only.
 4. **Hybrid Scoring**: Convert shape distance and embedding similarity into normalized similarity scores, then combine them using a weighted linear ensemble ($S_{shape} \in [0, 1]$, $S_{embed} \in [0, 1]$). 
 5. **Top-K Retrieval**: Ranked search over the curated local index.
 
@@ -80,13 +70,14 @@ The primary test case for v0.1 is the **Eight-Pointed Star**:
 ```text
 symbolic-detective/
 ├── data/
-│   ├── raw/                  # Downloaded open-access images
-│   ├── crops/                # Curated motif crops (100–150 images)
-│   │   ├── eight_pointed/    # Case 001 target family
-│   │   ├── rosette/          # Hard negative / related radial motif
-│   │   ├── five_pointed/     # Hard negative / related star geometry
-│   │   └── negative_control/ # Other geometric motifs
-│   └── metadata.json         # Provenance, period, material, museum IDs
+│   ├── raw/                      # Downloaded open-access images
+│   ├── crops/                    # Curated motif crops (100–150 images)
+│   │   ├── eight_pointed/        # Case 001 target family
+│   │   ├── rosette/              # Hard negative / related radial motif
+│   │   ├── five_pointed/         # Hard negative / related star geometry
+│   │   └── negative_control/     # Other geometric motifs
+│   ├── metadata.json             # Provenance, period, material, museum IDs
+│   └── splits.json               # Artifact-level index/query assignments
 ├── src/
 │   └── symbolic_detective/
 │       ├── ingestion/            # Museum API harvesters (The Met, Europeana)
@@ -94,35 +85,36 @@ symbolic-detective/
 │       │   └── europeana_api.py  # Europeana REST client
 │       ├── pipeline/
 │       │   ├── preprocess.py     # Image normalization routines
-│       │   ├── shape_features.py # OpenCV contour and moment extraction
+│       │   ├── shape_features.py # OpenCV edge-based geometric feature extraction
 │       │   ├── embeddings.py     # Latent feature generation
 │       │   └── hybrid_search.py  # Similarity computation and ranking
 │       ├── utils/
 │       │   └── image_crop.py     # Script for fast image cropping
-│       └── evaluate.py           # Benchmark script: Recall@K and MRR
+│       └── evaluate.py           # Benchmark script: Hit@K and MRR
 ├── ui/
-│   └── app.py                # Streamlit exploration dashboard
-├── tests/                    # Unit tests for feature extraction
+│   └── app.py                    # Streamlit exploration dashboard
+├── tests/                        # Unit tests for feature extraction
 ├── .gitignore
-├── requirements.txt
+├── pyproject.toml
+├── requirements-lock.txt
 ├── LICENSE
 └── README.md
 ```
 ---
 
-## Benchmark & Evaluation
+## 📊 Benchmark & Evaluation
 v0.1 treats motif-family labels strictly as evaluation ground truth; they are never passed to the retrieval algorithms. Artifact metadata is retained for provenance and analysis but is not used as an input to the v0.1 similarity ranking.
 
 **Experimental Setup**
 * **Corpus**: 100–150 manually verified motif crops across 4–5 visual families.
 * **Held-out queries**: Test motifs not present in the indexed corpus.
-* **Evaluated Metrics**: Recall@1, Recall@5, and Mean Reciprocal Rank (MRR).
+* **Evaluated Metrics**: Hit@1, Hit@5, and Mean Reciprocal Rank (MRR).
 
-| Method | Recall@1 | Recall@5 | MRR | Robustness |
-|---|---:|---:|---:|---|
-| OpenCV Geometric Features | TBD | TBD | TBD | TBD |
-| Latent Embeddings (DINOv2) | TBD | TBD | TBD | TBD |
-| Hybrid Ensemble | TBD | TBD | TBD | TBD |
+| Method | Hit@1 | Hit@5 | MRR | Robustness |
+|---|------:|------:|---:|---|
+| OpenCV Geometric Features |   TBD |   TBD | TBD | TBD |
+| Latent Embeddings (DINOv2) |   TBD |   TBD | TBD | TBD |
+| Hybrid Ensemble |   TBD |   TBD | TBD | TBD |
 
 **Robustness Stress Tests**
 
@@ -160,15 +152,16 @@ python -m symbolic_detective.ingestion.met_api --query "star" --department 33 --
 ### 3. Run Benchmark Evaluation
 Compare the OpenCV, DINOv2, and hybrid retrieval baselines on the held-out query set:
 ```bash
-python -m symbolic_detective.evaluate --data-dir data/crops/ --alpha 0.4
+python -m symbolic_detective.evaluate --data-dir data/crops/
 ```
 
 ### 4. Launch the Exploration UI
 ```bash
 streamlit run ui/app.py
 ```
-The Streamlit dashboard allows you to upload an arbitrary motif crop, inspect its extracted contour, and examine the top retrieved artifacts alongside available artifact metadata and source provenance.
-
+The Streamlit dashboard allows you to upload an arbitrary motif crop,
+inspect its extracted edge representation, and examine the top retrieved
+artifacts alongside similarity scores, artifact metadata, and source provenance.
 ---
 ## Developer Utilities
 
@@ -179,14 +172,14 @@ Replace the path below with a valid crop from your `data/crops/` directory:
 # 1. Test OpenCV normalization (CLAHE + Padding)
 python -m symbolic_detective.pipeline.preprocess data/crops/eight_pointed/YOUR_IMAGE.jpg
 
-# 2. Extract interpretable geometry and save a debug contour image
+# 2. Extract interpretable geometric features and save an edge debug image
 python -m symbolic_detective.pipeline.shape_features data/crops/eight_pointed/YOUR_IMAGE.jpg
 
 # 3. Extract the DINOv2 dense latent representation
 python -m symbolic_detective.pipeline.embeddings data/crops/eight_pointed/YOUR_IMAGE.jpg
 
-# 4. Compare two motifs side-by-side to see the hybrid scoring breakdown
-python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMAGE_1.jpg data/crops/eight_pointed/IMAGE_2.jpg
+# 4. Build the local motif index and retrieve the Top-K matches
+python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMAGE_1.jpg 0.5
 ```
 
 ## Roadmap
@@ -205,13 +198,13 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 
 ## Future Horizons
 
-* v0.2 — Related Motif Discrimination: Granular separation of overlapping geometries.
-* v0.3 — Motif Clustering & Discrimination:Contextual Identity: Investigating whether visually different motif forms can share a historically supported symbolic identity.
-* v0.4 — Motif Clustering & Discrimination:Automatic Detection: Full artifact → bounding box localization via fine-tuned models.
-* v0.5 — Motif Clustering & Discrimination:Unknown Motif Memory: Unsupervised clustering of recurring, undocumented motifs.
-* v0.6 — Motif Clustering & Discrimination: Spatiotemporal Graph: Knowledge graph layer (places, periods, materials).
-* v0.7 — Evidence & Local RAG: Grounded synthesis of scholarly sources using local LLMs.
-* v1.0 — Symbolic Detective: Full-stack computational iconography engine.
+* **v0.2 — Related Motif Discrimination:** Granular separation of overlapping geometries.
+* **v0.3 — Contextual Identity:** Investigating whether visually different motif forms can share a historically supported symbolic identity.
+* **v0.4 — Automatic Detection:** Full artifact → bounding-box localization via fine-tuned models.
+* **v0.5 — Unknown Motif Memory:** Unsupervised clustering of recurring, undocumented motifs.
+* **v0.6 — Spatiotemporal Graph:** Knowledge graph layer connecting motifs, places, periods, materials, and documented relationships.
+* **v0.7 — Evidence & Local RAG:** Grounded synthesis of scholarly sources using local LLMs.
+* **v1.0 — Symbolic Detective:** Full-stack computational iconography engine.
 
 ## License
 

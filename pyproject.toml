@@ -7,8 +7,9 @@ name = "symbolic-detective"
 version = "0.1.0"
 description = "Computational iconography engine for discovering and comparing visual motifs."
 readme = "README.md"
+license = { file = "LICENSE" }
 authors = [
-  { name="Marina Kaličanin", email="marina.feel.ai@gmail.com" }
+  { name="Marina Kaličanin"}
 ]
 requires-python = ">=3.12"
 dependencies = [
@@ -16,8 +17,9 @@ dependencies = [
     "opencv-python>=4.9.0",
     "numpy>=1.26.0",
     "streamlit>=1.35.0",
-    "torch",
-    "torchvision"
+    "torch>=2.11.0,<3.0",
+    "torchvision>=0.26.0,<1.0",
+    "scikit-learn>=1.7.0,<2.0"
 ]
 
 [project.optional-dependencies]

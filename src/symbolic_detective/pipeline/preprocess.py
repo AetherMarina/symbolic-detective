@@ -48,29 +48,49 @@ def pad_to_square(
     return padded
 
 
+def estimate_border_value(image: np.ndarray) -> int:
+    """Estimate a neutral padding value from the image boundary."""
+    border = np.concatenate([
+        image[0, :],
+        image[-1, :],
+        image[:, 0],
+        image[:, -1],
+    ])
+    return int(np.median(border))
+
+
 def preprocess_for_opencv(
-        crop_path: Path,
-        clip_limit: float = 2.0,
-        tile_grid_size: Tuple[int, int] = (8, 8)
+    crop_path: Path,
+    clip_limit: float = 2.0,
+    tile_grid_size: Tuple[int, int] = (8, 8),
 ) -> Optional[np.ndarray]:
     """
-    Preprocesses a motif crop for geometric contour and moment analysis:
-    - Reads in BGR/Grayscale.
-    - Adds boundary padding.
-    - Applies CLAHE to bring out low-contrast engravings and incisions.
+    Preprocess a motif crop for geometric contour and moment analysis:
+    - Read as grayscale.
+    - Apply CLAHE to enhance low-contrast engravings and incisions.
+    - Add neutral boundary padding so motif contours do not touch the image border.
     """
     img = cv2.imread(str(crop_path), cv2.IMREAD_GRAYSCALE)
     if img is None:
         return None
 
-    # Step 1: Add boundary buffer
-    padded = pad_to_square(img, fill_color=(0,), margin_ratio=0.08)
+    # Step 1: Enhance only genuine image pixels.
+    clahe = cv2.createCLAHE(
+        clipLimit=clip_limit,
+        tileGridSize=tile_grid_size,
+    )
+    enhanced = clahe.apply(img)
 
-    # Step 2: Adaptive histogram equalization for weathered/uneven textures
-    clahe = cv2.createCLAHE(clipLimit=clip_limit, tileGridSize=tile_grid_size)
-    enhanced = clahe.apply(padded)
+    # Step 2: Add a neutral boundary buffer after enhancement.
+    border_value = estimate_border_value(enhanced)
 
-    return enhanced
+    padded = pad_to_square(
+        enhanced,
+        fill_color=(border_value,),
+        margin_ratio=0.08,
+    )
+
+    return padded
 
 
 def preprocess_for_dinov2(
@@ -80,7 +100,7 @@ def preprocess_for_dinov2(
     """
     Preprocesses a motif crop for self-supervised vision models:
     - Preserves aspect ratio with neutral letterboxing.
-    - Resizes cleanly using cubic interpolation.
+    - Resizes using area interpolation for downsampling and cubic interpolation for upsampling.
     - Outputs RGB format ready for torch tensor conversion.
     """
     img = cv2.imread(str(crop_path), cv2.IMREAD_COLOR)
@@ -91,18 +111,19 @@ def preprocess_for_dinov2(
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # Step 2: Pad to square with neutral gray (128, 128, 128) to avoid harsh contrast borders
-    padded = pad_to_square(img_rgb, fill_color=(128, 128, 128), margin_ratio=0.0)
+    padded = pad_to_square(img_rgb, fill_color=(128, 128, 128), margin_ratio=0.05)
+    h, w = padded.shape[:2]
 
     # Step 3: Resize to model standard input
-    resized = cv2.resize(padded, (target_size, target_size), interpolation=cv2.INTER_CUBIC)
-
+    resized = cv2.resize(padded, (target_size, target_size),
+                         interpolation=(cv2.INTER_AREA if max(h, w) > target_size else cv2.INTER_CUBIC))
     return resized
 
 
 if __name__ == "__main__":
     import sys
 
-    # Quick test harness on a sample crop
+    # Quick test on a sample crop
     if len(sys.argv) > 1:
         test_file = Path(sys.argv[1])
         cv_img = preprocess_for_opencv(test_file)
