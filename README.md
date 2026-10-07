@@ -17,7 +17,6 @@ Version `0.1` deliberately isolates the core computer vision and similarity retr
 
 All higher-level reasoning layers (LLM-based explanation, knowledge graphs, automatic detection, and migration claims) are intentionally deferred. v0.1 evaluates visual retrieval alone.
 
----
 
 ## The Core Premise: Investigation Over Assumption
 
@@ -29,7 +28,6 @@ v0.1 provides the empirical visual baseline needed to answer two inverse questio
 1. **Visual homoplasy** (working term): visually similar motifs that arise independently or represent different symbolic identities.
 2. **Symbolic allomorphy** (working term): visually different forms that share a historically supported symbolic identity.
 
----
 
 ## Featured Investigation: Case 001 — The Eight-Pointed Star
 
@@ -37,11 +35,11 @@ The primary test case for v0.1 is the **Eight-Pointed Star**:
 * **Challenge:** Eight-pointed geometries appear across ancient Mesopotamian glyptic art, Babylonian kudurrus, Roman mosaics, Islamic architectural tilework, and modern emblems.
 * **Objective:** Determine whether an ensemble of interpretable geometric descriptors and deep visual embeddings can retrieve related eight-pointed motifs across radically different substrates (weathered stone, glazed ceramic, seal impressions, bronze) while discriminating them from hard negative controls (five-pointed stars, rosettes) and generic negative controls (geometric cross-hatching).
 
----
 
 ## Pipeline Architecture
 
 ```mermaid
+%%{init: {"flowchart": {"wrappingWidth": 400}}}%%
 graph TD
     Input["Input: Cropped Motif"] --> Norm["Dual-Stream Preprocessing<br/>OpenCV: CLAHE + Neutral Padding<br/>DINOv2: RGB Padding + 224×224 Resize"]
 
@@ -56,6 +54,7 @@ graph TD
 
     Retrieval --> UI["Streamlit Evaluation UI<br/>(Artifact Metadata & Similarity Scores)"]
 ```
+
 1. **Manual Crop**: Isolated motif input from an open-access museum artifact.
 2. **Normalization:** CLAHE enhancement and neutral padding for the OpenCV stream; aspect-ratio-preserving square padding and 224×224 resizing for DINOv2.
 3. **Dual-Feature Extraction**:
@@ -64,9 +63,9 @@ graph TD
 4. **Hybrid Scoring**: Convert shape distance and embedding similarity into normalized similarity scores, then combine them using a weighted linear ensemble ($S_{shape} \in [0, 1]$, $S_{embed} \in [0, 1]$). 
 5. **Top-K Retrieval**: Ranked search over the curated local index.
 
----
 
 ## 📂 Project Structure
+
 ```text
 symbolic-detective/
 ├── data/
@@ -100,7 +99,7 @@ symbolic-detective/
 ├── LICENSE
 └── README.md
 ```
----
+
 
 ## 📊 Benchmark & Evaluation
 v0.1 treats motif-family labels strictly as evaluation ground truth; they are never passed to the retrieval algorithms. Artifact metadata is retained for provenance and analysis but is not used as an input to the v0.1 similarity ranking.
@@ -124,7 +123,6 @@ Retrieval performance is benchmarked against synthetic corruptions approximating
  * Blur and morphological corruption approximating surface degradation.
  * Partial occlusion / masking.
 
----
 
 ## Getting Started
 
@@ -159,10 +157,9 @@ python -m symbolic_detective.evaluate --data-dir data/crops/
 ```bash
 streamlit run ui/app.py
 ```
-The Streamlit dashboard allows you to upload an arbitrary motif crop,
-inspect its extracted edge representation, and examine the top retrieved
-artifacts alongside similarity scores, artifact metadata, and source provenance.
----
+The Streamlit dashboard allows you to upload an arbitrary motif crop, inspect its extracted edge representation, and examine the top retrieved artifacts alongside similarity scores, artifact metadata, and source provenance.
+
+
 ## Developer Utilities
 
 If you are modifying the feature extraction logic, you can test individual components of the pipeline on a single cropped motif.
