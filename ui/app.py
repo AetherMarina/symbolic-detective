@@ -26,6 +26,7 @@ st.set_page_config(
 DATA_DIR = Path("data")
 CROPS_DIR = DATA_DIR / "crops"
 METADATA_FILE = DATA_DIR / "metadata.json"
+INDEX_FILE = DATA_DIR / "index.npz"
 ROSETTE_PATH = Path("assets/rosette.jpg")
 
 
@@ -36,6 +37,7 @@ def get_base64_image(image_path: Path) -> str:
             encoded = base64.b64encode(f.read()).decode()
             return f"data:image/jpeg;base64,{encoded}"
     return ""
+
 
 rosette_b64 = get_base64_image(ROSETTE_PATH)
 
@@ -50,8 +52,8 @@ st.markdown(
     .brand-title { font-family: monospace, system-ui, sans-serif; font-size: 2.2rem; font-weight: 700; letter-spacing: 0.05em; color: #38bdf8; text-shadow: 0 0 16px rgba(56, 189, 248, 0.35); margin: 0; }
     .sub-brand { color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
     .accent-amber { color: #06b6d4; }
-    div[data-testid="stColumn"] { background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 8px; padding: 12px; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-    div[data-testid="stColumn"]:hover { border-color: rgba(251, 146, 60, 0.45); box-shadow: 0 0 14px rgba(251, 146, 60, 0.25); }
+    div[data-testid="stColumn"]:has(.element-container) { background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 8px; padding: 12px; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    div[data-testid="stColumn"]:has(.element-container):hover { border-color: rgba(251, 146, 60, 0.45); box-shadow: 0 0 14px rgba(251, 146, 60, 0.25); }
     [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] p, [data-testid="stWidgetLabel"] span { color: #94a3b8 !important; font-weight: 600 !important; letter-spacing: 0.02em; }
     .stSlider > div [data-baseweb="slider"] { accent-color: #06b6d4; }
     code { color: #fb923c !important; background-color: rgba(251, 146, 60, 0.08) !important; border: 1px solid rgba(251, 146, 60, 0.2) !important; }
@@ -59,6 +61,18 @@ st.markdown(
     div[data-testid="stFileUploadDropzone"] { background-color: rgba(56, 189, 248, 0.08) !important; border: 2px dashed rgba(56, 189, 248, 0.6) !important; border-radius: 8px; }
     div[data-testid="stFileUploadDropzone"]:hover { background-color: rgba(56, 189, 248, 0.18) !important; border-color: #fb923c !important; }
     div[data-testid="stFileUploadDropzone"] div, div[data-testid="stFileUploadDropzone"] span, div[data-testid="stFileUploadDropzone"] small { color: #f8fafc !important; }
+    /* Visible boxes */
+    div[data-testid="stColumn"]:has(.element-container) { 
+        background: rgba(15, 23, 42, 0.65); 
+        border: 1px solid rgba(56, 189, 248, 0.15); 
+        border-radius: 8px; 
+        padding: 12px; 
+        transition: border-color 0.2s ease, box-shadow 0.2s ease; 
+    }
+    div[data-testid="stColumn"]:has(.element-container):hover { 
+        border-color: rgba(251, 146, 60, 0.45); 
+        box-shadow: 0 0 14px rgba(251, 146, 60, 0.25); 
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -68,7 +82,7 @@ st.markdown(
 # --- Data Loading & Caching ---
 @st.cache_resource(show_spinner="Delegating to MotifIndex engine...")
 def load_search_engine():
-    """Builds the centralized MotifIndex and loads API metadata."""
+    """Builds or loads the centralized MotifIndex and loads API metadata."""
     index = MotifIndex()
 
     if CROPS_DIR.exists():
@@ -77,7 +91,19 @@ def load_search_engine():
             image_paths.extend(list(CROPS_DIR.rglob(f"*{ext}")))
 
         if image_paths:
-            index.build_index(image_paths)
+            # Try loading the persisted cache first
+            if INDEX_FILE.exists():
+                try:
+                    index.load(INDEX_FILE)
+                except RuntimeError as e:
+                    # Triggered if FEATURE_VERSION or DINO_MODEL changes
+                    st.toast(f"Cache invalidated: {e}. Rebuilding index...")
+                    index.build_index(image_paths)
+                    index.save(INDEX_FILE)
+            else:
+                # Build and save if no cache exists
+                index.build_index(image_paths)
+                index.save(INDEX_FILE)
 
     metadata = {}
     if METADATA_FILE.exists():
@@ -206,20 +232,23 @@ if uploaded_file is not None:
         st.markdown(f"### ✦ {len(valid_results)} closest visual matches")
         st.markdown("<hr>", unsafe_allow_html=True)
 
-        cols = st.columns(4)
-        for idx, res in enumerate(valid_results):
-            with cols[idx % 4]:
-                st.image(Image.open(res["path"]), use_container_width=True)
+        for i in range(0, len(valid_results), 4):
+            cols = st.columns(4)
+            chunk = valid_results[i:i + 4]
 
-                st.markdown(f"**Score:** `{res['s_hybrid']:.3f}`")
-                st.caption(f"Shape: {res['s_shape']:.2f} | Embed: {res['s_embed']:.2f}")
+            for j, res in enumerate(chunk):
+                with cols[j]:
+                    st.image(Image.open(res["path"]), use_container_width=True)
 
-                obj_id = res["path"].stem.split("_")[0]
-                prov = api_metadata.get(obj_id)
+                    st.markdown(f"**Score:** `{res['s_hybrid']:.3f}`")
+                    st.caption(f"Shape: {res['s_shape']:.2f} | Embed: {res['s_embed']:.2f}")
 
-                if prov:
-                    period = prov.get("period") or prov.get("objectDate") or "Unknown Period"
-                    culture = prov.get("culture") or "Unknown Culture"
-                    st.caption(f"*{culture}, {period}*")
-                else:
-                    st.caption(f"Artifact ID: {obj_id}")
+                    obj_id = res["path"].stem.split("_")[0]
+                    prov = api_metadata.get(obj_id)
+
+                    if prov:
+                        period = prov.get("period") or prov.get("objectDate") or "Unknown Period"
+                        culture = prov.get("culture") or "Unknown Culture"
+                        st.caption(f"*{culture}, {period}*")
+                    else:
+                        st.caption(f"Artifact ID: {obj_id}")
