@@ -89,7 +89,8 @@ symbolic-detective/
 │       │   ├── embeddings.py     # Latent feature generation
 │       │   └── hybrid_search.py  # Similarity computation and ranking
 │       ├── utils/
-│       │   └── image_crop.py     # Script for fast image cropping
+│       │   ├── image_crop.py     # Script for fast image cropping
+│       │   └── image_files.py    
 │       └── evaluate.py           # Benchmark script: Hit@K and MRR
 ├── ui/
 │   └── app.py                    # Streamlit exploration dashboard

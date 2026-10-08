@@ -1,5 +1,5 @@
 """
-Benchmark & Evaluation Script for Symbolic Detective v0.1.
+Benchmark & Evaluation Script.
 Calculates Hit@1, Hit@5, and MRR for OpenCV, DINOv2, and Hybrid Search.
 """
 import argparse
@@ -13,6 +13,7 @@ from sklearn.preprocessing import StandardScaler
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import extract_visual_embedding, compute_embedding_similarity
+from symbolic_detective.utils.image_files import collect_images
 
 random.seed(42)
 
@@ -33,14 +34,26 @@ def calculate_metrics(rankings: List[Dict[str, Any]], true_class: str) -> Tuple[
     return hit_1, hit_5, mrr
 
 
+def assign_artifact_split(
+    artifact_splits: Dict[str, str],
+    artifact_id: str,
+    split_name: str,
+) -> None:
+    """Assigns an artifact to a split while preventing cross-split leakage."""
+    existing_split = artifact_splits.get(artifact_id)
+
+    if existing_split is not None and existing_split != split_name:
+        raise RuntimeError(f"Artifact {artifact_id} assigned to both '{existing_split}' and '{split_name}' splits.")
+
+    artifact_splits[artifact_id] = split_name
+
+
 def evaluate_pipeline(data_dir: Path) -> None:
     print("--- Starting Motif Retrieval Benchmark ---")
 
-    # -------------------------------------------------------------------------
     # 1. Deterministic Artifact-Level Partitioning
-    # -------------------------------------------------------------------------
-    classes = [d for d in data_dir.iterdir() if d.is_dir()]
-    splits_file = data_dir / "splits.json"
+    classes = sorted([d for d in data_dir.iterdir() if d.is_dir()], key=lambda p: p.name)
+    splits_file = data_dir.parent / "splits.json"
 
     artifact_splits: Dict[str, str] = {}
     if splits_file.exists():
@@ -52,16 +65,17 @@ def evaluate_pipeline(data_dir: Path) -> None:
             if cls_dir.name == "negative_control":
                 continue
 
-            images = list(cls_dir.glob("*.jpg")) + list(cls_dir.glob("*.png"))
+            images = collect_images(cls_dir)
             # Sort before shuffle to ensure identical splits across different Python runs
             artifact_ids = sorted({img.stem.split("_")[0] for img in images})
             random.shuffle(artifact_ids)
 
             split_idx = int(len(artifact_ids) * 0.8)
             for aid in artifact_ids[:split_idx]:
-                artifact_splits[aid] = "index"
+                assign_artifact_split(artifact_splits, aid, "index")
+
             for aid in artifact_ids[split_idx:]:
-                artifact_splits[aid] = "query"
+                assign_artifact_split(artifact_splits, aid, "query")
 
         with open(splits_file, "w", encoding="utf-8") as f:
             json.dump(artifact_splits, f, indent=4)
@@ -70,7 +84,7 @@ def evaluate_pipeline(data_dir: Path) -> None:
     raw_query_items = []
 
     for cls_dir in classes:
-        images = list(cls_dir.glob("*.jpg")) + list(cls_dir.glob("*.png"))
+        images = collect_images(cls_dir)
         for img in images:
             aid = img.stem.split("_")[0]
 
@@ -85,9 +99,7 @@ def evaluate_pipeline(data_dir: Path) -> None:
     if not raw_corpus_items:
         raise RuntimeError("No candidate artifacts found for index corpus.")
 
-    # -------------------------------------------------------------------------
     # 2. Extract Features for Corpus
-    # -------------------------------------------------------------------------
     print(f"\nExtracting features for {len(raw_corpus_items)} candidate corpus items...")
     indexed_corpus = []
     for item in raw_corpus_items:
@@ -130,9 +142,7 @@ def evaluate_pipeline(data_dir: Path) -> None:
     for doc in indexed_corpus:
         doc["shape_vec"] = shape_scaler.transform([doc["shape_vec"]])[0]
 
-    # -------------------------------------------------------------------------
     # 3. Query Execution & Score Calibration Audit
-    # -------------------------------------------------------------------------
     print(f"\nProcessing {len(query_items)} queries...")
     query_results = []
     all_s_shape = []
@@ -172,14 +182,11 @@ def evaluate_pipeline(data_dir: Path) -> None:
     if not query_results:
         raise RuntimeError("All queries failed feature extraction.")
 
-    # Score calibration audit
     print("\n--- Score Calibration Audit ---")
     print(f"S_shape Range: {np.min(all_s_shape):.3f} to {np.max(all_s_shape):.3f} (Mean: {np.mean(all_s_shape):.3f})")
     print(f"S_embed Range: {np.min(all_s_embed):.3f} to {np.max(all_s_embed):.3f} (Mean: {np.mean(all_s_embed):.3f})\n")
 
-    # -------------------------------------------------------------------------
     # 4. Exploratory Alpha Sweep
-    # -------------------------------------------------------------------------
     alphas_to_test = [0.0, 0.25, 0.50, 0.75, 1.0]
 
     print("### Exploratory Alpha Sweep (Validation Set)")

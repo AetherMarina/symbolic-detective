@@ -15,6 +15,7 @@ from PIL import Image
 from symbolic_detective.pipeline.hybrid_search import MotifIndex
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv
 from symbolic_detective.pipeline.shape_features import compute_shape_features
+from symbolic_detective.utils.image_files import SUPPORTED_UPLOAD_TYPES, collect_images
 
 # --- Configuration & Paths ---
 st.set_page_config(
@@ -87,9 +88,7 @@ def load_search_engine():
     was_rebuilt = False
 
     if CROPS_DIR.exists():
-        image_paths = []
-        for ext in [".jpg", ".jpeg", ".png"]:
-            image_paths.extend(list(CROPS_DIR.rglob(f"*{ext}")))
+        image_paths = collect_images(CROPS_DIR, recursive=True)
 
         if image_paths:
             was_rebuilt = index.load_or_build(INDEX_FILE, image_paths)
@@ -178,7 +177,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-uploaded_file = st.file_uploader("Upload Query Motif", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Upload Query Motif", type=SUPPORTED_UPLOAD_TYPES)
 
 if uploaded_file is not None:
     temp_dir = DATA_DIR / "debug"

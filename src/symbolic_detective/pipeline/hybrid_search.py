@@ -12,6 +12,7 @@ from typing import List, Dict, Any, Optional
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import MODEL_NAME, extract_visual_embedding, compute_embedding_similarity
+from symbolic_detective.utils.image_files import collect_images
 
 INDEX_VERSION = "1"
 FEATURE_VERSION = "edge26-v1"
@@ -237,10 +238,7 @@ if __name__ == "__main__":
     index = MotifIndex()
 
     # Pre-gather paths to compute the current fingerprint
-    all_crops = []
-    for ext in ("*.jpg", "*.jpeg", "*.png"):
-        all_crops.extend(crop_dir.rglob(ext))
-    all_crops = sorted(all_crops)
+    all_crops = collect_images(crop_dir, recursive=True)
 
     if index_file.exists():
         rebuilt = index.load_or_build(index_file, all_crops)
