@@ -4,6 +4,7 @@ Builds an in-memory index of motif features, compares a query image
 with every indexed image using geometric and DINOv2 similarity,
 and returns the highest-scoring matches.
 """
+import hashlib
 import numpy as np
 from pathlib import Path
 from typing import List, Dict, Any, Optional
@@ -11,7 +12,6 @@ from typing import List, Dict, Any, Optional
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import MODEL_NAME, extract_visual_embedding, compute_embedding_similarity
-
 
 INDEX_VERSION = "1"
 FEATURE_VERSION = "edge26-v1"
@@ -25,6 +25,23 @@ class MotifIndex:
         self.index_version = INDEX_VERSION
         self.feature_version = FEATURE_VERSION
         self.dino_model = MODEL_NAME
+        self.corpus_fingerprint = ""
+
+    @staticmethod
+    def compute_fingerprint(image_paths: List[Path]) -> str:
+        """
+        Generates a lightweight, deterministic hash of the corpus based on
+        file paths, sizes, and modification timestamps.
+        """
+        hasher = hashlib.md5()
+        for path in sorted(image_paths):
+            try:
+                stat = path.stat()
+                identifier = f"{path.as_posix()}|{stat.st_size}|{stat.st_mtime_ns}\n"
+                hasher.update(identifier.encode("utf-8"))
+            except FileNotFoundError:
+                continue
+        return hasher.hexdigest()
 
     def build_index(self, image_paths: List[Path]) -> None:
         """
@@ -32,6 +49,9 @@ class MotifIndex:
         corpus-level standardization statistics for the shape vectors.
         """
         raw_corpus = []
+
+        # Compute and store the fingerprint for this exact corpus state
+        self.corpus_fingerprint = self.compute_fingerprint(image_paths)
 
         for path in image_paths:
             cv_img = preprocess_for_opencv(path)
@@ -85,10 +105,11 @@ class MotifIndex:
             shape_std=self.shape_std,
             index_version=np.array([self.index_version]),
             feature_version=np.array([self.feature_version]),
-            dino_model=np.array([self.dino_model])
+            dino_model=np.array([self.dino_model]),
+            corpus_fingerprint=np.array([self.corpus_fingerprint])
         )
 
-    def load(self, filepath: Path) -> None:
+    def load(self, filepath: Path, expected_fingerprint: Optional[str] = None) -> None:
         """Loads a persisted motif index and corpus statistics."""
 
         if not filepath.exists():
@@ -98,11 +119,20 @@ class MotifIndex:
             self.shape_mean = data["shape_mean"].astype(np.float32)
             self.shape_std = data["shape_std"].astype(np.float32)
 
+            if data["index_version"][0] != self.index_version:
+                raise RuntimeError(f"Incompatible index version: {data['index_version'][0]} != {self.index_version}")
+
             if data["feature_version"][0] != self.feature_version:
                 raise RuntimeError(f"Incompatible feature version: {data['feature_version'][0]} != {self.feature_version}")
 
             if data["dino_model"][0] != self.dino_model:
                 raise RuntimeError(f"Incompatible DINO model: {data['dino_model'][0]} != {self.dino_model}")
+
+            if expected_fingerprint is not None:
+                if "corpus_fingerprint" not in data or data["corpus_fingerprint"][0] != expected_fingerprint:
+                    raise RuntimeError("Corpus fingerprint mismatch. Collection has been modified.")
+
+            self.corpus_fingerprint = data.get("corpus_fingerprint", [""])[0]
 
             self.corpus = []
             for p, s_vec, d_vec in zip(data['paths'], data['shape_vecs'], data['dino_vecs']):
@@ -111,6 +141,26 @@ class MotifIndex:
                     "shape_vec": s_vec,
                     "dino_vec": d_vec
                 })
+
+    def load_or_build(self, filepath: Path, image_paths: List[Path]) -> bool:
+        """
+        Loads a valid persisted index or rebuilds it when the corpus
+        or index configuration has changed.
+
+        Returns True if the index was rebuilt.
+        """
+        current_fingerprint = self.compute_fingerprint(image_paths)
+
+        if filepath.exists():
+            try:
+                self.load(filepath, expected_fingerprint=current_fingerprint,)
+                return False
+            except (RuntimeError, KeyError, ValueError, OSError):
+                pass
+
+        self.build_index(image_paths)
+        self.save(filepath)
+        return True
 
     def search(self, query_path: Path, alpha: float = 0.5, top_k: int = 5) -> List[Dict[str, Any]]:
         """
@@ -186,20 +236,18 @@ if __name__ == "__main__":
     index_file = Path("data/index.npz")
     index = MotifIndex()
 
-    # Load the persisted index when available; otherwise build and save it.
-    if index_file.exists():
-        print(f"Loading cached index from {index_file.name}...")
-        index.load(index_file)
-    else:
-        all_crops = []
-        for ext in ("*.jpg", "*.jpeg", "*.png"):
-            all_crops.extend(crop_dir.rglob(ext))
-        all_crops = sorted(all_crops)
-        print(f"Building index from {len(all_crops)} images...")
-        index.build_index(all_crops)
+    # Pre-gather paths to compute the current fingerprint
+    all_crops = []
+    for ext in ("*.jpg", "*.jpeg", "*.png"):
+        all_crops.extend(crop_dir.rglob(ext))
+    all_crops = sorted(all_crops)
 
-        print(f"Saving index to {index_file.name}...")
-        index.save(index_file)
+    if index_file.exists():
+        rebuilt = index.load_or_build(index_file, all_crops)
+        if rebuilt:
+            print(f"Built and saved index with {len(index.corpus)} motifs.")
+        else:
+            print(f"Loaded cached index with {len(index.corpus)} motifs.")
 
     print(f"\nSearching for {query.name} (Alpha={alpha_val})...")
     top_matches = index.search(query, alpha=alpha_val, top_k=5)

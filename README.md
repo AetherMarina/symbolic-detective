@@ -61,7 +61,7 @@ graph TD
    * **Geometric Features:** OpenCV extracts edge-based geometry using Canny edges, log-transformed Hu moments, edge density, radial distribution, and a rotation-invariant angular Fourier spectrum.
    * **Dense Latent Embeddings:** DINOv2 ViT-S/14 generates an L2-normalized learned visual representation using inference only.
 4. **Hybrid Scoring**: Convert shape distance and embedding similarity into normalized similarity scores, then combine them using a weighted linear ensemble ($S_{shape} \in [0, 1]$, $S_{embed} \in [0, 1]$). 
-5. **Top-K Retrieval**: Ranked search over the curated local index.
+5. **Top-K Retrieval**: Ranked search over a persisted local feature index. The index is automatically rebuilt when the motif corpus or feature configuration changes.
 
 
 ## 📂 Project Structure
@@ -76,7 +76,8 @@ symbolic-detective/
 │   │   ├── five_pointed/         # Hard negative / related star geometry
 │   │   └── negative_control/     # Other geometric motifs
 │   ├── metadata.json             # Provenance, period, material, museum IDs
-│   └── splits.json               # Artifact-level index/query assignments
+│   ├── splits.json               # Artifact-level index/query assignments
+│   └── index.npz                 # Generated local feature index (not committed)
 ├── src/
 │   └── symbolic_detective/
 │       ├── ingestion/            # Museum API harvesters (The Met, Europeana)
@@ -102,6 +103,7 @@ symbolic-detective/
 
 
 ## 📊 Benchmark & Evaluation
+
 v0.1 treats motif-family labels strictly as evaluation ground truth; they are never passed to the retrieval algorithms. Artifact metadata is retained for provenance and analysis but is not used as an input to the v0.1 similarity ranking.
 
 **Experimental Setup**
@@ -159,6 +161,11 @@ streamlit run ui/app.py
 ```
 The Streamlit dashboard allows you to upload an arbitrary motif crop, inspect its extracted edge representation, and examine the top retrieved artifacts alongside similarity scores, artifact metadata, and source provenance.
 
+### Cached Feature Index
+
+Symbolic Detective caches OpenCV geometric features, DINOv2 embeddings and  corpus-level standardization statistics in `data/index.npz`.
+
+The cache is validated against the current motif corpus and feature/model configuration. If images are added, removed, or modified—or the feature schema changes—the index is rebuilt automatically.
 
 ## Developer Utilities
 
@@ -180,6 +187,7 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 ```
 
 ## Roadmap
+
 ### v0.1 — Unknown Motif Finder
 * [x] Curate initial motif corpus from Met
 * [x] Implement preprocessing

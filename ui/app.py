@@ -84,6 +84,7 @@ st.markdown(
 def load_search_engine():
     """Builds or loads the centralized MotifIndex and loads API metadata."""
     index = MotifIndex()
+    was_rebuilt = False
 
     if CROPS_DIR.exists():
         image_paths = []
@@ -91,26 +92,16 @@ def load_search_engine():
             image_paths.extend(list(CROPS_DIR.rglob(f"*{ext}")))
 
         if image_paths:
-            # Try loading the persisted cache first
-            if INDEX_FILE.exists():
-                try:
-                    index.load(INDEX_FILE)
-                except RuntimeError as e:
-                    # Triggered if FEATURE_VERSION or DINO_MODEL changes
-                    st.toast(f"Cache invalidated: {e}. Rebuilding index...")
-                    index.build_index(image_paths)
-                    index.save(INDEX_FILE)
-            else:
-                # Build and save if no cache exists
-                index.build_index(image_paths)
-                index.save(INDEX_FILE)
+            was_rebuilt = index.load_or_build(INDEX_FILE, image_paths)
+            if was_rebuilt:
+                print("⚙️ MotifIndex: Corpus or features modified. Index successfully rebuilt.")
 
     metadata = {}
     if METADATA_FILE.exists():
         with open(METADATA_FILE, "r", encoding="utf-8") as f:
             metadata = json.load(f)
 
-    return index, metadata
+    return index, metadata, was_rebuilt
 
 
 # --- UI Sidebar ---
@@ -133,7 +124,17 @@ st.sidebar.markdown(
     unsafe_allow_html=True,
 )
 
-motif_index, api_metadata = load_search_engine()
+motif_index, api_metadata, was_rebuilt = load_search_engine()
+
+# Safely trigger the UI toast exactly once per session if a rebuild occurred
+if was_rebuilt and "notified_rebuild" not in st.session_state:
+    st.toast("⚙️ Corpus or features modified. Index rebuilt.")
+    st.session_state.notified_rebuild = True
+
+if not getattr(motif_index, "corpus", None):
+    st.sidebar.error("⚠️ Corpus is empty.")
+    st.warning("No motifs found in `data/crops/`. Add images to begin indexing.")
+    st.stop()
 
 if not getattr(motif_index, "corpus", None):
     st.sidebar.error("⚠️ Corpus is empty.")
@@ -202,12 +203,12 @@ if uploaded_file is not None:
     if top_results is not None:
         col1, col2, col3 = st.columns([1, 1, 2])
         with col1:
-            st.image(Image.open(temp_path), caption="Query Motif", use_container_width=True)
+            st.image(Image.open(temp_path), caption="Query Motif", width="stretch")
         with col2:
             if q_shape:
                 vis = cv2.cvtColor(q_cv, cv2.COLOR_GRAY2BGR)
                 vis[q_shape["edge_mask"] > 0] = (60, 146, 251)
-                st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="Extracted Edge Field", use_container_width=True)
+                st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="Extracted Edge Field", width="stretch")
             else:
                 st.warning("No edge structure detected.")
         with col3:
@@ -229,8 +230,13 @@ if uploaded_file is not None:
         # Enforce the strict slider count
         valid_results = valid_results[:top_k]
 
-        st.markdown(f"### ✦ {len(valid_results)} closest visual matches")
-        st.markdown("<hr>", unsafe_allow_html=True)
+        st.markdown(
+            f"""
+            <h3 style="margin-bottom: 4px;">✦ {len(valid_results)} closest visual matches</h3>
+            <hr style="margin-top: 0; margin-bottom: 12px; border: none; border-top: 1px solid #e0e0e0;">
+            """,
+            unsafe_allow_html=True,
+        )
 
         for i in range(0, len(valid_results), 4):
             cols = st.columns(4)
@@ -238,7 +244,7 @@ if uploaded_file is not None:
 
             for j, res in enumerate(chunk):
                 with cols[j]:
-                    st.image(Image.open(res["path"]), use_container_width=True)
+                    st.image(Image.open(res["path"]), width="stretch")
 
                     st.markdown(f"**Score:** `{res['s_hybrid']:.3f}`")
                     st.caption(f"Shape: {res['s_shape']:.2f} | Embed: {res['s_embed']:.2f}")
