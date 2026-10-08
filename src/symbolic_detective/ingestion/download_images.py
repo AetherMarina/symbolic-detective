@@ -1,10 +1,11 @@
+from symbolic_detective.ingestion.europeana_api import EuropeanaClient
 from symbolic_detective.ingestion.met_api import harvest_met_artifacts
 
 # 1. The Core Target: Ancient Near East (The Ishtar Context)
 # Ancient Near Eastern Art (Department 3)
 # harvest_met_artifacts(query="star of Ishtar", department_id=3, limit=10)
 # Search for literal star mentions in Near Eastern Art
-harvest_met_artifacts(query="eight-pointed star", department_id=3, limit=10)
+# harvest_met_artifacts(query="eight-pointed star", department_id=3, limit=10)
 # Search for cylinder seals
 # harvest_met_artifacts(query="cylinder seal star", department_id=3, limit=3)
 
@@ -26,3 +27,11 @@ harvest_met_artifacts(query="eight-pointed star", department_id=3, limit=10)
 # harvest_met_artifacts(query="star", department_id=10, limit=5)
 # General collection search for pentagrams/five-pointed stars
 # harvest_met_artifacts(query="five-pointed star", limit=5)
+
+
+# EUROPEANA API
+client = EuropeanaClient()
+
+client.ingest_collection("Ishtar star", max_items=5)
+# client.ingest_collection("eight-pointed star", max_items=5)
+# client.ingest_collection("five-pointed star", max_items=5)

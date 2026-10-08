@@ -133,12 +133,14 @@ Retrieval performance is benchmarked against synthetic corruptions approximating
 #### Prerequisites
 * Python 3.12+
 * [uv](https://docs.astral.sh/uv/getting-started/installation/)
+* Europeana API Key ([Get an API key](https://pro.europeana.eu/page/get-api))
 
 ```bash
 git clone https://github.com/AetherMarina/symbolic-detective.git
 cd symbolic-detective
-python -m venv venv
-source venv/bin/activate
+export EUROPEANA_API_KEY="your_api_key"
+uv venv
+source .venv/bin/activate
 uv pip sync requirements-lock.txt
 # uv pip compile pyproject.toml --extra test -o requirements-lock.txt
 uv pip install -e .

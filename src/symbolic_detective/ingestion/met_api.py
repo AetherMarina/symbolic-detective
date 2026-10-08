@@ -164,7 +164,7 @@ def harvest_met_artifacts(query: str, department_id: Optional[int] = None,
         local_filename = download_image(image_url, obj_id, raw_img_dir)
 
         if local_filename:
-            # Store lean, relevant metadata for Symbolic Detective v0.1
+            # Store lean, relevant metadata
             existing_metadata[str_obj_id] = {
                 "objectID": obj_id,
                 "title": metadata.get("title", "Unknown"),
