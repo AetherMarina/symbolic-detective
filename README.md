@@ -70,14 +70,18 @@ graph TD
 symbolic-detective/
 ├── data/
 │   ├── raw/                      # Downloaded open-access images
-│   ├── crops/                    # Curated motif crops (100–150 images)
-│   │   ├── eight_pointed/        # Case 001 target family
+│   ├── crops/                    # Curated motif crops (only CC0 subset)
+│   │   ├── eight_pointed_star/   # Case 001 target family
 │   │   ├── rosette/              # Hard negative / related radial motif
-│   │   ├── five_pointed/         # Hard negative / related star geometry
-│   │   └── negative_control/     # Other geometric motifs
+│   │   ├── five_pointed_star/    # Hard negative / related star geometry
+│   │   ├── six_pointed_star/     # Hard negative / related star geometry
+│   │   ├── negative_control/     # Other geometric motifs
+│   │   └── crops.json            # Crops ids, original ids, size
 │   ├── metadata.json             # Provenance, period, material, museum IDs
-│   ├── splits.json               # Artifact-level index/query assignments
 │   └── index.npz                 # Generated local feature index (not committed)
+├── scripts/
+│   ├── data_stats.py             # Data statistics
+│   └── stage_licensed_images.py  # Script for staging images with permitted license
 ├── src/
 │   └── symbolic_detective/
 │       ├── ingestion/            # Museum API harvesters (The Met, Europeana)
@@ -105,20 +109,25 @@ symbolic-detective/
 
 ## 📊 Benchmark & Evaluation
 
-v0.1 treats motif-family labels strictly as evaluation ground truth; they are never passed to the retrieval algorithms. Artifact metadata is retained for provenance and analysis but is not used as an input to the v0.1 similarity ranking.
+v0.1 treats motif-family labels strictly as evaluation ground truth; they are
+never passed to the retrieval algorithms. Artifact metadata is retained for
+provenance and analysis but is not used as input to the v0.1 similarity ranking.
 
-**Experimental Setup**
-* **Corpus**: 100–150 manually verified motif crops across 4–5 visual families.
-* **Held-out queries**: Test motifs not present in the indexed corpus.
-* **Evaluated Metrics**: Hit@1, Hit@5, and Mean Reciprocal Rank (MRR).
+### v0.1 Experimental Setup & Results
 
-| Method | Hit@1 | Hit@5 | MRR | Robustness |
-|---|------:|------:|---:|---|
-| OpenCV Geometric Features |   TBD |   TBD | TBD | TBD |
-| Latent Embeddings (DINOv2) |   TBD |   TBD | TBD | TBD |
-| Hybrid Ensemble |   TBD |   TBD | TBD | TBD |
+- **Methodology:** 5-Fold Artifact-Grouped Cross-Validation
+- **Dataset:** 127 manually verified motif crops (98 valid distinct artifacts)
+- **Queries Evaluated:** 107 total, including 60 `eight_pointed_star` queries
 
-**Robustness Stress Tests**
+For the primary Eight-Pointed Star retrieval task, the best-performing tested
+hybrid configuration (**α = 0.25**) improves over DINOv2 alone, achieving
+**Hit@1 = 0.877 ± 0.121** and **MRR = 0.925 ± 0.073**. DINOv2 remains the
+strongest method for overall multi-class retrieval.
+
+👉 **[View the full v0.1 5-Fold Cross-Validation Report](results/v0.1_evaluation.md)**
+for complete target-level and multi-class results across the alpha sweep.
+
+**Robustness Stress Tests** (to be updated)
 
 Retrieval performance is benchmarked against synthetic corruptions approximating common challenges in digitized archaeological and cultural-heritage imagery:
  * Arbitrary rotation (0° to 360°).
@@ -150,6 +159,10 @@ uv pip install -e .
 Harvest candidate artifacts from The Metropolitan Museum of Art Open Access API (using the paginated v1.1 endpoint):
 ```bash
 python -m symbolic_detective.ingestion.met_api --query "star" --department 33 --limit 2
+```
+Harvest candidate artifacts from The Metropolitan Museum of Art Open Access API (using the paginated v1.1 endpoint):
+```bash
+python -m symbolic_detective.ingestion.europeana_api --query "star" --limit 2
 ```
 
 ### 3. Run Benchmark Evaluation
@@ -199,10 +212,11 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 * [x] Implement hybrid retrieval
 * [x] Build held-out evaluation set
 * [x] Build Streamlit explorer
+* [x] Europeana REST client
+* [x] 100-150 motifs
+* [x] Publish Case 001 results
 * [ ] Run robustness experiments
-* [ ] Europeana REST client
-* [ ] 100-150 motifs
-* [ ] Publish Case 001 results
+
 
 ## Future Horizons
 

@@ -1,10 +1,11 @@
 """
-Benchmark & Evaluation Script.
-Calculates Hit@1, Hit@5, and MRR for OpenCV, DINOv2, and Hybrid Search.
+Benchmark & Evaluation Script (K-Fold Cross-Validation).
+Calculates Hit@1, Hit@5, and MRR for OpenCV, DINOv2, and Hybrid Search
+using artifact-grouped k-fold cross validation.
 """
 import argparse
 import random
-import json
+import re
 from pathlib import Path
 from typing import List, Dict, Any, Tuple
 import numpy as np
@@ -17,209 +18,220 @@ from symbolic_detective.utils.image_files import collect_images
 
 random.seed(42)
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
+
 
 def calculate_metrics(rankings: List[Dict[str, Any]], true_class: str) -> Tuple[int, int, float]:
-    """
-    Computes Hit@1, Hit@5, and Reciprocal Rank for ranked retrieval outputs.
-    """
+    """Computes Hit@1, Hit@5, and Reciprocal Rank for ranked retrieval outputs."""
     hit_1 = 1 if rankings[0]["class"] == true_class else 0
     hit_5 = 1 if any(r["class"] == true_class for r in rankings[:5]) else 0
 
-    mrr = 0.0
+    reciprocal_rank = 0.0
     for rank, item in enumerate(rankings, start=1):
         if item["class"] == true_class:
-            mrr = 1.0 / rank
+            reciprocal_rank = 1.0 / rank
             break
 
-    return hit_1, hit_5, mrr
+    return hit_1, hit_5, reciprocal_rank
 
 
-def assign_artifact_split(
-    artifact_splits: Dict[str, str],
-    artifact_id: str,
-    split_name: str,
-) -> None:
-    """Assigns an artifact to a split while preventing cross-split leakage."""
-    existing_split = artifact_splits.get(artifact_id)
-
-    if existing_split is not None and existing_split != split_name:
-        raise RuntimeError(f"Artifact {artifact_id} assigned to both '{existing_split}' and '{split_name}' splits.")
-
-    artifact_splits[artifact_id] = split_name
+def artifact_key_from_path(path: Path) -> str:
+    """
+    Extracts the source-qualified artifact key robustly.
+    Handles '__occ_', '_occ_', and '_primary' delimiters safely without
+    breaking internal underscores in museum IDs.
+    """
+    parts = re.split(r'__occ_|_occ_|_primary', path.stem)
+    return parts[0]
 
 
-def evaluate_pipeline(data_dir: Path) -> None:
-    print("--- Starting Motif Retrieval Benchmark ---")
+def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "eight_pointed_star", k_folds: int = 5) -> None:
+    print(f"--- Starting {k_folds}-Fold Motif Retrieval Benchmark ---")
 
-    # 1. Deterministic Artifact-Level Partitioning
     classes = sorted([d for d in data_dir.iterdir() if d.is_dir()], key=lambda p: p.name)
-    splits_file = data_dir.parent / "splits.json"
 
-    artifact_splits: Dict[str, str] = {}
-    if splits_file.exists():
-        with open(splits_file, "r", encoding="utf-8") as f:
-            artifact_splits = json.load(f)
-    else:
-        print("No splits.json found. Generating deterministic artifact-level splits...")
-        for cls_dir in classes:
-            if cls_dir.name == "negative_control":
-                continue
-
-            images = collect_images(cls_dir)
-            # Sort before shuffle to ensure identical splits across different Python runs
-            artifact_ids = sorted({img.stem.split("_")[0] for img in images})
-            random.shuffle(artifact_ids)
-
-            split_idx = int(len(artifact_ids) * 0.8)
-            for aid in artifact_ids[:split_idx]:
-                assign_artifact_split(artifact_splits, aid, "index")
-
-            for aid in artifact_ids[split_idx:]:
-                assign_artifact_split(artifact_splits, aid, "query")
-
-        with open(splits_file, "w", encoding="utf-8") as f:
-            json.dump(artifact_splits, f, indent=4)
-
-    raw_corpus_items = []
-    raw_query_items = []
+    # 1. Global Feature Extraction
+    print("Extracting raw features for the entire dataset...")
+    all_items = []
 
     for cls_dir in classes:
         images = collect_images(cls_dir)
         for img in images:
-            aid = img.stem.split("_")[0]
+            aid = artifact_key_from_path(img)
+            cv_img = preprocess_for_opencv(img)
+            dino_img = preprocess_for_dinov2(img)
 
-            # Negative controls serve strictly as corpus distractors
-            if cls_dir.name == "negative_control":
-                raw_corpus_items.append({"path": img, "class": cls_dir.name})
-            elif artifact_splits.get(aid) == "index":
-                raw_corpus_items.append({"path": img, "class": cls_dir.name})
-            elif artifact_splits.get(aid) == "query":
-                raw_query_items.append({"path": img, "class": cls_dir.name})
+            if cv_img is None or dino_img is None:
+                continue
 
-    if not raw_corpus_items:
-        raise RuntimeError("No candidate artifacts found for index corpus.")
+            shape_f = compute_shape_features(cv_img)
+            dino_f = extract_visual_embedding(dino_img)
 
-    # 2. Extract Features for Corpus
-    print(f"\nExtracting features for {len(raw_corpus_items)} candidate corpus items...")
-    indexed_corpus = []
-    for item in raw_corpus_items:
-        cv_img = preprocess_for_opencv(item["path"])
-        dino_img = preprocess_for_dinov2(item["path"])
+            if shape_f is not None and dino_f is not None:
+                all_items.append({
+                    "path": img,
+                    "class": cls_dir.name,
+                    "aid": aid,
+                    "raw_shape": shape_f["feature_vector"],
+                    "dino_vec": dino_f
+                })
+            else:
+                print(f"Failed extraction on: {img.name}")
 
-        if cv_img is None or dino_img is None:
-            continue
+    if not all_items:
+        raise RuntimeError("No valid features were extracted from the dataset.")
 
-        shape_f = compute_shape_features(cv_img)
-        dino_f = extract_visual_embedding(dino_img)
+    # 2. Artifact-Grouped K-Fold Partitioning
+    queryable_aids = sorted({item["aid"] for item in all_items if item["class"] != "negative_control"})
+    random.shuffle(queryable_aids)
 
-        if shape_f is not None and dino_f is not None:
-            indexed_corpus.append({
-                "class": item["class"],
-                "path": item["path"],
-                "shape_vec": shape_f["feature_vector"],
-                "dino_vec": dino_f
-            })
+    folds = [queryable_aids[i::k_folds] for i in range(k_folds)]
 
-    # Validate that indexed items exist and record classes that actually survived extraction
-    if not indexed_corpus:
-        raise RuntimeError("No valid indexed features were extracted.")
+    print(f"Dataset extracted: {len(all_items)} total crops.")
+    print(f"Partitioned {len(queryable_aids)} valid artifacts into {k_folds} folds.\n")
 
-    actual_index_classes = {doc["class"] for doc in indexed_corpus}
-
-    # Filter queries: only retain queries whose class actually exists in the built index
-    query_items = [q for q in raw_query_items if q["class"] in actual_index_classes]
-    if not query_items:
-        raise RuntimeError("No valid queries have a matching class in the indexed corpus.")
-
-    print(f"Corpus successfully indexed: {len(indexed_corpus)} items across classes: {actual_index_classes}")
-    print(f"Valid queries to evaluate: {len(query_items)} items")
-
-    # Fit StandardScaler strictly on the surviving indexed corpus
-    shape_scaler = StandardScaler()
-    corpus_shape_vecs = [doc["shape_vec"] for doc in indexed_corpus]
-    shape_scaler.fit(corpus_shape_vecs)
-
-    for doc in indexed_corpus:
-        doc["shape_vec"] = shape_scaler.transform([doc["shape_vec"]])[0]
-
-    # 3. Query Execution & Score Calibration Audit
-    print(f"\nProcessing {len(query_items)} queries...")
-    query_results = []
-    all_s_shape = []
-    all_s_embed = []
-
-    for q in query_items:
-        q_cv = preprocess_for_opencv(q["path"])
-        q_dino = preprocess_for_dinov2(q["path"])
-
-        if q_cv is None or q_dino is None:
-            continue
-
-        q_shape = compute_shape_features(q_cv)
-        q_embed = extract_visual_embedding(q_dino)
-
-        if not q_shape or q_embed is None:
-            continue
-
-        q_shape_scaled = shape_scaler.transform([q_shape["feature_vector"]])[0]
-
-        scores = []
-        for doc in indexed_corpus:
-            s_shape = compute_shape_similarity(q_shape_scaled, doc["shape_vec"])
-            s_embed = compute_embedding_similarity(q_embed, doc["dino_vec"])
-
-            all_s_shape.append(s_shape)
-            all_s_embed.append(s_embed)
-
-            scores.append({
-                "class": doc["class"],
-                "s_shape": s_shape,
-                "s_embed": s_embed
-            })
-
-        query_results.append({"true_class": q["class"], "scores": scores})
-
-    if not query_results:
-        raise RuntimeError("All queries failed feature extraction.")
-
-    print("\n--- Score Calibration Audit ---")
-    print(f"S_shape Range: {np.min(all_s_shape):.3f} to {np.max(all_s_shape):.3f} (Mean: {np.mean(all_s_shape):.3f})")
-    print(f"S_embed Range: {np.min(all_s_embed):.3f} to {np.max(all_s_embed):.3f} (Mean: {np.mean(all_s_embed):.3f})\n")
-
-    # 4. Exploratory Alpha Sweep
     alphas_to_test = [0.0, 0.25, 0.50, 0.75, 1.0]
 
-    print("### Exploratory Alpha Sweep (Validation Set)")
-    print("| **Method** | **Alpha (OpenCV Weight)** | **Hit@1** | **Hit@5** | **MRR** |")
-    print("|---|---|---|---|---|")
+    # Data structures to aggregate fold-level means
+    overall_metrics = {alpha: {"h1": [], "h5": [], "mrr": []} for alpha in alphas_to_test}
+    target_metrics = {alpha: {"h1": [], "h5": [], "mrr": []} for alpha in alphas_to_test}
+
+    total_dropped_queries = 0
+    total_evaluated_queries = 0
+    total_target_queries = 0
+
+    # 3. K-Fold Evaluation Loop
+    for fold_idx, query_aids in enumerate(folds):
+        query_aids_set = set(query_aids)
+
+        # Strictly partition data to prevent substrate leakage
+        corpus_raw = [item for item in all_items if item["aid"] not in query_aids_set]
+        queries_raw = [item for item in all_items if item["aid"] in query_aids_set and item["class"] != "negative_control"]
+
+        scaler = StandardScaler()
+        corpus_shapes = [item["raw_shape"] for item in corpus_raw]
+        scaler.fit(corpus_shapes)
+
+        corpus_scaled = []
+        for item in corpus_raw:
+            corpus_scaled.append({
+                "class": item["class"],
+                "shape_vec": scaler.transform([item["raw_shape"]])[0],
+                "dino_vec": item["dino_vec"]
+            })
+
+        valid_index_classes = {doc["class"] for doc in corpus_scaled}
+
+        queries_scaled = []
+        dropped_this_fold = 0
+        for item in queries_raw:
+            if item["class"] in valid_index_classes:
+                queries_scaled.append({
+                    "class": item["class"],
+                    "shape_vec": scaler.transform([item["raw_shape"]])[0],
+                    "dino_vec": item["dino_vec"]
+                })
+            else:
+                dropped_this_fold += 1
+
+        total_dropped_queries += dropped_this_fold
+        total_evaluated_queries += len(queries_scaled)
+
+        # Temporary structures for this specific fold
+        fold_overall = {alpha: {"h1": [], "h5": [], "mrr": []} for alpha in alphas_to_test}
+        fold_target = {alpha: {"h1": [], "h5": [], "mrr": []} for alpha in alphas_to_test}
+
+        # Evaluate Fold
+        for q in queries_scaled:
+            if q["class"] == target_class:
+                total_target_queries += 1
+
+            scores = []
+            for doc in corpus_scaled:
+                s_shape = compute_shape_similarity(q["shape_vec"], doc["shape_vec"])
+                s_embed = compute_embedding_similarity(q["dino_vec"], doc["dino_vec"])
+                scores.append({"class": doc["class"], "s_shape": s_shape, "s_embed": s_embed})
+
+            for alpha in alphas_to_test:
+                for s in scores:
+                    s["s_hybrid"] = (alpha * s["s_shape"]) + ((1.0 - alpha) * s["s_embed"])
+
+                sorted_scores = sorted(scores, key=lambda x: x["s_hybrid"], reverse=True)
+                h1, h5, mrr = calculate_metrics(sorted_scores, q["class"])
+
+                fold_overall[alpha]["h1"].append(h1)
+                fold_overall[alpha]["h5"].append(h5)
+                fold_overall[alpha]["mrr"].append(mrr)
+
+                if q["class"] == target_class:
+                    fold_target[alpha]["h1"].append(h1)
+                    fold_target[alpha]["h5"].append(h5)
+                    fold_target[alpha]["mrr"].append(mrr)
+
+        # Aggregate fold-level means
+        for alpha in alphas_to_test:
+            if fold_overall[alpha]["h1"]:
+                overall_metrics[alpha]["h1"].append(np.mean(fold_overall[alpha]["h1"]))
+                overall_metrics[alpha]["h5"].append(np.mean(fold_overall[alpha]["h5"]))
+                overall_metrics[alpha]["mrr"].append(np.mean(fold_overall[alpha]["mrr"]))
+
+            if fold_target[alpha]["h1"]:
+                target_metrics[alpha]["h1"].append(np.mean(fold_target[alpha]["h1"]))
+                target_metrics[alpha]["h5"].append(np.mean(fold_target[alpha]["h5"]))
+                target_metrics[alpha]["mrr"].append(np.mean(fold_target[alpha]["mrr"]))
+
+    # 4. Aggregate & Display Results (Mean ± Std Dev Across Folds)
+    print(f"Total queries evaluated: {total_evaluated_queries}")
+    if total_dropped_queries > 0:
+        print(f"⚠️ Queries excluded (missing from index): {total_dropped_queries}")
+
+    print("\n### Cross-Validation Results (Overall Multi-Class)")
+    print("|         **Method**         | Alpha |      Hit@1      |      Hit@5      |       MRR       |")
+    print("|----------------------------|-------|-----------------|-----------------|-----------------|")
 
     for alpha in alphas_to_test:
-        h1_list, h5_list, mrr_list = [], [], []
-
-        for q_res in query_results:
-            for s in q_res["scores"]:
-                s["s_hybrid"] = (alpha * s["s_shape"]) + ((1.0 - alpha) * s["s_embed"])
-
-            q_res["scores"].sort(key=lambda x: x["s_hybrid"], reverse=True)
-            h1, h5, mrr = calculate_metrics(q_res["scores"], q_res["true_class"])
-
-            h1_list.append(h1)
-            h5_list.append(h5)
-            mrr_list.append(mrr)
-
         if alpha == 0.0:
             method_name = "Latent Embeddings (DINOv2)"
         elif alpha == 1.0:
-            method_name = "OpenCV Geometric Features"
+            method_name = "OpenCV Geometric Features "
         else:
-            method_name = "Hybrid Ensemble"
+            method_name = "Hybrid Ensemble           "
 
-        print(f"| {method_name} | {alpha:.2f} | {np.mean(h1_list):.3f} | {np.mean(h5_list):.3f} | {np.mean(mrr_list):.3f} |")
+        h1_m, h1_s = np.mean(overall_metrics[alpha]["h1"]), np.std(overall_metrics[alpha]["h1"])
+        h5_m, h5_s = np.mean(overall_metrics[alpha]["h5"]), np.std(overall_metrics[alpha]["h5"])
+        mrr_m, mrr_s = np.mean(overall_metrics[alpha]["mrr"]), np.std(overall_metrics[alpha]["mrr"])
+
+        print(f"| {method_name} | {alpha:.2f}  |  {h1_m:.3f} ± {h1_s:.3f}  |  {h5_m:.3f} ± {h5_s:.3f}  |  {mrr_m:.3f} ± {mrr_s:.3f}  |")
+
+    if total_target_queries > 0:
+        print(f"\n### Cross-Validation Results (Target: {target_class} - {total_target_queries} queries evaluated)")
+        print("|         **Method**         | Alpha |      Hit@1      |      Hit@5      |       MRR       |")
+        print("|----------------------------|-------|-----------------|-----------------|-----------------|")
+
+        for alpha in alphas_to_test:
+            if alpha == 0.0:
+                method_name = "Latent Embeddings (DINOv2)"
+            elif alpha == 1.0:
+                method_name = "OpenCV Geometric Features "
+            else:
+                method_name = "Hybrid Ensemble           "
+
+            # Check if this alpha has target metric entries (prevents NaN warnings if a fold had 0 target queries)
+            if target_metrics[alpha]["h1"]:
+                t_h1_m, t_h1_s = np.mean(target_metrics[alpha]["h1"]), np.std(target_metrics[alpha]["h1"])
+                t_h5_m, t_h5_s = np.mean(target_metrics[alpha]["h5"]), np.std(target_metrics[alpha]["h5"])
+                t_mrr_m, t_mrr_s = np.mean(target_metrics[alpha]["mrr"]), np.std(target_metrics[alpha]["mrr"])
+
+                print(f"| {method_name} | {alpha:.2f}  |  {t_h1_m:.3f} ± {t_h1_s:.3f}  |  {t_h5_m:.3f} ± {t_h5_s:.3f}  |  {t_mrr_m:.3f} ± {t_mrr_s:.3f}  |")
+    else:
+        print(f"\n⚠️ Target class '{target_class}' not found in query results.")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Evaluate Symbolic Detective Retrieval.")
-    parser.add_argument("--data-dir", type=str, default="data/crops", help="Path to cropped images directory")
+    parser = argparse.ArgumentParser(description="Evaluate Symbolic Detective Retrieval with K-Fold CV.")
+    parser.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR, help="Path to cropped images directory")
+    parser.add_argument("--k-folds", type=int, default=5, help="Number of folds for cross-validation")
     args = parser.parse_args()
 
-    evaluate_pipeline(Path(args.data_dir))
+    evaluate_pipeline(Path(args.data_dir), k_folds=args.k_folds)
