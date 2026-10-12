@@ -1,65 +1,154 @@
-import cv2
+import json
+import re
 from pathlib import Path
+import cv2
+import matplotlib.pyplot as plt
+from matplotlib.widgets import RectangleSelector
+
+from symbolic_detective.utils.image_files import artifact_key_from_path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data"
+CROPS_MANIFEST = DEFAULT_DATA_DIR / "crops.json"
 
 
-def rapid_crop(raw_dir=DEFAULT_DATA_DIR/"raw", crop_dir=DEFAULT_DATA_DIR/"crops"/"eight_pointed"):
+def record_crop(crop_id: str, artifact_key: str, motif_class: str, filename: str, bbox: list) -> None:
+    manifest = {}
+    if CROPS_MANIFEST.exists():
+        with open(CROPS_MANIFEST, "r", encoding="utf-8") as f:
+            try:
+                manifest = json.load(f)
+            except json.JSONDecodeError:
+                manifest = {}
+
+    manifest[crop_id] = {
+        "crop_id": crop_id,
+        "artifact_key": artifact_key,
+        "motif_class": motif_class,
+        "filename": filename,
+        "crop_box": bbox,
+    }
+
+    CROPS_MANIFEST.parent.mkdir(parents=True, exist_ok=True)
+    with open(CROPS_MANIFEST, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2, ensure_ascii=False)
+
+
+def get_unprocessed_images(raw_dir, base_crop_dir):
+    """
+    Scans the crops directory to find already processed artifacts using their base keys,
+    then returns files from raw that have not been cropped yet.
+    """
     raw_path = Path(raw_dir)
+    crop_path = Path(base_crop_dir)
+
+    processed_keys = set()
+
+    if crop_path.exists():
+        for crop_file in crop_path.rglob("*.*"):
+            if crop_file.name.startswith("."):
+                continue
+
+            # Use the robust centralized parser instead of a local regex
+            artifact_key = artifact_key_from_path(crop_file)
+            processed_keys.add(artifact_key)
+
+    unprocessed = []
+    if raw_path.exists():
+        for img_file in raw_path.glob("*.*"):
+            if img_file.name.startswith("."):
+                continue
+
+            # Compare using the exact same key logic
+            raw_key = artifact_key_from_path(img_file)
+            if raw_key not in processed_keys:
+                unprocessed.append(img_file)
+
+    return unprocessed
+
+
+def rapid_crop(
+        raw_dir=DEFAULT_DATA_DIR / "raw",
+        crop_dir=DEFAULT_DATA_DIR / "crops" / "eight_pointed_star",
+        base_crop_dir=DEFAULT_DATA_DIR / "crops",
+):
     crop_path = Path(crop_dir)
     crop_path.mkdir(parents=True, exist_ok=True)
+    motif_class = crop_path.name
 
-    for img_file in raw_path.glob("*.*"):
+    images_to_process = get_unprocessed_images(raw_dir, base_crop_dir)
+    print(f"Found {len(images_to_process)} images left to process.")
+
+    for img_file in images_to_process:
         img = cv2.imread(str(img_file))
         if img is None:
             continue
 
-        # Resize for display if the image is massive
-        display_img = img.copy()
-        scale = 1.0
-        if display_img.shape[1] > 1000:
-            scale = 1000 / display_img.shape[1]
-            display_img = cv2.resize(display_img, None, fx=scale, fy=scale)
-
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        artifact_key = artifact_key_from_path(img_file)
         occurrence = 1
 
         while True:
-            # Update the window title so you know which occurrence you are cropping
-            window_title = f"Motif {occurrence} on {img_file.name} (Drag & Space to save, C to next image)"
+            fig, ax = plt.subplots(figsize=(10, 8))
+            ax.imshow(img_rgb)
 
-            # Opens a window. Drag a box, press Space/Enter to confirm.
-            r = cv2.selectROI(window_title, display_img, fromCenter=False, showCrosshair=True)
+            title = (
+                f"Motif {occurrence} on {img_file.name}\n"
+                f"1. Click Magnifying Glass (bottom) to zoom. Click it AGAIN to turn it off.\n"
+                f"2. Draw your crop box.\n"
+                f"3. Close the window to save the crop.\n"
+                f"(Close window WITHOUT drawing to move to the next image)"
+            )
+            ax.set_title(title)
 
-            # If no box was drawn (user pressed 'c' or just hit Space without dragging)
-            if r == (0, 0, 0, 0):
-                print(f"Moving to next artifact. Total occurrences saved: {occurrence - 1}")
+            crop_coords = []
+
+            def onselect(eclick, erelease):
+                x1, y1 = int(eclick.xdata), int(eclick.ydata)
+                x2, y2 = int(erelease.xdata), int(erelease.ydata)
+                crop_coords.clear()
+                crop_coords.extend([min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2)])
+
+            selector = RectangleSelector(
+                ax,
+                onselect,
+                useblit=True,
+                button=[1],
+                interactive=True,
+            )
+
+            plt.show()
+
+            if not crop_coords:
+                print(f"Moving to next image. Total saved: {occurrence - 1}")
                 break
 
-            x, y, w, h = r
+            x1, y1, x2, y2 = crop_coords
+            h, w = img.shape[:2]
+            x1, y1 = max(0, x1), max(0, y1)
+            x2, y2 = min(w, x2), min(h, y2)
 
-            # Map coordinates back to original resolution
-            orig_x, orig_y = int(x / scale), int(y / scale)
-            orig_w, orig_h = int(w / scale), int(h / scale)
+            cropped_motif = img[y1:y2, x1:x2]
+            if cropped_motif.size == 0:
+                print("Invalid crop, trying again...")
+                continue
 
-            cropped_motif = img[orig_y:orig_y + orig_h, orig_x:orig_x + orig_w]
-
-            # Construct the new filename with the occurrence counter
-            # Example: 12345_primary_occ_01.jpg
-            save_name = crop_path / f"{img_file.stem}_occ_{occurrence:02d}{img_file.suffix}"
-
+            crop_stem = f"{artifact_key}__occ_{occurrence:02d}"
+            crop_filename = f"{crop_stem}{img_file.suffix}"
+            save_name = crop_path / crop_filename
             cv2.imwrite(str(save_name), cropped_motif)
+
+            record_crop(
+                crop_id=crop_stem,
+                artifact_key=artifact_key,
+                motif_class=motif_class,
+                filename=crop_filename,
+                bbox=[x1, y1, x2, y2],
+            )
+
             print(f"Saved: {save_name}")
-
-            # Increment the counter so the next crop gets the next number
             occurrence += 1
-
-        cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
-    # rapid_crop()
-    rapid_crop(raw_dir=DEFAULT_DATA_DIR / "raw" / "rosette_dep3",
-               crop_dir=DEFAULT_DATA_DIR / "crops" / "rosette")
-    rapid_crop(raw_dir=DEFAULT_DATA_DIR / "raw" / "star_dep10",
-               crop_dir=DEFAULT_DATA_DIR / "crops" / "five_pointed")
+    rapid_crop()

@@ -120,7 +120,7 @@ def harvest_met_artifacts(query: str, department_id: Optional[int] = None,
     else:
         folder_name = safe_query
 
-    raw_img_dir = data_path / "raw" / folder_name
+    raw_img_dir = data_path / "raw" / "met" / folder_name
     raw_img_dir.mkdir(parents=True, exist_ok=True)
 
     metadata_file = data_path / "metadata.json"
@@ -175,7 +175,8 @@ def harvest_met_artifacts(query: str, department_id: Optional[int] = None,
                 "country": metadata.get("country", ""),
                 "repository": "The Metropolitan Museum of Art",
                 "objectURL": metadata.get("objectURL", ""),
-                "local_image_path": f"raw/{local_filename}"
+                "local_image_path": f"raw/{local_filename}",
+                "isPublicDomain": metadata.get("isPublicDomain", False)
             }
             successful_harvests += 1
 

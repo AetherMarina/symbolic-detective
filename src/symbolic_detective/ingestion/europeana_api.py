@@ -4,15 +4,29 @@ Handles querying the Europeana database, extracting image URLs,
 downloading raw artifacts, and saving provenance metadata.
 """
 import os
+import re
 import json
 import time
+import argparse
 from pathlib import Path
 from typing import Dict, Any, Optional
+from urllib.parse import urlparse
 import requests
+
+from symbolic_detective.utils.image_files import SUPPORTED_IMAGE_EXTENSIONS
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data"
 BASE_URL = "https://api.europeana.eu/record/v2/search.json"
+
+
+def first_value(value: Any, default: Any = None) -> Any:
+    """Safely extracts the first value from Europeana's mixed list/string fields."""
+    if value is None:
+        return default
+    if isinstance(value, list):
+        return value[0] if value else default
+    return value
 
 
 class EuropeanaClient:
@@ -24,6 +38,7 @@ class EuropeanaClient:
 
         self.session = requests.Session()
         self.metadata_file = DEFAULT_DATA_DIR / "metadata.json"
+        self.metadata_file.parent.mkdir(parents=True, exist_ok=True)
 
     def search(self, query: str, rows: int = 24, cursor: str = "*") -> Dict[str, Any]:
         """
@@ -36,12 +51,14 @@ class EuropeanaClient:
             "qf": "TYPE:IMAGE",
             "rows": rows,
             "cursor": cursor,
-            "profile": "rich"  # Requests expanded metadata
+            "profile": "rich"
         }
-
-        response = self.session.get(BASE_URL, params=params)
-        response.raise_for_status()
-        return response.json()
+        try:
+            response = self.session.get(BASE_URL, params=params, timeout=30)
+            response.raise_for_status()
+            return response.json()
+        except requests.RequestException as e:
+            raise RuntimeError(f"Europeana search failed for query '{query}': {e}") from e
 
     def download_image(self, url: str, save_path: Path) -> bool:
         """Streams a remote image directly to disk."""
@@ -59,7 +76,7 @@ class EuropeanaClient:
             print(f"Warning: Failed to download {url} - {e}")
             return False
 
-    def update_metadata(self, artifact_id: str, provenance: Dict[str, Any]) -> None:
+    def update_metadata(self, artifact_key: str, provenance: Dict[str, Any]) -> None:
         """Safely appends new artifact provenance to the central metadata store."""
         metadata = {}
         if self.metadata_file.exists():
@@ -69,7 +86,7 @@ class EuropeanaClient:
                 except json.JSONDecodeError:
                     pass
 
-        metadata[artifact_id] = provenance
+        metadata[artifact_key] = provenance
 
         with open(self.metadata_file, "w", encoding="utf-8") as f:
             json.dump(metadata, f, indent=4, ensure_ascii=False)
@@ -79,12 +96,8 @@ class EuropeanaClient:
         Main pipeline: Searches Europeana, downloads images to data/raw,
         and saves cultural metadata to data/metadata.json.
         """
-
-        # Setup data directories
-        data_dir = DEFAULT_DATA_DIR / "raw" / f"europeana_{query}"
-
-        # Format a safe folder name based on the query
-        raw_img_dir = DEFAULT_DATA_DIR / "raw" / f"europeana_{query.replace(" ", "_")}"
+        safe_query = re.sub(r"[^a-zA-Z0-9_\-]+", "_", query).strip("_")
+        raw_img_dir = DEFAULT_DATA_DIR / "raw" / f"europeana_{safe_query}"
         raw_img_dir.mkdir(parents=True, exist_ok=True)
 
         print(f"Ingesting up to {max_items} artifacts for query: '{query}'")
@@ -104,48 +117,48 @@ class EuropeanaClient:
                 if items_downloaded >= max_items:
                     break
 
-                # Europeana IDs look like '/2022302/id_string'
-                raw_id = item.get("id", "")
+                raw_id = item.get("id")
+                if not raw_id:
+                    continue
                 artifact_id = raw_id.replace("/", "_").strip("_")
+                artifact_key = f"europeana_{artifact_id}"
 
-                # edmIsShownBy is usually the high-res original; edmPreview is the thumbnail
                 image_urls = item.get("edmIsShownBy") or item.get("edmPreview")
                 if not image_urls:
                     continue
 
                 image_url = image_urls[0] if isinstance(image_urls, list) else image_urls
+                title = first_value(item.get("title"), "Unknown Title")
 
-                # Parse basic provenance
-                title = item.get("title", ["Unknown Title"])[0]
-                creators = item.get("dcCreator", ["Unknown Creator"])
-                dates = item.get("year", item.get("dcDate", ["Unknown Period"]))
-                institution = item.get("dataProvider", ["Unknown Institution"])[0]
+                suffix = Path(urlparse(image_url).path).suffix.lower()
+                if suffix not in SUPPORTED_IMAGE_EXTENSIONS:
+                    suffix = ".jpg"
 
-                provenance = {
-                    "title": title,
-                    "culture": creators[0] if creators else "Unknown Culture",
-                    "period": str(dates[0]) if dates else "Unknown Period",
-                    "institution": institution,
-                    "source_url": item.get("guid", ""),
-                }
-
-                # Download and save
-                ext = image_url.split(".")[-1][:4].lower()
-                if ext not in ["jpg", "jpeg", "png"]:
-                    ext = "jpg"
-
-                filename = f"{artifact_id}.{ext}"
+                filename = f"{artifact_key}{suffix}"
                 save_path = raw_img_dir / filename
 
+                provenance = {
+                    "source": "Europeana",
+                    "source_id": raw_id,
+                    "title": title,
+                    "creator": first_value(item.get("dcCreator")),
+                    "date": first_value(item.get("year")) or first_value(item.get("dcDate")),
+                    "data_provider": first_value(item.get("dataProvider")),
+                    "provider": first_value(item.get("provider")),
+                    "country": first_value(item.get("country")),
+                    "type": first_value(item.get("dcType")),
+                    "source_url": item.get("guid", ""),
+                    "image_url": image_url,
+                    "rights": first_value(item.get("rights")),
+                    "local_image_path": f"raw/europeana/{filename}"
+                }
+
                 if self.download_image(image_url, save_path):
-                    self.update_metadata(artifact_id, provenance)
+                    self.update_metadata(artifact_key, provenance)
                     print(f"[{items_downloaded + 1}/{max_items}] Saved: {filename} ({title[:30]}...)")
                     items_downloaded += 1
-
-                    # Be polite to their API
                     time.sleep(0.5)
 
-            # Pagination
             next_cursor = data.get("nextCursor")
             if not next_cursor or next_cursor == cursor:
                 break
@@ -155,15 +168,10 @@ class EuropeanaClient:
 
 
 if __name__ == "__main__":
-    import sys
+    parser = argparse.ArgumentParser(description="Harvest artifacts from The Met Open Access API")
+    parser.add_argument("--query", type=str, required=True, help="Search query (e.g., 'star')")
+    parser.add_argument("--limit", type=int, default=50, help="Maximum number of artifacts to harvest")
+    args = parser.parse_args()
 
-    if len(sys.argv) < 2:
-        print("Usage: python -m symbolic_detective.data.europeana <search_query> [max_items]")
-        sys.exit(1)
-
-    query_str = sys.argv[1]
-    max_limit = int(sys.argv[2]) if len(sys.argv) > 2 else 20
-
-    # Example queries: "Minoan seal", "Roman mosaic rosette", "Sumerian cylinder"
     client = EuropeanaClient()
-    client.ingest_collection(query_str, max_items=max_limit)
+    client.ingest_collection(query=args.query, max_items=args.limit)

@@ -1,5 +1,5 @@
+import re
 from pathlib import Path
-
 
 SUPPORTED_IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png")
 
@@ -23,3 +23,12 @@ def collect_images(
         if path.is_file()
         and path.suffix.lower() in SUPPORTED_IMAGE_EXTENSIONS
     )
+
+
+def artifact_key_from_path(path: Path) -> str:
+    """
+    Extracts the source-qualified artifact key from a crop or raw image path.
+    Splits safely across crop occurrence and primary image delimiters.
+    """
+    parts = re.split(r"__occ_|_occ_|_primary", path.stem)
+    return parts[0]
