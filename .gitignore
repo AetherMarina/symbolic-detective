@@ -223,3 +223,13 @@ data/debug/
 data/*.npz
 
 docs/
+
+# Exclude cropped images without redistribution permission
+data/crops/eight_pointed_star/europeana_15502_MK_GR_6984_occ_01.jpg
+data/crops/eight_pointed_star/europeana_15502_MK_R__343_occ_01.jpg
+data/crops/eight_pointed_star/europeana_15502_MK_R__55462_occ_01.jpg
+data/crops/eight_pointed_star/europeana_2048001_AP_10354390_occ_01.jpg
+data/crops/eight_pointed_star/europeana_2048001_AP_10356846_occ_01.jpg
+data/crops/eight_pointed_star/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_865523_occ_01.jpg
+data/crops/negative_control/europeana_15502_MK_182922_occ_01.jpg
+data/crops/negative_control/europeana_15502_MK_25692a_occ_01.jpg

@@ -1,10 +1,9 @@
 import json
-import subprocess
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data"
-METADATA_FILE = DEFAULT_DATA_DIR / 'metadata.json'
+METADATA_FILE = DEFAULT_DATA_DIR / "metadata.json"
 CROPS_DIR = DEFAULT_DATA_DIR / "crops"
 
 ALLOWED_RIGHTS = {
@@ -32,14 +31,15 @@ def main():
     print("Crops directory:", CROPS_DIR.resolve())
     print("Directory exists:", CROPS_DIR.exists())
     print("Total files:", len(list(CROPS_DIR.rglob("*"))))
+
     with METADATA_FILE.open(encoding="utf-8") as f:
         metadata = json.load(f)
 
     # Match longer IDs first to avoid partial matches
     artifact_ids = sorted(metadata, key=len, reverse=True)
 
-    staged = []
-    skipped = []
+    allowed = []
+    unallowed = []
     unmatched = []
 
     for crop in CROPS_DIR.rglob("*"):
@@ -63,27 +63,28 @@ def main():
         artifact = metadata[artifact_id]
 
         if not is_allowed(artifact):
-            skipped.append(crop)
-            continue
+            unallowed.append((crop, artifact_id, artifact.get("rights", "None / N/A")))
+        else:
+            allowed.append(crop)
 
-        # -f allows staging explicitly approved files
-        # even when crops/ is in .gitignore.
-        subprocess.run(
-            ["git", "add", "-f", "--", str(crop)],
-            check=True,
-        )
-        staged.append(crop)
-
-    print(f"\nStaged: {len(staged)}")
-    print(f"Skipped (restricted or unverified): {len(skipped)}")
+    print(f"\nAllowed: {len(allowed)}")
+    print(f"Disallowed / Restricted: {len(unallowed)}")
     print(f"Unmatched: {len(unmatched)}")
+
+    if unallowed:
+        print("\nImages without allowed rights:")
+        for path, aid, rights in unallowed:
+            print(f"  {path} (Artifact ID: {aid}, Rights: {rights})")
+
+        print("\n# Copy-paste for .gitignore:")
+        for path, _, _ in unallowed:
+            # POSIX style paths ensure forward slashes across platforms
+            print(path.relative_to(PROJECT_ROOT).as_posix())
 
     if unmatched:
         print("\nUnmatched images:")
         for path in unmatched:
             print(f"  {path}")
-
-    print("\nReview staged images using: git diff --cached --name-only")
 
 
 if __name__ == "__main__":

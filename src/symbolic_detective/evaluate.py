@@ -1,11 +1,12 @@
 """
 Benchmark & Evaluation Script (K-Fold Cross-Validation).
 Calculates Hit@1, Hit@5, and MRR for OpenCV, DINOv2, and Hybrid Search
-using artifact-grouped k-fold cross validation.
+using artifact-grouped k-fold cross validation. Includes per-query error analysis.
 """
 import argparse
 import random
 import re
+import json
 from pathlib import Path
 from typing import List, Dict, Any, Tuple
 import numpy as np
@@ -46,7 +47,8 @@ def artifact_key_from_path(path: Path) -> str:
     return parts[0]
 
 
-def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "eight_pointed_star", k_folds: int = 5) -> None:
+def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "eight_pointed_star",
+                      k_folds: int = 5) -> None:
     print(f"--- Starting {k_folds}-Fold Motif Retrieval Benchmark ---")
 
     classes = sorted([d for d in data_dir.iterdir() if d.is_dir()], key=lambda p: p.name)
@@ -101,13 +103,16 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
     total_evaluated_queries = 0
     total_target_queries = 0
 
+    error_analysis = []
+
     # 3. K-Fold Evaluation Loop
     for fold_idx, query_aids in enumerate(folds):
         query_aids_set = set(query_aids)
 
         # Strictly partition data to prevent substrate leakage
         corpus_raw = [item for item in all_items if item["aid"] not in query_aids_set]
-        queries_raw = [item for item in all_items if item["aid"] in query_aids_set and item["class"] != "negative_control"]
+        queries_raw = [item for item in all_items if
+                       item["aid"] in query_aids_set and item["class"] != "negative_control"]
 
         scaler = StandardScaler()
         corpus_shapes = [item["raw_shape"] for item in corpus_raw]
@@ -117,6 +122,7 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
         for item in corpus_raw:
             corpus_scaled.append({
                 "class": item["class"],
+                "path": str(item["path"]),
                 "shape_vec": scaler.transform([item["raw_shape"]])[0],
                 "dino_vec": item["dino_vec"]
             })
@@ -129,6 +135,7 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
             if item["class"] in valid_index_classes:
                 queries_scaled.append({
                     "class": item["class"],
+                    "path": str(item["path"]),
                     "shape_vec": scaler.transform([item["raw_shape"]])[0],
                     "dino_vec": item["dino_vec"]
                 })
@@ -151,13 +158,24 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
             for doc in corpus_scaled:
                 s_shape = compute_shape_similarity(q["shape_vec"], doc["shape_vec"])
                 s_embed = compute_embedding_similarity(q["dino_vec"], doc["dino_vec"])
-                scores.append({"class": doc["class"], "s_shape": s_shape, "s_embed": s_embed})
+                scores.append({
+                    "class": doc["class"],
+                    "path": doc["path"],
+                    "s_shape": s_shape,
+                    "s_embed": s_embed
+                })
+
+            top_results = {}
 
             for alpha in alphas_to_test:
                 for s in scores:
                     s["s_hybrid"] = (alpha * s["s_shape"]) + ((1.0 - alpha) * s["s_embed"])
 
                 sorted_scores = sorted(scores, key=lambda x: x["s_hybrid"], reverse=True)
+
+                if alpha in (0.0, 0.25):
+                    top_results[alpha] = sorted_scores[0]
+
                 h1, h5, mrr = calculate_metrics(sorted_scores, q["class"])
 
                 fold_overall[alpha]["h1"].append(h1)
@@ -168,6 +186,31 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
                     fold_target[alpha]["h1"].append(h1)
                     fold_target[alpha]["h5"].append(h5)
                     fold_target[alpha]["mrr"].append(mrr)
+
+            if q["class"] == target_class:
+                dino = top_results[0.0]
+                hybrid = top_results[0.25]
+                dino_correct = dino["class"] == target_class
+                hybrid_correct = hybrid["class"] == target_class
+
+                if not dino_correct and hybrid_correct:
+                    outcome = "geometry_helped"
+                elif dino_correct and not hybrid_correct:
+                    outcome = "geometry_hurt"
+                elif dino_correct and hybrid_correct:
+                    outcome = "both_correct"
+                else:
+                    outcome = "both_wrong"
+
+                error_analysis.append({
+                    "query": f"{q['class']}/{Path(q['path']).name}",
+                    "fold": fold_idx + 1,
+                    "outcome": outcome,
+                    "dino_top1": f"{dino['class']}/{Path(dino['path']).name}",
+                    "dino_class": dino["class"],
+                    "hybrid_top1": f"{hybrid['class']}/{Path(hybrid['path']).name}",
+                    "hybrid_class": hybrid["class"]
+                })
 
         # Aggregate fold-level means
         for alpha in alphas_to_test:
@@ -202,7 +245,8 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
         h5_m, h5_s = np.mean(overall_metrics[alpha]["h5"]), np.std(overall_metrics[alpha]["h5"])
         mrr_m, mrr_s = np.mean(overall_metrics[alpha]["mrr"]), np.std(overall_metrics[alpha]["mrr"])
 
-        print(f"| {method_name} | {alpha:.2f}  |  {h1_m:.3f} ± {h1_s:.3f}  |  {h5_m:.3f} ± {h5_s:.3f}  |  {mrr_m:.3f} ± {mrr_s:.3f}  |")
+        print(
+            f"| {method_name} | {alpha:.2f}  |  {h1_m:.3f} ± {h1_s:.3f}  |  {h5_m:.3f} ± {h5_s:.3f}  |  {mrr_m:.3f} ± {mrr_s:.3f}  |")
 
     if total_target_queries > 0:
         print(f"\n### Cross-Validation Results (Target: {target_class} - {total_target_queries} queries evaluated)")
@@ -217,15 +261,22 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
             else:
                 method_name = "Hybrid Ensemble           "
 
-            # Check if this alpha has target metric entries (prevents NaN warnings if a fold had 0 target queries)
             if target_metrics[alpha]["h1"]:
                 t_h1_m, t_h1_s = np.mean(target_metrics[alpha]["h1"]), np.std(target_metrics[alpha]["h1"])
                 t_h5_m, t_h5_s = np.mean(target_metrics[alpha]["h5"]), np.std(target_metrics[alpha]["h5"])
                 t_mrr_m, t_mrr_s = np.mean(target_metrics[alpha]["mrr"]), np.std(target_metrics[alpha]["mrr"])
 
-                print(f"| {method_name} | {alpha:.2f}  |  {t_h1_m:.3f} ± {t_h1_s:.3f}  |  {t_h5_m:.3f} ± {t_h5_s:.3f}  |  {t_mrr_m:.3f} ± {t_mrr_s:.3f}  |")
+                print(
+                    f"| {method_name} | {alpha:.2f}  |  {t_h1_m:.3f} ± {t_h1_s:.3f}  |  {t_h5_m:.3f} ± {t_h5_s:.3f}  |  {t_mrr_m:.3f} ± {t_mrr_s:.3f}  |")
     else:
         print(f"\n⚠️ Target class '{target_class}' not found in query results.")
+
+    # 5. Export Error Analysis
+    output_path = PROJECT_ROOT / "results" / "v0.1_error_analysis.json"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(error_analysis, f, indent=2)
+    print(f"\nSaved per-query error analysis to: {output_path}")
 
 
 if __name__ == "__main__":
