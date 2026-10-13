@@ -5,7 +5,7 @@ Provides dual-stream normalization:
 2. DINOv2 Stream: Aspect-ratio-preserving square padding resized to 224x224 RGB.
 """
 from pathlib import Path
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Union
 import cv2
 import numpy as np
 
@@ -60,7 +60,7 @@ def estimate_border_value(image: np.ndarray) -> int:
 
 
 def preprocess_for_opencv(
-    crop_path: Path,
+    image_input: Union[Path, str, np.ndarray],
     clip_limit: float = 2.0,
     tile_grid_size: Tuple[int, int] = (8, 8),
 ) -> Optional[np.ndarray]:
@@ -70,7 +70,14 @@ def preprocess_for_opencv(
     - Apply CLAHE to enhance low-contrast engravings and incisions.
     - Add neutral boundary padding so motif contours do not touch the image border.
     """
-    img = cv2.imread(str(crop_path), cv2.IMREAD_GRAYSCALE)
+    if isinstance(image_input, np.ndarray):
+        # Albumentations passes an RGB array. Convert it to Grayscale.
+        img = image_input.copy()
+        if len(img.shape) == 3 and img.shape[2] == 3:
+            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    else:
+        img = cv2.imread(str(image_input), cv2.IMREAD_GRAYSCALE)
+
     if img is None:
         return None
 
@@ -94,7 +101,7 @@ def preprocess_for_opencv(
 
 
 def preprocess_for_dinov2(
-        crop_path: Path,
+        image_input: Union[Path, str, np.ndarray],
         target_size: int = 224
 ) -> Optional[np.ndarray]:
     """
@@ -103,12 +110,19 @@ def preprocess_for_dinov2(
     - Resizes using area interpolation for downsampling and cubic interpolation for upsampling.
     - Outputs RGB format ready for torch tensor conversion.
     """
-    img = cv2.imread(str(crop_path), cv2.IMREAD_COLOR)
-    if img is None:
-        return None
-
-    # Step 1: Convert BGR to RGB
-    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # Step 1: Get image in RGB
+    if isinstance(image_input, np.ndarray):
+        # Albumentations passes an RGB array.
+        img_rgb = image_input.copy()
+        # Guardrail in case a 2D grayscale array is accidentally passed
+        if len(img_rgb.shape) == 2:
+            img_rgb = cv2.cvtColor(img_rgb, cv2.COLOR_GRAY2RGB)
+    else:
+        img = cv2.imread(str(image_input), cv2.IMREAD_COLOR)
+        if img is None:
+            return None
+        # Convert BGR to RGB
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # Step 2: Pad to square with neutral gray (128, 128, 128) to avoid harsh contrast borders
     padded = pad_to_square(img_rgb, fill_color=(128, 128, 128), margin_ratio=0.05)

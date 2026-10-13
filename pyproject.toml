@@ -19,7 +19,8 @@ dependencies = [
     "streamlit>=1.35.0",
     "torch>=2.11.0,<3.0",
     "torchvision>=0.26.0,<1.0",
-    "scikit-learn>=1.7.0,<2.0"
+    "scikit-learn>=1.7.0,<2.0",
+    "albumentations>=2.0.0,<3.0.0"
 ]
 
 [project.optional-dependencies]

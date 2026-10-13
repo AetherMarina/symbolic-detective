@@ -9,7 +9,7 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
-[![Status: Experimental](https://img.shields.io/badge/status-v0.1--alpha-orange.svg)]()
+[![Status: Experimental](https://img.shields.io/badge/status-v0.1--complete-brightgreen.svg)]()
 
 **Symbolic Detective** is an open-source computational iconography project for discovering, comparing, and contextualizing visual motifs across cultural heritage collections. 
 
@@ -69,36 +69,44 @@ graph TD
 ```text
 symbolic-detective/
 ├── data/
-│   ├── raw/                      # Downloaded open-access images
-│   ├── crops/                    # Curated motif crops (only CC0 subset)
-│   │   ├── eight_pointed_star/   # Case 001 target family
-│   │   ├── rosette/              # Hard negative / related radial motif
-│   │   ├── five_pointed_star/    # Hard negative / related star geometry
-│   │   ├── six_pointed_star/     # Hard negative / related star geometry
-│   │   ├── negative_control/     # Other geometric motifs
-│   │   └── crops.json            # Crops ids, original ids, size
-│   ├── metadata.json             # Provenance, period, material, museum IDs
-│   └── index.npz                 # Generated local feature index (not committed)
+│   ├── raw/                        # Downloaded open-access images
+│   ├── crops/                      # Curated crops (only redistribution-permitted images committed)
+│   │   ├── eight_pointed_star/     # Case 001 target family
+│   │   ├── rosette/                # Hard negative / related radial motif
+│   │   ├── five_pointed_star/      # Hard negative / related star geometry
+│   │   ├── six_pointed_star/       # Hard negative / related star geometry
+│   │   ├── negative_control/       # Other geometric motifs
+│   │   └── crops.json              # Crops ids, original ids, size
+│   ├── metadata.json               # Provenance, period, material, museum IDs
+│   └── index.npz                   # Generated local feature index (not committed)
+├── results/
+│   ├── v0.1_evaluation.md          # Benchmark, error analysis, robustness
+│   ├── v0.1_error_analysis.json    # Per-query retrieval outcomes
+│   └── figures/
+│       ├── v0.1_hit1_vs_alpha.png
+│       └── v0.1_robustness_hit1.png
 ├── scripts/
-│   ├── data_stats.py             # Data statistics
-│   └── stage_licensed_images.py  # Script for staging images with permitted license
+│   ├── data_stats.py               # Dataset statistics
+│   ├── plot_evaluation.py          # Benchmark visualizations
+│   └── list_restricted_images.py   # Image redistribution checks
 ├── src/
 │   └── symbolic_detective/
-│       ├── ingestion/            # Museum API harvesters (The Met, Europeana)
-│       │   ├── met_api.py        # /public/collection/v1.1/search client
-│       │   └── europeana_api.py  # Europeana REST client
+│       ├── ingestion/              # Museum API harvesters
+│       │   ├── met_api.py          # Met client
+│       │   └── europeana_api.py    # Europeana REST client
 │       ├── pipeline/
-│       │   ├── preprocess.py     # Image normalization routines
-│       │   ├── shape_features.py # OpenCV edge-based geometric feature extraction
-│       │   ├── embeddings.py     # Latent feature generation
-│       │   └── hybrid_search.py  # Similarity computation and ranking
+│       │   ├── preprocess.py       # Image normalization routines
+│       │   ├── shape_features.py   # OpenCV edge-based geometric feature extraction
+│       │   ├── embeddings.py       # Latent feature generation
+│       │   └── hybrid_search.py    # Similarity computation and ranking
 │       ├── utils/
-│       │   ├── image_crop.py     # Script for fast image cropping
-│       │   └── image_files.py    
-│       └── evaluate.py           # Benchmark script: Hit@K and MRR
+│       │   ├── image_crop.py       # Manual motif cropping utility
+│       │   └── image_files.py      # Image discovery and collection
+│       │── evaluate.py             # Artifact-grouped retrieval benchmark
+│       └── evaluate_robustness.py  # Synthetic degradation experiments
 ├── ui/
-│   └── app.py                    # Streamlit exploration dashboard
-├── tests/                        # Unit tests for feature extraction
+│   └── app.py                      # Streamlit exploration dashboard
+├── tests/                          # Unit tests for feature extraction
 ├── .gitignore
 ├── pyproject.toml
 ├── requirements-lock.txt
@@ -109,31 +117,65 @@ symbolic-detective/
 
 ## 📊 Benchmark & Evaluation
 
-v0.1 treats motif-family labels strictly as evaluation ground truth; they are
-never passed to the retrieval algorithms. Artifact metadata is retained for
-provenance and analysis but is not used as input to the v0.1 similarity ranking.
+v0.1 treats motif-family labels strictly as evaluation ground truth; they are never passed to the retrieval algorithms. Artifact metadata is retained for provenance and analysis but is not used in the v0.1 similarity ranking.
 
 ### v0.1 Experimental Setup & Results
 
 - **Methodology:** 5-Fold Artifact-Grouped Cross-Validation
 - **Dataset:** 127 manually verified motif crops (98 valid distinct artifacts)
 - **Queries Evaluated:** 107 total, including 60 `eight_pointed_star` queries
+- **Methods:** OpenCV geometric features, DINOv2 embeddings, and weighted hybrid retrieval
+- **Metrics:** Hit@1, Hit@5, Mean Reciprocal Rank (MRR)
 
-For the primary Eight-Pointed Star retrieval task, the best-performing tested
-hybrid configuration (**α = 0.25**) improves over DINOv2 alone, achieving
-**Hit@1 = 0.877 ± 0.121** and **MRR = 0.925 ± 0.073**. DINOv2 remains the
-strongest method for overall multi-class retrieval.
+For Eight-Pointed Star retrieval, the best-performing tested hybrid
+configuration (**α = 0.25**) achieves:
 
-👉 **[View the full v0.1 5-Fold Cross-Validation Report](results/v0.1_evaluation.md)**
-for complete target-level and multi-class results across the alpha sweep.
+- **Hit@1:** 0.877 ± 0.121 (DINOv2: 0.857 ± 0.074)
+- **Hit@5:** 0.985 ± 0.031
+- **MRR:** 0.925 ± 0.073 (DINOv2: 0.911 ± 0.050)
 
-**Robustness Stress Tests** (to be updated)
+DINOv2 remains the strongest baseline for overall multi-class retrieval
+(Hit@1: 0.760 vs. 0.708 for the hybrid).
 
-Retrieval performance is benchmarked against synthetic corruptions approximating common challenges in digitized archaeological and cultural-heritage imagery:
- * Arbitrary rotation (0° to 360°).
- * Illumination and contrast degradation.
- * Blur and morphological corruption approximating surface degradation.
- * Partial occlusion / masking.
+Per-query analysis shows that geometric features correct four DINOv2
+retrieval errors while introducing three new errors. The net improvement
+is modest and does not establish statistically significant superiority.
+
+### Robustness Under Synthetic Degradation
+
+We evaluated DINOv2 (α=0.0) and Hybrid (α=0.25) against synthetic
+image degradations using clean reference images and corrupted queries.
+
+Test conditions include:
+
+- Fixed 90° rotation
+- Gaussian blur (5×5 and 11×11)
+- Reduced brightness and contrast
+- Approximately 10% random occlusion
+
+![Retrieval Accuracy Under Synthetic Degradation](results/figures/v0.1_robustness_hit1.png)
+
+**Figure 2.** Hit@1 retrieval accuracy across synthetic degradations.
+Bars represent mean performance across five artifact-grouped folds.
+Standard deviations are reported in the full evaluation report.
+
+**Key observations:**
+
+- **Rotation:** Hybrid Hit@1 remains nearly unchanged (0.877 → 0.876).
+- **Moderate blur:** Hybrid Hit@1 increases slightly to 0.903 under 5×5 Gaussian blur.
+- **Severe blur:** Both methods degrade, with the hybrid dropping to 0.774 under 11×11 blur.
+- **Partial occlusion:** Hybrid Hit@1 remains close to its clean baseline (0.881).
+- **Feature reliability:** Severe blur caused one OpenCV geometric feature-extraction failure. The affected query was counted as an unsuccessful hybrid retrieval (Hit@1 = 0, Hit@5 = 0, MRR = 0), rather than excluded, to avoid survivorship bias. DINOv2 retrieval was evaluated independently.
+
+These findings suggest that geometric features can provide complementary robustness under certain transformations, but their contribution is condition-dependent.
+
+Results are exploratory and limited to the evaluated dataset and synthetic degradation settings.
+
+### Full Evaluation Report
+
+👉 **[v0.1 Benchmark, Error Analysis & Robustness Evaluation](results/v0.1_evaluation.md)**
+
+The report contains the complete alpha sweep, per-query error analysis, robustness metrics (Hit@1, Hit@5, MRR), experimental methodology and limitations.
 
 
 ## Getting Started
@@ -168,7 +210,11 @@ python -m symbolic_detective.ingestion.europeana_api --query "star" --limit 2
 ### 3. Run Benchmark Evaluation
 Compare the OpenCV, DINOv2, and hybrid retrieval baselines on the held-out query set:
 ```bash
+# Main retrieval benchmark
 python -m symbolic_detective.evaluate --data-dir data/crops/
+
+# Robustness evaluation
+python -m symbolic_detective.evaluate_robustness --data-dir data/crops/
 ```
 
 ### 4. Launch the Exploration UI
@@ -215,7 +261,7 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 * [x] Europeana REST client
 * [x] 100-150 motifs
 * [x] Publish Case 001 results
-* [ ] Run robustness experiments
+* [x] Run robustness experiments
 
 
 ## Future Horizons
