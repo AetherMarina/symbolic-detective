@@ -164,6 +164,7 @@ Standard deviations are reported in the full evaluation report.
 - **Rotation:** Hybrid Hit@1 remains nearly unchanged (0.877 → 0.876).
 - **Moderate blur:** Hybrid Hit@1 increases slightly to 0.903 under 5×5 Gaussian blur.
 - **Severe blur:** Both methods degrade, with the hybrid dropping to 0.774 under 11×11 blur.
+- **Lighting and contrast:** Both methods improve under reduced brightness (Hybrid Hit@1: 0.877 → 0.902), while reduced contrast causes a modest decline in hybrid performance (0.877 → 0.855).
 - **Partial occlusion:** Hybrid Hit@1 remains close to its clean baseline (0.881).
 - **Feature reliability:** Severe blur caused one OpenCV geometric feature-extraction failure. The affected query was counted as an unsuccessful hybrid retrieval (Hit@1 = 0, Hit@5 = 0, MRR = 0), rather than excluded, to avoid survivorship bias. DINOv2 retrieval was evaluated independently.
 
