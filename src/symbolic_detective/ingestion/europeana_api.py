@@ -62,17 +62,28 @@ class EuropeanaClient:
 
     def download_image(self, url: str, save_path: Path) -> bool:
         """Streams a remote image directly to disk."""
-        if save_path.exists():
+        if save_path.exists() and save_path.stat().st_size > 0:
             return True
 
+        temp_path = save_path.with_suffix(save_path.suffix + ".part")
+
         try:
-            res = self.session.get(url, stream=True, timeout=15)
-            res.raise_for_status()
-            with open(save_path, "wb") as f:
-                for chunk in res.iter_content(chunk_size=8192):
-                    f.write(chunk)
+            with self.session.get(url, stream=True, timeout=15) as res:
+                res.raise_for_status()
+
+                with open(temp_path, "wb") as f:
+                    for chunk in res.iter_content(chunk_size=8192):
+                        if chunk:
+                            f.write(chunk)
+
+            if temp_path.stat().st_size == 0:
+                raise ValueError("Downloaded image is empty")
+
+            temp_path.replace(save_path)
             return True
-        except requests.RequestException as e:
+
+        except (requests.RequestException, OSError, ValueError) as e:
+            temp_path.unlink(missing_ok=True)
             print(f"Warning: Failed to download {url} - {e}")
             return False
 
@@ -96,6 +107,12 @@ class EuropeanaClient:
         Main pipeline: Searches Europeana, downloads images to data/raw,
         and saves cultural metadata to data/metadata.json.
         """
+        existing_ids = set()
+        if self.metadata_file.exists():
+            with open(self.metadata_file, "r", encoding="utf-8") as f:
+                metadata = json.load(f)
+                existing_ids = set(metadata.keys())
+
         safe_query = re.sub(r"[^a-zA-Z0-9_\-]+", "_", query).strip("_")
         raw_img_dir = DEFAULT_DATA_DIR / "raw" / f"europeana_{safe_query}"
         raw_img_dir.mkdir(parents=True, exist_ok=True)
@@ -122,6 +139,11 @@ class EuropeanaClient:
                     continue
                 artifact_id = raw_id.replace("/", "_").strip("_")
                 artifact_key = f"europeana_{artifact_id}"
+
+                # Skip artifacts already registered in metadata.json
+                if artifact_key in existing_ids:
+                    print(f"Image for {artifact_key} already exists. Skipping download.")
+                    continue
 
                 image_urls = item.get("edmIsShownBy") or item.get("edmPreview")
                 if not image_urls:
@@ -155,6 +177,7 @@ class EuropeanaClient:
 
                 if self.download_image(image_url, save_path):
                     self.update_metadata(artifact_key, provenance)
+                    existing_ids.add(artifact_key)
                     print(f"[{items_downloaded + 1}/{max_items}] Saved: {filename} ({title[:30]}...)")
                     items_downloaded += 1
                     time.sleep(0.5)
