@@ -3,7 +3,7 @@
   Symbolic Detective
 </h1>
 
-![A central motif connected to visual variants across artifacts](assets/motif-constellation-banner2.jpg)
+![A central motif connected to visual variants across artifacts](assets/motif-constellation-banner.jpg)
 
 ### v0.1 — Unknown Motif Finder
 
@@ -80,11 +80,18 @@ symbolic-detective/
 │   ├── metadata.json               # Provenance, period, material, museum IDs
 │   └── index.npz                   # Generated local feature index (not committed)
 ├── results/
-│   ├── v0.1_evaluation.md          # Benchmark, error analysis, robustness
-│   ├── v0.1_error_analysis.json    # Per-query retrieval outcomes
-│   └── figures/
-│       ├── v0.1_hit1_vs_alpha.png
-│       └── v0.1_robustness_hit1.png
+│   ├── v0.1/
+│   │   ├── evaluation.md              # Benchmark, error analysis, robustness
+│   │   ├── error_analysis.json        # Per-query retrieval outcomes
+│   │   └── figures/
+│   │       ├── hit1_vs_alpha.png
+│   │       └── robustness_hit1.png
+│   └── v0.2_baseline/
+│       ├── evaluation.md          # Benchmark, error analysis, robustness
+│       ├── error_analysis.json    # Per-query retrieval outcomes
+│       └── figures/
+│           ├── confusion_dinov2.png
+│           └── confusion_hybrid.png
 ├── scripts/
 │   ├── data_stats.py               # Dataset statistics
 │   ├── plot_evaluation.py          # Benchmark visualizations
@@ -153,7 +160,7 @@ Test conditions include:
 - Reduced brightness and contrast
 - Approximately 10% random occlusion
 
-![Retrieval Accuracy Under Synthetic Degradation](results/figures/v0.1_robustness_hit1.png)
+![Retrieval Accuracy Under Synthetic Degradation](results/v0.1/figures/robustness_hit1.png)
 
 **Figure 2.** Hit@1 retrieval accuracy across synthetic degradations.
 Bars represent mean performance across five artifact-grouped folds.
@@ -174,7 +181,7 @@ Results are exploratory and limited to the evaluated dataset and synthetic degra
 
 ### Full Evaluation Report
 
-👉 **[v0.1 Benchmark, Error Analysis & Robustness Evaluation](results/v0.1_evaluation.md)**
+👉 **[v0.1 Benchmark, Error Analysis & Robustness Evaluation](results/v0.1/evaluation.md)**
 
 The report contains the complete alpha sweep, per-query error analysis, robustness metrics (Hit@1, Hit@5, MRR), experimental methodology and limitations.
 

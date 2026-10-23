@@ -27,7 +27,7 @@ Our v0.1 benchmark demonstrates that while deep latent embeddings (DINOv2) provi
 
 ### Retrieval Performance vs. OpenCV Weight
 
-![Hit@1 vs OpenCV Weight](figures/v0.1_hit1_vs_alpha.png)
+![Hit@1 vs OpenCV Weight](figures/hit1_vs_alpha.png)
 **Figure 1.** Hit@1 retrieval performance across OpenCV geometric-feature weights (α), evaluated using artifact-grouped 5-fold cross-validation. Points represent mean fold performance; error bars indicate ±1 standard deviation. The hybrid configuration (α=0.25) achieves the highest observed eight-pointed star Hit@1, while DINOv2 alone (α=0) performs best overall.
 
 
@@ -137,7 +137,7 @@ Values represent mean ± standard deviation across five folds.
 | Occlusion 10% | DINOv2 | 0.805 ± 0.07 | 0.979 ± 0.03 | 0.886 ± 0.04 | −0.052 | −0.025 |
 | Occlusion 10% | Hybrid | 0.881 ± 0.07 | 0.979 ± 0.03 | 0.922 ± 0.05 | +0.004 | −0.002 |
 
-![Retrieval Robustness — DINOv2 vs Hybrid](figures/v0.1_robustness_hit1.png)
+![Retrieval Robustness — DINOv2 vs Hybrid](figures/robustness_hit1.png)
 
 **Figure 2.** Hit@1 retrieval accuracy for eight-pointed star queries
 under synthetic image degradations, evaluated using artifact-grouped

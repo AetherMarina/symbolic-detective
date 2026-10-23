@@ -1,7 +1,8 @@
 """
 Benchmark & Evaluation Script (K-Fold Cross-Validation).
 Calculates Hit@1, Hit@5, and MRR for OpenCV, DINOv2, and Hybrid Search
-using artifact-grouped k-fold cross validation. Includes per-query error analysis.
+using artifact-grouped k-fold cross validation. Includes per-query error analysis
+and multi-class confusion matrices.
 """
 import argparse
 import random
@@ -11,6 +12,8 @@ from pathlib import Path
 from typing import List, Dict, Any, Tuple
 import numpy as np
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
 
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
@@ -99,6 +102,10 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
     overall_metrics = {alpha: {"h1": [], "h5": [], "mrr": []} for alpha in alphas_to_test}
     target_metrics = {alpha: {"h1": [], "h5": [], "mrr": []} for alpha in alphas_to_test}
 
+    # Initialize global prediction trackers for Confusion Matrix
+    y_true_all = {alpha: [] for alpha in alphas_to_test}
+    y_pred_all = {alpha: [] for alpha in alphas_to_test}
+
     total_dropped_queries = 0
     total_evaluated_queries = 0
     total_target_queries = 0
@@ -173,6 +180,11 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
 
                 sorted_scores = sorted(scores, key=lambda x: x["s_hybrid"], reverse=True)
 
+                # Record true vs. predicted class globally
+                top_1_class = sorted_scores[0]["class"]
+                y_true_all[alpha].append(q["class"])
+                y_pred_all[alpha].append(top_1_class)
+
                 if alpha in (0.0, 0.25):
                     top_results[alpha] = sorted_scores[0]
 
@@ -187,23 +199,27 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
                     fold_target[alpha]["h5"].append(h5)
                     fold_target[alpha]["mrr"].append(mrr)
 
-            if q["class"] == target_class:
-                dino = top_results[0.0]
-                hybrid = top_results[0.25]
-                dino_correct = dino["class"] == target_class
-                hybrid_correct = hybrid["class"] == target_class
+            # Error analysis across all motif classes
+            dino = top_results[0.0]
+            hybrid = top_results[0.25]
 
-                if not dino_correct and hybrid_correct:
-                    outcome = "geometry_helped"
-                elif dino_correct and not hybrid_correct:
-                    outcome = "geometry_hurt"
-                elif dino_correct and hybrid_correct:
-                    outcome = "both_correct"
-                else:
-                    outcome = "both_wrong"
+            dino_correct = dino["class"] == q["class"]
+            hybrid_correct = hybrid["class"] == q["class"]
 
+            if not dino_correct and hybrid_correct:
+                outcome = "geometry_helped"
+            elif dino_correct and not hybrid_correct:
+                outcome = "geometry_hurt"
+            elif dino_correct and hybrid_correct:
+                outcome = "both_correct"
+            else:
+                outcome = "both_wrong"
+
+            # Record only queries misclassified by at least one method
+            if outcome != "both_correct":
                 error_analysis.append({
                     "query": f"{q['class']}/{Path(q['path']).name}",
+                    "true_class": q["class"],
                     "fold": fold_idx + 1,
                     "outcome": outcome,
                     "dino_top1": f"{dino['class']}/{Path(dino['path']).name}",
@@ -271,8 +287,48 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
     else:
         print(f"\n⚠️ Target class '{target_class}' not found in query results.")
 
-    # 5. Export Error Analysis
-    output_path = PROJECT_ROOT / "results" / "v0.1_error_analysis.json"
+    # 5. Discrimination Metrics & Confusion Matrices
+    results_dir = PROJECT_ROOT / "results"
+    results_dir.mkdir(parents=True, exist_ok=True)
+    class_names = [cls.name for cls in classes if cls.name != "negative_control"]
+    cm_labels = class_names + ["negative_control"]
+
+    for alpha in (0.0, 0.25):
+        method = "DINOv2" if alpha == 0.0 else "Hybrid"
+        print(f"\n### Multi-Class Discrimination Report ({method}, α={alpha})")
+        report = classification_report(
+            y_true_all[alpha],
+            y_pred_all[alpha],
+            labels=class_names,
+            target_names=class_names,
+            zero_division=0,
+        )
+        print(report)
+        cm = confusion_matrix(
+            y_true_all[alpha],
+            y_pred_all[alpha],
+            labels=cm_labels,
+        )
+        fig, ax = plt.subplots(figsize=(11, 9))
+        disp = ConfusionMatrixDisplay(
+            confusion_matrix=cm,
+            display_labels=cm_labels,
+        )
+        disp.plot(
+            ax=ax,
+            cmap="Blues",
+            xticks_rotation=45,
+            values_format="d",
+        )
+        ax.set_title(f"Motif Confusion Matrix — {method} (α={alpha})")
+        plt.tight_layout()
+        path = results_dir / f"v0.2_confusion_{method.lower()}.png"
+        fig.savefig(path, dpi=300)
+        plt.close(fig)
+        print(f"Saved: {path}")
+
+    # 6. Export Error Analysis
+    output_path = PROJECT_ROOT / "results" / "v0.2_baseline_error_analysis.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(error_analysis, f, indent=2)
