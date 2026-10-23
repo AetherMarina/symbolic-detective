@@ -5,8 +5,6 @@
 
 ![A central motif connected to visual variants across artifacts](assets/motif-constellation-banner.jpg)
 
-### v0.1 — Unknown Motif Finder
-
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![Status: Experimental](https://img.shields.io/badge/status-v0.1--complete-brightgreen.svg)]()
@@ -258,23 +256,26 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 
 ## Roadmap
 
-### v0.1 — Unknown Motif Finder
-* [x] Curate initial motif corpus from Met
-* [x] Implement preprocessing
-* [x] Implement OpenCV baseline
-* [x] Implement DINOv2 embedding baseline
-* [x] Implement hybrid retrieval
-* [x] Build held-out evaluation set
-* [x] Build Streamlit explorer
-* [x] Europeana REST client
-* [x] 100-150 motifs
-* [x] Publish Case 001 results
-* [x] Run robustness experiments
+### v0.1 — Unknown Motif Finder ✅ Completed
+- Visual similarity retrieval using DINOv2 and OpenCV
+- Hybrid retrieval with artifact-grouped 5-fold cross-validation
+- Streamlit exploration interface
+- Robustness evaluation and published benchmark results
+
+### v0.2 — Related Motif Discrimination 🚧 In Progress
+- [x] Establish baseline confusion matrices on the v0.1 dataset
+- [x] Expand and rebalance related motif classes
+- [ ] Establish artifact-grouped development/test split
+- [ ] Evaluate fine-grained discrimination across related motifs
+- [ ] Analyze incorrect top-1 retrievals and class confusion
+- [ ] Investigate improved geometric representations
+- [ ] Evaluate negative-query rejection
+- [ ] Extend the Streamlit UI to visualize motif discrimination, comparing top-ranked candidates, geometric feature differences, and similarity-score contributions to explain why one motif class is preferred over another.
+- [ ] Publish v0.2 evaluation results
 
 
 ## Future Horizons
 
-* **v0.2 — Related Motif Discrimination:** Granular separation of overlapping geometries.
 * **v0.3 — Contextual Identity:** Investigating whether visually different motif forms can share a historically supported symbolic identity.
 * **v0.4 — Automatic Detection:** Full artifact → bounding-box localization via fine-tuned models.
 * **v0.5 — Unknown Motif Memory:** Unsupervised clustering of recurring, undocumented motifs.

@@ -514,7 +514,7 @@
   "393988_primary_occ_01": {
     "crop_id": "393988_primary_occ_01",
     "artifact_key": "393988",
-    "motif_class": "five_pointed_star",
+    "motif_class": "six_pointed_star",
     "filename": "393988_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -786,7 +786,7 @@
   "321391_primary_occ_01": {
     "crop_id": "321391_primary_occ_01",
     "artifact_key": "321391",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "321391_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -794,7 +794,7 @@
   "322488_primary_occ_01": {
     "crop_id": "322488_primary_occ_01",
     "artifact_key": "322488",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "322488_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -802,7 +802,7 @@
   "322489_primary_occ_01": {
     "crop_id": "322489_primary_occ_01",
     "artifact_key": "322489",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "322489_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -810,7 +810,7 @@
   "322613_primary_occ_01": {
     "crop_id": "322613_primary_occ_01",
     "artifact_key": "322613",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "322613_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -818,7 +818,7 @@
   "322615_primary_occ_01": {
     "crop_id": "322615_primary_occ_01",
     "artifact_key": "322615",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "322615_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -826,7 +826,7 @@
   "322616_primary_occ_01": {
     "crop_id": "322616_primary_occ_01",
     "artifact_key": "322616",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "322616_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -834,7 +834,7 @@
   "322616_primary_occ_02": {
     "crop_id": "322616_primary_occ_02",
     "artifact_key": "322616",
-    "motif_class": "rosette",
+    "motif_class": "eight_petal_rosette",
     "filename": "322616_primary_occ_02.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -842,7 +842,7 @@
   "322616_primary_occ_03": {
     "crop_id": "322616_primary_occ_03",
     "artifact_key": "322616",
-    "motif_class": "rosette",
+    "motif_class": "eight_petal_rosette",
     "filename": "322616_primary_occ_03.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -850,7 +850,7 @@
   "322617_primary_occ_01": {
     "crop_id": "322617_primary_occ_01",
     "artifact_key": "322617",
-    "motif_class": "rosette",
+    "motif_class": "eight_petal_rosette",
     "filename": "322617_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -858,7 +858,7 @@
   "323973_primary_occ_01": {
     "crop_id": "323973_primary_occ_01",
     "artifact_key": "323973",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "323973_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -866,7 +866,7 @@
   "324183_primary_occ_01": {
     "crop_id": "324183_primary_occ_01",
     "artifact_key": "324183",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "324183_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -874,7 +874,7 @@
   "324330_primary_occ_01": {
     "crop_id": "324330_primary_occ_01",
     "artifact_key": "324330",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "324330_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -882,7 +882,7 @@
   "324411_primary_occ_01": {
     "crop_id": "324411_primary_occ_01",
     "artifact_key": "324411",
-    "motif_class": "rosette",
+    "motif_class": "eight_petal_rosette",
     "filename": "324411_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -890,7 +890,7 @@
   "324609_primary_occ_01": {
     "crop_id": "324609_primary_occ_01",
     "artifact_key": "324609",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "324609_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -898,7 +898,7 @@
   "324683_primary_occ_01": {
     "crop_id": "324683_primary_occ_01",
     "artifact_key": "324683",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "324683_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -906,7 +906,7 @@
   "324683_primary_occ_02": {
     "crop_id": "324683_primary_occ_02",
     "artifact_key": "324683",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "324683_primary_occ_02.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -914,7 +914,7 @@
   "324766_primary_occ_01": {
     "crop_id": "324766_primary_occ_01",
     "artifact_key": "324766",
-    "motif_class": "rosette",
+    "motif_class": "eight_petal_rosette",
     "filename": "324766_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -922,7 +922,7 @@
   "324777_primary_occ_01": {
     "crop_id": "324777_primary_occ_01",
     "artifact_key": "324777",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "324777_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -930,7 +930,7 @@
   "324778_primary_occ_01": {
     "crop_id": "324778_primary_occ_01",
     "artifact_key": "324778",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "324778_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -938,7 +938,7 @@
   "325200_primary_occ_01": {
     "crop_id": "325200_primary_occ_01",
     "artifact_key": "325200",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "325200_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -946,7 +946,7 @@
   "325201_primary_occ_01": {
     "crop_id": "325201_primary_occ_01",
     "artifact_key": "325201",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "325201_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -954,7 +954,7 @@
   "325202_primary_occ_01": {
     "crop_id": "325202_primary_occ_01",
     "artifact_key": "325202",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "325202_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -962,7 +962,7 @@
   "325517_primary_occ_01": {
     "crop_id": "325517_primary_occ_01",
     "artifact_key": "325517",
-    "motif_class": "rosette",
+    "motif_class": "rosette_other",
     "filename": "325517_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
@@ -1014,5 +1014,3077 @@
     "filename": "66500_primary_occ_01.jpg",
     "crop_box": null,
     "has_parent_metadata": true
+  },
+  "543994_primary_occ_01": {
+    "crop_id": "543994_primary_occ_01",
+    "artifact_key": "543994",
+    "motif_class": "five_pointed_star",
+    "filename": "543994_primary_occ_01.jpg",
+    "crop_box": [
+      370,
+      932,
+      444,
+      993
+    ]
+  },
+  "544140_primary_occ_01": {
+    "crop_id": "544140_primary_occ_01",
+    "artifact_key": "544140",
+    "motif_class": "negative_control",
+    "filename": "544140_primary_occ_01.jpg",
+    "crop_box": [
+      1579,
+      825,
+      1694,
+      930
+    ]
+  },
+  "544559_primary_occ_01": {
+    "crop_id": "544559_primary_occ_01",
+    "artifact_key": "544559",
+    "motif_class": "five_pointed_star",
+    "filename": "544559_primary_occ_01.jpg",
+    "crop_box": [
+      1692,
+      70,
+      1764,
+      159
+    ]
+  },
+  "544559_primary_occ_02": {
+    "crop_id": "544559_primary_occ_02",
+    "artifact_key": "544559",
+    "motif_class": "five_pointed_star",
+    "filename": "544559_primary_occ_02.jpg",
+    "crop_box": [
+      1195,
+      75,
+      1279,
+      165
+    ]
+  },
+  "544560_primary_occ_01": {
+    "crop_id": "544560_primary_occ_01",
+    "artifact_key": "544560",
+    "motif_class": "five_pointed_star",
+    "filename": "544560_primary_occ_01.jpg",
+    "crop_box": [
+      1287,
+      80,
+      1381,
+      160
+    ]
+  },
+  "546312_primary_occ_01": {
+    "crop_id": "546312_primary_occ_01",
+    "artifact_key": "546312",
+    "motif_class": "negative_control",
+    "filename": "546312_primary_occ_01.jpg",
+    "crop_box": [
+      1606,
+      2348,
+      1714,
+      2554
+    ]
+  },
+  "551503_primary_occ_01": {
+    "crop_id": "551503_primary_occ_01",
+    "artifact_key": "551503",
+    "motif_class": "five_pointed_star",
+    "filename": "551503_primary_occ_01.jpg",
+    "crop_box": [
+      1630,
+      1172,
+      1691,
+      1255
+    ]
+  },
+  "551503_primary_occ_02": {
+    "crop_id": "551503_primary_occ_02",
+    "artifact_key": "551503",
+    "motif_class": "five_pointed_star",
+    "filename": "551503_primary_occ_02.jpg",
+    "crop_box": [
+      619,
+      1326,
+      671,
+      1402
+    ]
+  },
+  "554677_primary_occ_01": {
+    "crop_id": "554677_primary_occ_01",
+    "artifact_key": "554677",
+    "motif_class": "five_pointed_star",
+    "filename": "554677_primary_occ_01.jpg",
+    "crop_box": [
+      2689,
+      3360,
+      2800,
+      3440
+    ]
+  },
+  "557711_primary_occ_01": {
+    "crop_id": "557711_primary_occ_01",
+    "artifact_key": "557711",
+    "motif_class": "five_pointed_star",
+    "filename": "557711_primary_occ_01.jpg",
+    "crop_box": [
+      2551,
+      1842,
+      2718,
+      2005
+    ]
+  },
+  "557711_primary_occ_02": {
+    "crop_id": "557711_primary_occ_02",
+    "artifact_key": "557711",
+    "motif_class": "unclassified",
+    "filename": "557711_primary_occ_02.jpg",
+    "crop_box": [
+      2085,
+      1585,
+      2218,
+      1715
+    ]
+  },
+  "557847_primary_occ_01": {
+    "crop_id": "557847_primary_occ_01",
+    "artifact_key": "557847",
+    "motif_class": "five_pointed_star",
+    "filename": "557847_primary_occ_01.jpg",
+    "crop_box": [
+      1075,
+      167,
+      1213,
+      306
+    ]
+  },
+  "557847_primary_occ_02": {
+    "crop_id": "557847_primary_occ_02",
+    "artifact_key": "557847",
+    "motif_class": "negative_control",
+    "filename": "557847_primary_occ_02.jpg",
+    "crop_box": [
+      2069,
+      445,
+      2267,
+      508
+    ]
+  },
+  "557847_primary_occ_03": {
+    "crop_id": "557847_primary_occ_03",
+    "artifact_key": "557847",
+    "motif_class": "five_pointed_star",
+    "filename": "557847_primary_occ_03.jpg",
+    "crop_box": [
+      2587,
+      154,
+      2734,
+      273
+    ]
+  },
+  "557847_primary_occ_04": {
+    "crop_id": "557847_primary_occ_04",
+    "artifact_key": "557847",
+    "motif_class": "negative_control",
+    "filename": "557847_primary_occ_04.jpg",
+    "crop_box": [
+      2548,
+      544,
+      2771,
+      617
+    ]
+  },
+  "33779_primary_occ_01": {
+    "crop_id": "33779_primary_occ_01",
+    "artifact_key": "33779",
+    "motif_class": "five_pointed_star",
+    "filename": "33779_primary_occ_01.jpg",
+    "crop_box": [
+      1471,
+      409,
+      1519,
+      452
+    ]
+  },
+  "33779_primary_occ_02": {
+    "crop_id": "33779_primary_occ_02",
+    "artifact_key": "33779",
+    "motif_class": "five_pointed_star",
+    "filename": "33779_primary_occ_02.jpg",
+    "crop_box": [
+      2074,
+      412,
+      2120,
+      457
+    ]
+  },
+  "753534_primary_occ_01": {
+    "crop_id": "753534_primary_occ_01",
+    "artifact_key": "753534",
+    "motif_class": "five_pointed_star",
+    "filename": "753534_primary_occ_01.jpg",
+    "crop_box": [
+      861,
+      343,
+      967,
+      449
+    ]
+  },
+  "europeana_91617_upmu_photo_DIG002473_occ_01": {
+    "crop_id": "europeana_91617_upmu_photo_DIG002473_occ_01",
+    "artifact_key": "europeana_91617_upmu_photo_DIG002473",
+    "motif_class": "negative_control",
+    "filename": "europeana_91617_upmu_photo_DIG002473_occ_01.jpg",
+    "crop_box": [
+      402,
+      337,
+      424,
+      373
+    ]
+  },
+  "europeana_15502_MK_180619_occ_01": {
+    "crop_id": "europeana_15502_MK_180619_occ_01",
+    "artifact_key": "europeana_15502_MK_180619",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_15502_MK_180619_occ_01.jpg",
+    "crop_box": [
+      357,
+      305,
+      2083,
+      1995
+    ]
+  },
+  "europeana_15502_MK_9813a_occ_01": {
+    "crop_id": "europeana_15502_MK_9813a_occ_01",
+    "artifact_key": "europeana_15502_MK_9813a",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_15502_MK_9813a_occ_01.jpg",
+    "crop_box": [
+      602,
+      864,
+      1174,
+      1434
+    ]
+  },
+  "europeana_2048128_252820_occ_01": {
+    "crop_id": "europeana_2048128_252820_occ_01",
+    "artifact_key": "europeana_2048128_252820",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2048128_252820_occ_01.jpg",
+    "crop_box": [
+      1872,
+      259,
+      1963,
+      364
+    ]
+  },
+  "europeana_2048128_419715_occ_01": {
+    "crop_id": "europeana_2048128_419715_occ_01",
+    "artifact_key": "europeana_2048128_419715",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2048128_419715_occ_01.jpg",
+    "crop_box": [
+      360,
+      58,
+      500,
+      186
+    ]
+  },
+  "europeana_2048221_europeana_fashion_153903_occ_01": {
+    "crop_id": "europeana_2048221_europeana_fashion_153903_occ_01",
+    "artifact_key": "europeana_2048221_europeana_fashion_153903",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2048221_europeana_fashion_153903_occ_01.jpg",
+    "crop_box": [
+      465,
+      1214,
+      520,
+      1265
+    ]
+  },
+  "europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8_occ_01": {
+    "crop_id": "europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8_occ_01",
+    "artifact_key": "europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8_occ_01.jpg",
+    "crop_box": [
+      672,
+      1024,
+      1034,
+      1354
+    ]
+  },
+  "europeana_90402_RP_P_BI_6098_occ_01": {
+    "crop_id": "europeana_90402_RP_P_BI_6098_occ_01",
+    "artifact_key": "europeana_90402_RP_P_BI_6098",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_90402_RP_P_BI_6098_occ_01.jpg",
+    "crop_box": [
+      197,
+      493,
+      426,
+      749
+    ]
+  },
+  "europeana_916110_smm_vm_object_09183_occ_01": {
+    "crop_id": "europeana_916110_smm_vm_object_09183_occ_01",
+    "artifact_key": "europeana_916110_smm_vm_object_09183",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_916110_smm_vm_object_09183_occ_01.jpg",
+    "crop_box": [
+      201,
+      41,
+      588,
+      412
+    ]
+  },
+  "europeana_916118_S_TEK_photo_TEKA0152367_occ_01": {
+    "crop_id": "europeana_916118_S_TEK_photo_TEKA0152367_occ_01",
+    "artifact_key": "europeana_916118_S_TEK_photo_TEKA0152367",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_916118_S_TEK_photo_TEKA0152367_occ_01.jpg",
+    "crop_box": [
+      101,
+      126,
+      1078,
+      1056
+    ]
+  },
+  "europeana_2021802_LIMIS_1145533846_occ_01": {
+    "crop_id": "europeana_2021802_LIMIS_1145533846_occ_01",
+    "artifact_key": "europeana_2021802_LIMIS_1145533846",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2021802_LIMIS_1145533846_occ_01.jpg",
+    "crop_box": [
+      523,
+      691,
+      568,
+      733
+    ]
+  },
+  "europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01": {
+    "crop_id": "europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01",
+    "artifact_key": "europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "crop_box": [
+      263,
+      471,
+      557,
+      749
+    ]
+  },
+  "europeana_89_item_35PQX4WDUUBJHABTRZ6QCDK73DAXEXHT_occ_01": {
+    "crop_id": "europeana_89_item_35PQX4WDUUBJHABTRZ6QCDK73DAXEXHT_occ_01",
+    "artifact_key": "europeana_89_item_35PQX4WDUUBJHABTRZ6QCDK73DAXEXHT",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_89_item_35PQX4WDUUBJHABTRZ6QCDK73DAXEXHT_occ_01.jpg",
+    "crop_box": [
+      857,
+      779,
+      1086,
+      992
+    ]
+  },
+  "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_01": {
+    "crop_id": "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_01",
+    "artifact_key": "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_01.jpg",
+    "crop_box": [
+      139,
+      709,
+      402,
+      965
+    ]
+  },
+  "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_02": {
+    "crop_id": "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_02",
+    "artifact_key": "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_02.jpg",
+    "crop_box": [
+      420,
+      734,
+      844,
+      1149
+    ]
+  },
+  "europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT_occ_01": {
+    "crop_id": "europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT_occ_01",
+    "artifact_key": "europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT_occ_01.jpg",
+    "crop_box": [
+      313,
+      707,
+      885,
+      1266
+    ]
+  },
+  "europeana_199_item_36CUH2COXBD6RVAYPOYSGA7BZP66XU7P_occ_01": {
+    "crop_id": "europeana_199_item_36CUH2COXBD6RVAYPOYSGA7BZP66XU7P_occ_01",
+    "artifact_key": "europeana_199_item_36CUH2COXBD6RVAYPOYSGA7BZP66XU7P",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_199_item_36CUH2COXBD6RVAYPOYSGA7BZP66XU7P_occ_01.jpg",
+    "crop_box": [
+      385,
+      445,
+      591,
+      648
+    ]
+  },
+  "europeana_199_item_CAM2HSE3Z24CZGKA4GRGGYNATGSQY6F5_occ_01": {
+    "crop_id": "europeana_199_item_CAM2HSE3Z24CZGKA4GRGGYNATGSQY6F5_occ_01",
+    "artifact_key": "europeana_199_item_CAM2HSE3Z24CZGKA4GRGGYNATGSQY6F5",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_199_item_CAM2HSE3Z24CZGKA4GRGGYNATGSQY6F5_occ_01.jpg",
+    "crop_box": [
+      472,
+      155,
+      536,
+      229
+    ]
+  },
+  "europeana_2022502__KAMRA_267099_occ_01": {
+    "crop_id": "europeana_2022502__KAMRA_267099_occ_01",
+    "artifact_key": "europeana_2022502__KAMRA_267099",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2022502__KAMRA_267099_occ_01.jpg",
+    "crop_box": [
+      254,
+      642,
+      465,
+      844
+    ]
+  },
+  "europeana_2022502__KAMRA_267099_occ_02": {
+    "crop_id": "europeana_2022502__KAMRA_267099_occ_02",
+    "artifact_key": "europeana_2022502__KAMRA_267099",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2022502__KAMRA_267099_occ_02.jpg",
+    "crop_box": [
+      853,
+      643,
+      1064,
+      846
+    ]
+  },
+  "europeana_2022502__KAMRA_267099_occ_03": {
+    "crop_id": "europeana_2022502__KAMRA_267099_occ_03",
+    "artifact_key": "europeana_2022502__KAMRA_267099",
+    "motif_class": "sunburst",
+    "filename": "europeana_2022502__KAMRA_267099_occ_03.jpg",
+    "crop_box": [
+      364,
+      840,
+      565,
+      1041
+    ]
+  },
+  "europeana_2022502__KAMRA_267099_occ_04": {
+    "crop_id": "europeana_2022502__KAMRA_267099_occ_04",
+    "artifact_key": "europeana_2022502__KAMRA_267099",
+    "motif_class": "eight_pointed_star",
+    "filename": "europeana_2022502__KAMRA_267099_occ_04.jpg",
+    "crop_box": [
+      762,
+      837,
+      956,
+      1043
+    ]
+  },
+  "europeana_2022502__KAMRA_267105_occ_01": {
+    "crop_id": "europeana_2022502__KAMRA_267105_occ_01",
+    "artifact_key": "europeana_2022502__KAMRA_267105",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2022502__KAMRA_267105_occ_01.jpg",
+    "crop_box": [
+      1511,
+      262,
+      1574,
+      326
+    ]
+  },
+  "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01": {
+    "crop_id": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01",
+    "artifact_key": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01.jpg",
+    "crop_box": [
+      807,
+      322,
+      843,
+      364
+    ]
+  },
+  "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02": {
+    "crop_id": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02",
+    "artifact_key": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02.jpg",
+    "crop_box": [
+      658,
+      679,
+      693,
+      715
+    ]
+  },
+  "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_01": {
+    "crop_id": "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_01",
+    "artifact_key": "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_01.jpg",
+    "crop_box": [
+      172,
+      84,
+      333,
+      258
+    ]
+  },
+  "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_02": {
+    "crop_id": "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_02",
+    "artifact_key": "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_02.jpg",
+    "crop_box": [
+      1603,
+      107,
+      1774,
+      270
+    ]
+  },
+  "cma_124775_occ_01": {
+    "crop_id": "cma_124775_occ_01",
+    "artifact_key": "cma_124775",
+    "motif_class": "six_pointed_star",
+    "filename": "cma_124775_occ_01.jpg",
+    "crop_box": [
+      218,
+      289,
+      563,
+      626
+    ]
+  },
+  "cma_167666_occ_01": {
+    "crop_id": "cma_167666_occ_01",
+    "artifact_key": "cma_167666",
+    "motif_class": "six_pointed_star",
+    "filename": "cma_167666_occ_01.jpg",
+    "crop_box": [
+      118,
+      95,
+      745,
+      796
+    ]
+  },
+  "europeana_283_1216_C_occ_01": {
+    "crop_id": "europeana_283_1216_C_occ_01",
+    "artifact_key": "europeana_283_1216_C",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_283_1216_C_occ_01.jpg",
+    "crop_box": [
+      294,
+      478,
+      644,
+      854
+    ]
+  },
+  "europeana_1091_item_XKYDIUVNVR22HHSQBRXIP6KL6V2MCGO3_occ_01": {
+    "crop_id": "europeana_1091_item_XKYDIUVNVR22HHSQBRXIP6KL6V2MCGO3_occ_01",
+    "artifact_key": "europeana_1091_item_XKYDIUVNVR22HHSQBRXIP6KL6V2MCGO3",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_1091_item_XKYDIUVNVR22HHSQBRXIP6KL6V2MCGO3_occ_01.jpg",
+    "crop_box": [
+      465,
+      485,
+      512,
+      540
+    ]
+  },
+  "europeana_2048047_Clasate_6dc2377425e24986976967d1087014f0_occ_01": {
+    "crop_id": "europeana_2048047_Clasate_6dc2377425e24986976967d1087014f0_occ_01",
+    "artifact_key": "europeana_2048047_Clasate_6dc2377425e24986976967d1087014f0",
+    "motif_class": "unclassified",
+    "filename": "europeana_2048047_Clasate_6dc2377425e24986976967d1087014f0_occ_01.jpg",
+    "crop_box": [
+      336,
+      424,
+      404,
+      489
+    ]
+  },
+  "europeana_693_https___ttp_jhn_ngo_ttp_Druya_75_occ_01": {
+    "crop_id": "europeana_693_https___ttp_jhn_ngo_ttp_Druya_75_occ_01",
+    "artifact_key": "europeana_693_https___ttp_jhn_ngo_ttp_Druya_75",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_693_https___ttp_jhn_ngo_ttp_Druya_75_occ_01.jpg",
+    "crop_box": [
+      1144,
+      296,
+      3924,
+      3287
+    ]
+  },
+  "europeana_693_https___ttp_jhn_ngo_ttp_Kossovo_20_occ_01": {
+    "crop_id": "europeana_693_https___ttp_jhn_ngo_ttp_Kossovo_20_occ_01",
+    "artifact_key": "europeana_693_https___ttp_jhn_ngo_ttp_Kossovo_20",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_693_https___ttp_jhn_ngo_ttp_Kossovo_20_occ_01.jpg",
+    "crop_box": [
+      2066,
+      1827,
+      3043,
+      2593
+    ]
+  },
+  "europeana_693_https___ttp_jhn_ngo_ttp_Novogrudok_23_occ_01": {
+    "crop_id": "europeana_693_https___ttp_jhn_ngo_ttp_Novogrudok_23_occ_01",
+    "artifact_key": "europeana_693_https___ttp_jhn_ngo_ttp_Novogrudok_23",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_693_https___ttp_jhn_ngo_ttp_Novogrudok_23_occ_01.jpg",
+    "crop_box": [
+      616,
+      738,
+      699,
+      815
+    ]
+  },
+  "445067_primary_occ_01": {
+    "crop_id": "445067_primary_occ_01",
+    "artifact_key": "445067",
+    "motif_class": "six_pointed_star",
+    "filename": "445067_primary_occ_01.jpg",
+    "crop_box": [
+      150,
+      152,
+      862,
+      763
+    ]
+  },
+  "445072_primary_occ_01": {
+    "crop_id": "445072_primary_occ_01",
+    "artifact_key": "445072",
+    "motif_class": "six_pointed_star",
+    "filename": "445072_primary_occ_01.jpg",
+    "crop_box": [
+      159,
+      171,
+      970,
+      899
+    ]
+  },
+  "446073_primary_occ_01": {
+    "crop_id": "446073_primary_occ_01",
+    "artifact_key": "446073",
+    "motif_class": "six_pointed_star",
+    "filename": "446073_primary_occ_01.jpg",
+    "crop_box": [
+      151,
+      101,
+      834,
+      791
+    ]
+  },
+  "447257_primary_occ_01": {
+    "crop_id": "447257_primary_occ_01",
+    "artifact_key": "447257",
+    "motif_class": "six_pointed_star",
+    "filename": "447257_primary_occ_01.jpg",
+    "crop_box": [
+      227,
+      230,
+      807,
+      801
+    ]
+  },
+  "447371_primary_occ_01": {
+    "crop_id": "447371_primary_occ_01",
+    "artifact_key": "447371",
+    "motif_class": "six_pointed_star",
+    "filename": "447371_primary_occ_01.jpg",
+    "crop_box": [
+      769,
+      101,
+      982,
+      318
+    ]
+  },
+  "449137_primary_occ_01": {
+    "crop_id": "449137_primary_occ_01",
+    "artifact_key": "449137",
+    "motif_class": "six_pointed_star",
+    "filename": "449137_primary_occ_01.jpg",
+    "crop_box": [
+      200,
+      753,
+      599,
+      1210
+    ]
+  },
+  "452791_primary_occ_01": {
+    "crop_id": "452791_primary_occ_01",
+    "artifact_key": "452791",
+    "motif_class": "eight_pointed_star",
+    "filename": "452791_primary_occ_01.jpg",
+    "crop_box": [
+      653,
+      652,
+      1710,
+      1632
+    ]
+  },
+  "452817_primary_occ_01": {
+    "crop_id": "452817_primary_occ_01",
+    "artifact_key": "452817",
+    "motif_class": "six_pointed_star",
+    "filename": "452817_primary_occ_01.jpg",
+    "crop_box": [
+      376,
+      940,
+      2660,
+      2994
+    ]
+  },
+  "454745_primary_occ_01": {
+    "crop_id": "454745_primary_occ_01",
+    "artifact_key": "454745",
+    "motif_class": "six_pointed_star",
+    "filename": "454745_primary_occ_01.jpg",
+    "crop_box": [
+      246,
+      248,
+      797,
+      780
+    ]
+  },
+  "456261_primary_occ_01": {
+    "crop_id": "456261_primary_occ_01",
+    "artifact_key": "456261",
+    "motif_class": "six_pointed_star",
+    "filename": "456261_primary_occ_01.jpg",
+    "crop_box": [
+      910,
+      1243,
+      2176,
+      2704
+    ]
+  },
+  "742061_primary_occ_01": {
+    "crop_id": "742061_primary_occ_01",
+    "artifact_key": "742061",
+    "motif_class": "six_pointed_star",
+    "filename": "742061_primary_occ_01.jpg",
+    "crop_box": [
+      1586,
+      437,
+      2244,
+      1041
+    ]
+  },
+  "890783_primary_occ_01": {
+    "crop_id": "890783_primary_occ_01",
+    "artifact_key": "890783",
+    "motif_class": "six_pointed_star",
+    "filename": "890783_primary_occ_01.jpg",
+    "crop_box": [
+      1084,
+      1601,
+      1860,
+      2518
+    ]
+  },
+  "europeana_318_marc_nli_004009657_occ_01": {
+    "crop_id": "europeana_318_marc_nli_004009657_occ_01",
+    "artifact_key": "europeana_318_marc_nli_004009657",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_318_marc_nli_004009657_occ_01.jpg",
+    "crop_box": [
+      404,
+      432,
+      443,
+      481
+    ]
+  },
+  "europeana_318_marc_nli_004013155_occ_01": {
+    "crop_id": "europeana_318_marc_nli_004013155_occ_01",
+    "artifact_key": "europeana_318_marc_nli_004013155",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_318_marc_nli_004013155_occ_01.jpg",
+    "crop_box": [
+      1064,
+      512,
+      1095,
+      545
+    ]
+  },
+  "europeana_318_marc_nli_004023265_occ_01": {
+    "crop_id": "europeana_318_marc_nli_004023265_occ_01",
+    "artifact_key": "europeana_318_marc_nli_004023265",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_318_marc_nli_004023265_occ_01.jpg",
+    "crop_box": [
+      447,
+      392,
+      486,
+      441
+    ]
+  },
+  "europeana_318_marc_nli_004023266_occ_01": {
+    "crop_id": "europeana_318_marc_nli_004023266_occ_01",
+    "artifact_key": "europeana_318_marc_nli_004023266",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_318_marc_nli_004023266_occ_01.jpg",
+    "crop_box": [
+      1109,
+      160,
+      1172,
+      229
+    ]
+  },
+  "europeana_318_marc_nli_004024483_occ_01": {
+    "crop_id": "europeana_318_marc_nli_004024483_occ_01",
+    "artifact_key": "europeana_318_marc_nli_004024483",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_318_marc_nli_004024483_occ_01.jpg",
+    "crop_box": [
+      806,
+      209,
+      876,
+      290
+    ]
+  },
+  "europeana_864_https___atb_jhn_ngo_atb_1_occ_01": {
+    "crop_id": "europeana_864_https___atb_jhn_ngo_atb_1_occ_01",
+    "artifact_key": "europeana_864_https___atb_jhn_ngo_atb_1",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_864_https___atb_jhn_ngo_atb_1_occ_01.jpg",
+    "crop_box": [
+      2927,
+      1270,
+      3033,
+      1380
+    ]
+  },
+  "europeana_15510_EMK_4_562_occ_01": {
+    "crop_id": "europeana_15510_EMK_4_562_occ_01",
+    "artifact_key": "europeana_15510_EMK_4_562",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_15510_EMK_4_562_occ_01.jpg",
+    "crop_box": [
+      598,
+      409,
+      1206,
+      972
+    ]
+  },
+  "europeana_2021802_LIMIS_531416699_occ_01": {
+    "crop_id": "europeana_2021802_LIMIS_531416699_occ_01",
+    "artifact_key": "europeana_2021802_LIMIS_531416699",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_2021802_LIMIS_531416699_occ_01.jpg",
+    "crop_box": [
+      276,
+      117,
+      1026,
+      772
+    ]
+  },
+  "europeana_2021802_LIMIS_531426351_occ_01": {
+    "crop_id": "europeana_2021802_LIMIS_531426351_occ_01",
+    "artifact_key": "europeana_2021802_LIMIS_531426351",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_2021802_LIMIS_531426351_occ_01.jpg",
+    "crop_box": [
+      256,
+      162,
+      956,
+      770
+    ]
+  },
+  "europeana_317_2a445e9c_faf8_4fb3_8680_246b8a263625_occ_01": {
+    "crop_id": "europeana_317_2a445e9c_faf8_4fb3_8680_246b8a263625_occ_01",
+    "artifact_key": "europeana_317_2a445e9c_faf8_4fb3_8680_246b8a263625",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_317_2a445e9c_faf8_4fb3_8680_246b8a263625_occ_01.jpg",
+    "crop_box": [
+      83,
+      228,
+      736,
+      988
+    ]
+  },
+  "europeana_317_377a084a_b64c_497e_a7f1_4726f54f9471_occ_01": {
+    "crop_id": "europeana_317_377a084a_b64c_497e_a7f1_4726f54f9471_occ_01",
+    "artifact_key": "europeana_317_377a084a_b64c_497e_a7f1_4726f54f9471",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_317_377a084a_b64c_497e_a7f1_4726f54f9471_occ_01.jpg",
+    "crop_box": [
+      114,
+      260,
+      699,
+      912
+    ]
+  },
+  "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_01": {
+    "crop_id": "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_01",
+    "artifact_key": "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_01.jpg",
+    "crop_box": [
+      1353,
+      911,
+      1479,
+      1022
+    ]
+  },
+  "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_02": {
+    "crop_id": "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_02",
+    "artifact_key": "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0",
+    "motif_class": "six_pointed_star",
+    "filename": "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_02.jpg",
+    "crop_box": [
+      294,
+      849,
+      421,
+      973
+    ]
+  },
+  "445111_primary_occ_01": {
+    "crop_id": "445111_primary_occ_01",
+    "artifact_key": "445111",
+    "motif_class": "six_pointed_star",
+    "filename": "445111_primary_occ_01.jpg",
+    "crop_box": [
+      300,
+      287,
+      709,
+      721
+    ]
+  },
+  "445177_primary_occ_01": {
+    "crop_id": "445177_primary_occ_01",
+    "artifact_key": "445177",
+    "motif_class": "six_pointed_star",
+    "filename": "445177_primary_occ_01.jpg",
+    "crop_box": [
+      316,
+      337,
+      470,
+      494
+    ]
+  },
+  "447166_primary_occ_01": {
+    "crop_id": "447166_primary_occ_01",
+    "artifact_key": "447166",
+    "motif_class": "unclassified",
+    "filename": "447166_primary_occ_01.jpg",
+    "crop_box": [
+      294,
+      271,
+      645,
+      598
+    ]
+  },
+  "454361_primary_occ_01": {
+    "crop_id": "454361_primary_occ_01",
+    "artifact_key": "454361",
+    "motif_class": "six_pointed_star",
+    "filename": "454361_primary_occ_01.jpg",
+    "crop_box": [
+      199,
+      1193,
+      596,
+      1640
+    ]
+  },
+  "252560_primary_occ_01": {
+    "crop_id": "252560_primary_occ_01",
+    "artifact_key": "252560",
+    "motif_class": "six_pointed_star",
+    "filename": "252560_primary_occ_01.jpg",
+    "crop_box": [
+      444,
+      255,
+      550,
+      348
+    ]
+  },
+  "25506_primary_occ_01": {
+    "crop_id": "25506_primary_occ_01",
+    "artifact_key": "25506",
+    "motif_class": "six_pointed_star",
+    "filename": "25506_primary_occ_01.jpg",
+    "crop_box": [
+      796,
+      920,
+      2853,
+      3052
+    ]
+  },
+  "501876_primary_occ_01": {
+    "crop_id": "501876_primary_occ_01",
+    "artifact_key": "501876",
+    "motif_class": "six_pointed_star",
+    "filename": "501876_primary_occ_01.jpg",
+    "crop_box": [
+      192,
+      233,
+      340,
+      365
+    ]
+  },
+  "682963_primary_occ_01": {
+    "crop_id": "682963_primary_occ_01",
+    "artifact_key": "682963",
+    "motif_class": "six_pointed_star",
+    "filename": "682963_primary_occ_01.jpg",
+    "crop_box": [
+      397,
+      1821,
+      701,
+      2062
+    ]
+  },
+  "767_primary_occ_01": {
+    "crop_id": "767_primary_occ_01",
+    "artifact_key": "767",
+    "motif_class": "six_pointed_star",
+    "filename": "767_primary_occ_01.jpg",
+    "crop_box": [
+      830,
+      942,
+      992,
+      1118
+    ]
+  },
+  "240055_primary_occ_01": {
+    "crop_id": "240055_primary_occ_01",
+    "artifact_key": "240055",
+    "motif_class": "negative_control",
+    "filename": "240055_primary_occ_01.jpg",
+    "crop_box": [
+      1334,
+      1144,
+      1789,
+      1622
+    ]
+  },
+  "240078_primary_occ_01": {
+    "crop_id": "240078_primary_occ_01",
+    "artifact_key": "240078",
+    "motif_class": "negative_control",
+    "filename": "240078_primary_occ_01.jpg",
+    "crop_box": [
+      1020,
+      1952,
+      1761,
+      2578
+    ]
+  },
+  "240285_primary_occ_01": {
+    "crop_id": "240285_primary_occ_01",
+    "artifact_key": "240285",
+    "motif_class": "negative_control",
+    "filename": "240285_primary_occ_01.jpg",
+    "crop_box": [
+      1228,
+      1676,
+      1941,
+      2352
+    ]
+  },
+  "325656_primary_occ_01": {
+    "crop_id": "325656_primary_occ_01",
+    "artifact_key": "325656",
+    "motif_class": "negative_control",
+    "filename": "325656_primary_occ_01.jpg",
+    "crop_box": [
+      2279,
+      759,
+      3620,
+      2057
+    ]
+  },
+  "503003_primary_occ_01": {
+    "crop_id": "503003_primary_occ_01",
+    "artifact_key": "503003",
+    "motif_class": "negative_control",
+    "filename": "503003_primary_occ_01.jpg",
+    "crop_box": [
+      384,
+      264,
+      570,
+      448
+    ]
+  },
+  "645408_primary_occ_01": {
+    "crop_id": "645408_primary_occ_01",
+    "artifact_key": "645408",
+    "motif_class": "negative_control",
+    "filename": "645408_primary_occ_01.jpg",
+    "crop_box": [
+      1836,
+      2061,
+      2059,
+      2291
+    ]
+  },
+  "317877_primary_occ_01": {
+    "crop_id": "317877_primary_occ_01",
+    "artifact_key": "317877",
+    "motif_class": "negative_control",
+    "filename": "317877_primary_occ_01.jpg",
+    "crop_box": [
+      645,
+      509,
+      779,
+      641
+    ]
+  },
+  "320341_primary_occ_01": {
+    "crop_id": "320341_primary_occ_01",
+    "artifact_key": "320341",
+    "motif_class": "negative_control",
+    "filename": "320341_primary_occ_01.jpg",
+    "crop_box": [
+      1010,
+      306,
+      1297,
+      650
+    ]
+  },
+  "320833_primary_occ_01": {
+    "crop_id": "320833_primary_occ_01",
+    "artifact_key": "320833",
+    "motif_class": "negative_control",
+    "filename": "320833_primary_occ_01.jpg",
+    "crop_box": [
+      1486,
+      247,
+      1767,
+      622
+    ]
+  },
+  "410437_primary_occ_01": {
+    "crop_id": "410437_primary_occ_01",
+    "artifact_key": "410437",
+    "motif_class": "negative_control",
+    "filename": "410437_primary_occ_01.jpg",
+    "crop_box": [
+      438,
+      1812,
+      1671,
+      3359
+    ]
+  },
+  "445365_primary_occ_01": {
+    "crop_id": "445365_primary_occ_01",
+    "artifact_key": "445365",
+    "motif_class": "negative_control",
+    "filename": "445365_primary_occ_01.jpg",
+    "crop_box": [
+      223,
+      455,
+      413,
+      658
+    ]
+  },
+  "446058_primary_occ_01": {
+    "crop_id": "446058_primary_occ_01",
+    "artifact_key": "446058",
+    "motif_class": "negative_control",
+    "filename": "446058_primary_occ_01.jpg",
+    "crop_box": [
+      68,
+      216,
+      717,
+      929
+    ]
+  },
+  "446229_primary_occ_01": {
+    "crop_id": "446229_primary_occ_01",
+    "artifact_key": "446229",
+    "motif_class": "unclassified",
+    "filename": "446229_primary_occ_01.jpg",
+    "crop_box": [
+      199,
+      102,
+      1551,
+      2273
+    ]
+  },
+  "446230_primary_occ_01": {
+    "crop_id": "446230_primary_occ_01",
+    "artifact_key": "446230",
+    "motif_class": "unclassified",
+    "filename": "446230_primary_occ_01.jpg",
+    "crop_box": [
+      138,
+      171,
+      1397,
+      1872
+    ]
+  },
+  "449200_primary_occ_01": {
+    "crop_id": "449200_primary_occ_01",
+    "artifact_key": "449200",
+    "motif_class": "negative_control",
+    "filename": "449200_primary_occ_01.jpg",
+    "crop_box": [
+      60,
+      65,
+      821,
+      1049
+    ]
+  },
+  "468507_primary_occ_01": {
+    "crop_id": "468507_primary_occ_01",
+    "artifact_key": "468507",
+    "motif_class": "negative_control",
+    "filename": "468507_primary_occ_01.jpg",
+    "crop_box": [
+      635,
+      785,
+      2642,
+      3333
+    ]
+  },
+  "701288_primary_occ_02": {
+    "crop_id": "701288_primary_occ_02",
+    "artifact_key": "701288",
+    "motif_class": "negative_control",
+    "filename": "701288_primary_occ_02.jpg",
+    "crop_box": [
+      1042,
+      3017,
+      1416,
+      3377
+    ]
+  },
+  "240349_primary_occ_01": {
+    "crop_id": "240349_primary_occ_01",
+    "artifact_key": "240349",
+    "motif_class": "negative_control",
+    "filename": "240349_primary_occ_01.jpg",
+    "crop_box": [
+      1224,
+      1406,
+      1637,
+      1909
+    ]
+  },
+  "246978_primary_occ_01": {
+    "crop_id": "246978_primary_occ_01",
+    "artifact_key": "246978",
+    "motif_class": "negative_control",
+    "filename": "246978_primary_occ_01.jpg",
+    "crop_box": [
+      1340,
+      466,
+      1468,
+      575
+    ]
+  },
+  "246978_primary_occ_02": {
+    "crop_id": "246978_primary_occ_02",
+    "artifact_key": "246978",
+    "motif_class": "negative_control",
+    "filename": "246978_primary_occ_02.jpg",
+    "crop_box": [
+      1510,
+      1783,
+      1689,
+      1947
+    ]
+  },
+  "247177_primary_occ_01": {
+    "crop_id": "247177_primary_occ_01",
+    "artifact_key": "247177",
+    "motif_class": "negative_control",
+    "filename": "247177_primary_occ_01.jpg",
+    "crop_box": [
+      965,
+      940,
+      1091,
+      1038
+    ]
+  },
+  "255282_primary_occ_01": {
+    "crop_id": "255282_primary_occ_01",
+    "artifact_key": "255282",
+    "motif_class": "negative_control",
+    "filename": "255282_primary_occ_01.jpg",
+    "crop_box": [
+      1815,
+      2871,
+      1964,
+      2964
+    ]
+  },
+  "255282_primary_occ_02": {
+    "crop_id": "255282_primary_occ_02",
+    "artifact_key": "255282",
+    "motif_class": "negative_control",
+    "filename": "255282_primary_occ_02.jpg",
+    "crop_box": [
+      1462,
+      951,
+      1601,
+      1088
+    ]
+  },
+  "390482_primary_occ_01": {
+    "crop_id": "390482_primary_occ_01",
+    "artifact_key": "390482",
+    "motif_class": "unclassified",
+    "filename": "390482_primary_occ_01.jpg",
+    "crop_box": [
+      70,
+      1065,
+      844,
+      1936
+    ]
+  },
+  "552291_primary_occ_01": {
+    "crop_id": "552291_primary_occ_01",
+    "artifact_key": "552291",
+    "motif_class": "negative_control",
+    "filename": "552291_primary_occ_01.jpg",
+    "crop_box": [
+      1923,
+      1599,
+      2320,
+      1944
+    ]
+  },
+  "560222_primary_occ_01": {
+    "crop_id": "560222_primary_occ_01",
+    "artifact_key": "560222",
+    "motif_class": "negative_control",
+    "filename": "560222_primary_occ_01.jpg",
+    "crop_box": [
+      1408,
+      1358,
+      2094,
+      2249
+    ]
+  },
+  "735537_primary_occ_01": {
+    "crop_id": "735537_primary_occ_01",
+    "artifact_key": "735537",
+    "motif_class": "negative_control",
+    "filename": "735537_primary_occ_01.jpg",
+    "crop_box": [
+      1107,
+      596,
+      2558,
+      2107
+    ]
+  },
+  "europeana_168_item_7REV2L32DJFZEIVZNGPYJB5IMZ7XXFPA_occ_01": {
+    "crop_id": "europeana_168_item_7REV2L32DJFZEIVZNGPYJB5IMZ7XXFPA_occ_01",
+    "artifact_key": "europeana_168_item_7REV2L32DJFZEIVZNGPYJB5IMZ7XXFPA",
+    "motif_class": "sunburst",
+    "filename": "europeana_168_item_7REV2L32DJFZEIVZNGPYJB5IMZ7XXFPA_occ_01.jpg",
+    "crop_box": [
+      1211,
+      361,
+      1892,
+      991
+    ]
+  },
+  "europeana_168_item_AIUX42XP2HXUCFKZAFJE4YTCN6TQU32F_occ_01": {
+    "crop_id": "europeana_168_item_AIUX42XP2HXUCFKZAFJE4YTCN6TQU32F_occ_01",
+    "artifact_key": "europeana_168_item_AIUX42XP2HXUCFKZAFJE4YTCN6TQU32F",
+    "motif_class": "sunburst",
+    "filename": "europeana_168_item_AIUX42XP2HXUCFKZAFJE4YTCN6TQU32F_occ_01.jpg",
+    "crop_box": [
+      391,
+      357,
+      1405,
+      750
+    ]
+  },
+  "europeana_168_item_B77OOSBQ46ZUQXIZO6JBB7ARMSUXRTBY_occ_01": {
+    "crop_id": "europeana_168_item_B77OOSBQ46ZUQXIZO6JBB7ARMSUXRTBY_occ_01",
+    "artifact_key": "europeana_168_item_B77OOSBQ46ZUQXIZO6JBB7ARMSUXRTBY",
+    "motif_class": "sunburst",
+    "filename": "europeana_168_item_B77OOSBQ46ZUQXIZO6JBB7ARMSUXRTBY_occ_01.jpg",
+    "crop_box": [
+      564,
+      221,
+      980,
+      443
+    ]
+  },
+  "europeana_168_item_I32PIH6VQ3SPVHCD4VOCV3GRBFRBRU2W_occ_01": {
+    "crop_id": "europeana_168_item_I32PIH6VQ3SPVHCD4VOCV3GRBFRBRU2W_occ_01",
+    "artifact_key": "europeana_168_item_I32PIH6VQ3SPVHCD4VOCV3GRBFRBRU2W",
+    "motif_class": "sunburst",
+    "filename": "europeana_168_item_I32PIH6VQ3SPVHCD4VOCV3GRBFRBRU2W_occ_01.jpg",
+    "crop_box": [
+      216,
+      2234,
+      503,
+      2462
+    ]
+  },
+  "europeana_168_item_KEMZ2VQYCPJ5UL7JOP7GUKAJBGG6NT75_occ_01": {
+    "crop_id": "europeana_168_item_KEMZ2VQYCPJ5UL7JOP7GUKAJBGG6NT75_occ_01",
+    "artifact_key": "europeana_168_item_KEMZ2VQYCPJ5UL7JOP7GUKAJBGG6NT75",
+    "motif_class": "sunburst",
+    "filename": "europeana_168_item_KEMZ2VQYCPJ5UL7JOP7GUKAJBGG6NT75_occ_01.jpg",
+    "crop_box": [
+      54,
+      96,
+      675,
+      412
+    ]
+  },
+  "europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859_occ_01": {
+    "crop_id": "europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859_occ_01",
+    "artifact_key": "europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859",
+    "motif_class": "sunburst",
+    "filename": "europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859_occ_01.jpg",
+    "crop_box": [
+      62,
+      66,
+      609,
+      538
+    ]
+  },
+  "188074_primary_occ_01": {
+    "crop_id": "188074_primary_occ_01",
+    "artifact_key": "188074",
+    "motif_class": "sunburst",
+    "filename": "188074_primary_occ_01.jpg",
+    "crop_box": [
+      1248,
+      435,
+      1337,
+      495
+    ]
+  },
+  "194653_primary_occ_01": {
+    "crop_id": "194653_primary_occ_01",
+    "artifact_key": "194653",
+    "motif_class": "eight_petal_rosette",
+    "filename": "194653_primary_occ_01.jpg",
+    "crop_box": [
+      1335,
+      1330,
+      1582,
+      1587
+    ]
+  },
+  "221631_primary_occ_01": {
+    "crop_id": "221631_primary_occ_01",
+    "artifact_key": "221631",
+    "motif_class": "sunburst",
+    "filename": "221631_primary_occ_01.jpg",
+    "crop_box": [
+      1340,
+      1314,
+      2611,
+      2666
+    ]
+  },
+  "24007_primary_occ_01": {
+    "crop_id": "24007_primary_occ_01",
+    "artifact_key": "24007",
+    "motif_class": "sunburst",
+    "filename": "24007_primary_occ_01.jpg",
+    "crop_box": [
+      1724,
+      1546,
+      2764,
+      2647
+    ]
+  },
+  "248299_primary_occ_01": {
+    "crop_id": "248299_primary_occ_01",
+    "artifact_key": "248299",
+    "motif_class": "sunburst",
+    "filename": "248299_primary_occ_01.jpg",
+    "crop_box": [
+      1332,
+      2331,
+      1597,
+      2569
+    ]
+  },
+  "252128_primary_occ_01": {
+    "crop_id": "252128_primary_occ_01",
+    "artifact_key": "252128",
+    "motif_class": "sunburst",
+    "filename": "252128_primary_occ_01.jpg",
+    "crop_box": [
+      2687,
+      785,
+      3083,
+      1195
+    ]
+  },
+  "252128_primary_occ_02": {
+    "crop_id": "252128_primary_occ_02",
+    "artifact_key": "252128",
+    "motif_class": "sunburst",
+    "filename": "252128_primary_occ_02.jpg",
+    "crop_box": [
+      838,
+      747,
+      1238,
+      1147
+    ]
+  },
+  "2911_primary_occ_01": {
+    "crop_id": "2911_primary_occ_01",
+    "artifact_key": "2911",
+    "motif_class": "sunburst",
+    "filename": "2911_primary_occ_01.jpg",
+    "crop_box": [
+      495,
+      730,
+      1346,
+      1543
+    ]
+  },
+  "3239_primary_occ_01": {
+    "crop_id": "3239_primary_occ_01",
+    "artifact_key": "3239",
+    "motif_class": "sunburst",
+    "filename": "3239_primary_occ_01.jpg",
+    "crop_box": [
+      529,
+      913,
+      1208,
+      1583
+    ]
+  },
+  "39341_primary_occ_01": {
+    "crop_id": "39341_primary_occ_01",
+    "artifact_key": "39341",
+    "motif_class": "unclassified",
+    "filename": "39341_primary_occ_01.jpg",
+    "crop_box": [
+      1680,
+      1035,
+      1971,
+      1320
+    ]
+  },
+  "39341_primary_occ_02": {
+    "crop_id": "39341_primary_occ_02",
+    "artifact_key": "39341",
+    "motif_class": "eight_petal_rosette",
+    "filename": "39341_primary_occ_02.jpg",
+    "crop_box": [
+      1293,
+      474,
+      1483,
+      707
+    ]
+  },
+  "41417_primary_occ_01": {
+    "crop_id": "41417_primary_occ_01",
+    "artifact_key": "41417",
+    "motif_class": "sunburst",
+    "filename": "41417_primary_occ_01.jpg",
+    "crop_box": [
+      459,
+      1044,
+      566,
+      1159
+    ]
+  },
+  "446122_primary_occ_01": {
+    "crop_id": "446122_primary_occ_01",
+    "artifact_key": "446122",
+    "motif_class": "sunburst",
+    "filename": "446122_primary_occ_01.jpg",
+    "crop_box": [
+      197,
+      182,
+      752,
+      738
+    ]
+  },
+  "453435_primary_occ_01": {
+    "crop_id": "453435_primary_occ_01",
+    "artifact_key": "453435",
+    "motif_class": "sunburst",
+    "filename": "453435_primary_occ_01.jpg",
+    "crop_box": [
+      102,
+      38,
+      260,
+      108
+    ]
+  },
+  "47041_primary_occ_01": {
+    "crop_id": "47041_primary_occ_01",
+    "artifact_key": "47041",
+    "motif_class": "sunburst",
+    "filename": "47041_primary_occ_01.jpg",
+    "crop_box": [
+      3086,
+      1903,
+      3309,
+      2174
+    ]
+  },
+  "50118_primary_occ_01": {
+    "crop_id": "50118_primary_occ_01",
+    "artifact_key": "50118",
+    "motif_class": "unclassified",
+    "filename": "50118_primary_occ_01.jpg",
+    "crop_box": [
+      359,
+      192,
+      616,
+      437
+    ]
+  },
+  "52487_primary_occ_01": {
+    "crop_id": "52487_primary_occ_01",
+    "artifact_key": "52487",
+    "motif_class": "sunburst",
+    "filename": "52487_primary_occ_01.jpg",
+    "crop_box": [
+      262,
+      91,
+      333,
+      130
+    ]
+  },
+  "53505_primary_occ_01": {
+    "crop_id": "53505_primary_occ_01",
+    "artifact_key": "53505",
+    "motif_class": "eight_pointed_star",
+    "filename": "53505_primary_occ_01.jpg",
+    "crop_box": [
+      732,
+      381,
+      1334,
+      842
+    ]
+  },
+  "54791_primary_occ_01": {
+    "crop_id": "54791_primary_occ_01",
+    "artifact_key": "54791",
+    "motif_class": "sunburst",
+    "filename": "54791_primary_occ_01.jpg",
+    "crop_box": [
+      43,
+      696,
+      1705,
+      2063
+    ]
+  },
+  "549461_primary_occ_01": {
+    "crop_id": "549461_primary_occ_01",
+    "artifact_key": "549461",
+    "motif_class": "sunburst",
+    "filename": "549461_primary_occ_01.jpg",
+    "crop_box": [
+      607,
+      588,
+      1482,
+      1503
+    ]
+  },
+  "551336_primary_occ_01": {
+    "crop_id": "551336_primary_occ_01",
+    "artifact_key": "551336",
+    "motif_class": "unclassified/solar_disk",
+    "filename": "551336_primary_occ_01.jpg",
+    "crop_box": [
+      1010,
+      1226,
+      1726,
+      1797
+    ]
+  },
+  "553060_primary_occ_01": {
+    "crop_id": "553060_primary_occ_01",
+    "artifact_key": "553060",
+    "motif_class": "unclassified/solar_disk",
+    "filename": "553060_primary_occ_01.jpg",
+    "crop_box": [
+      480,
+      157,
+      753,
+      427
+    ]
+  },
+  "60249_primary_occ_01": {
+    "crop_id": "60249_primary_occ_01",
+    "artifact_key": "60249",
+    "motif_class": "sunburst",
+    "filename": "60249_primary_occ_01.jpg",
+    "crop_box": [
+      228,
+      529,
+      650,
+      925
+    ]
+  },
+  "65107_primary_occ_01": {
+    "crop_id": "65107_primary_occ_01",
+    "artifact_key": "65107",
+    "motif_class": "sunburst",
+    "filename": "65107_primary_occ_01.jpg",
+    "crop_box": [
+      51,
+      31,
+      366,
+      255
+    ]
+  },
+  "67301_primary_occ_01": {
+    "crop_id": "67301_primary_occ_01",
+    "artifact_key": "67301",
+    "motif_class": "sunburst",
+    "filename": "67301_primary_occ_01.jpg",
+    "crop_box": [
+      174,
+      90,
+      424,
+      205
+    ]
+  },
+  "828453_primary_occ_01": {
+    "crop_id": "828453_primary_occ_01",
+    "artifact_key": "828453",
+    "motif_class": "sunburst",
+    "filename": "828453_primary_occ_01.jpg",
+    "crop_box": [
+      1491,
+      1048,
+      2456,
+      1963
+    ]
+  },
+  "910008_primary_occ_01": {
+    "crop_id": "910008_primary_occ_01",
+    "artifact_key": "910008",
+    "motif_class": "unclassified",
+    "filename": "910008_primary_occ_01.jpg",
+    "crop_box": [
+      319,
+      431,
+      923,
+      1075
+    ]
+  },
+  "13876_primary_occ_01": {
+    "crop_id": "13876_primary_occ_01",
+    "artifact_key": "13876",
+    "motif_class": "eight_petal_rosette",
+    "filename": "13876_primary_occ_01.jpg",
+    "crop_box": [
+      1517,
+      3514,
+      1820,
+      3821
+    ]
+  },
+  "13876_primary_occ_02": {
+    "crop_id": "13876_primary_occ_02",
+    "artifact_key": "13876",
+    "motif_class": "negative_control",
+    "filename": "13876_primary_occ_02.jpg",
+    "crop_box": [
+      1235,
+      3478,
+      1362,
+      3597
+    ]
+  },
+  "13876_primary_occ_03": {
+    "crop_id": "13876_primary_occ_03",
+    "artifact_key": "13876",
+    "motif_class": "eight_petal_rosette",
+    "filename": "13876_primary_occ_03.jpg",
+    "crop_box": [
+      705,
+      721,
+      1023,
+      1043
+    ]
+  },
+  "241382_primary_occ_01": {
+    "crop_id": "241382_primary_occ_01",
+    "artifact_key": "241382",
+    "motif_class": "eight_petal_rosette",
+    "filename": "241382_primary_occ_01.jpg",
+    "crop_box": [
+      1237,
+      1238,
+      2292,
+      2236
+    ]
+  },
+  "241517_primary_occ_01": {
+    "crop_id": "241517_primary_occ_01",
+    "artifact_key": "241517",
+    "motif_class": "rosette_other",
+    "filename": "241517_primary_occ_01.jpg",
+    "crop_box": [
+      1408,
+      1144,
+      2599,
+      2442
+    ]
+  },
+  "241554_primary_occ_01": {
+    "crop_id": "241554_primary_occ_01",
+    "artifact_key": "241554",
+    "motif_class": "eight_petal_rosette",
+    "filename": "241554_primary_occ_01.jpg",
+    "crop_box": [
+      1419,
+      1413,
+      2305,
+      2302
+    ]
+  },
+  "241612_primary_occ_01": {
+    "crop_id": "241612_primary_occ_01",
+    "artifact_key": "241612",
+    "motif_class": "eight_petal_rosette",
+    "filename": "241612_primary_occ_01.jpg",
+    "crop_box": [
+      1571,
+      1284,
+      2400,
+      2145
+    ]
+  },
+  "241612_primary_occ_02": {
+    "crop_id": "241612_primary_occ_02",
+    "artifact_key": "241612",
+    "motif_class": "eight_petal_rosette",
+    "filename": "241612_primary_occ_02.jpg",
+    "crop_box": [
+      1570,
+      1273,
+      2388,
+      2161
+    ]
+  },
+  "241734_primary_occ_01": {
+    "crop_id": "241734_primary_occ_01",
+    "artifact_key": "241734",
+    "motif_class": "eight_petal_rosette",
+    "filename": "241734_primary_occ_01.jpg",
+    "crop_box": [
+      1339,
+      1317,
+      2264,
+      2290
+    ]
+  },
+  "241735_primary_occ_01": {
+    "crop_id": "241735_primary_occ_01",
+    "artifact_key": "241735",
+    "motif_class": "eight_petal_rosette",
+    "filename": "241735_primary_occ_01.jpg",
+    "crop_box": [
+      1411,
+      1283,
+      2321,
+      2269
+    ]
+  },
+  "242119_primary_occ_01": {
+    "crop_id": "242119_primary_occ_01",
+    "artifact_key": "242119",
+    "motif_class": "rosette_other",
+    "filename": "242119_primary_occ_01.jpg",
+    "crop_box": [
+      892,
+      1499,
+      1134,
+      1747
+    ]
+  },
+  "251816_primary_occ_01": {
+    "crop_id": "251816_primary_occ_01",
+    "artifact_key": "251816",
+    "motif_class": "rosette_other",
+    "filename": "251816_primary_occ_01.jpg",
+    "crop_box": [
+      1439,
+      448,
+      1583,
+      598
+    ]
+  },
+  "251816_primary_occ_03": {
+    "crop_id": "251816_primary_occ_03",
+    "artifact_key": "251816",
+    "motif_class": "eight_petal_rosette",
+    "filename": "251816_primary_occ_03.jpg",
+    "crop_box": [
+      899,
+      2756,
+      1197,
+      3064
+    ]
+  },
+  "253574_primary_occ_01": {
+    "crop_id": "253574_primary_occ_01",
+    "artifact_key": "253574",
+    "motif_class": "eight_petal_rosette",
+    "filename": "253574_primary_occ_01.jpg",
+    "crop_box": [
+      3165,
+      1084,
+      3504,
+      1440
+    ]
+  },
+  "253574_primary_occ_02": {
+    "crop_id": "253574_primary_occ_02",
+    "artifact_key": "253574",
+    "motif_class": "eight_petal_rosette",
+    "filename": "253574_primary_occ_02.jpg",
+    "crop_box": [
+      1663,
+      1752,
+      1997,
+      2088
+    ]
+  },
+  "256852_primary_occ_01": {
+    "crop_id": "256852_primary_occ_01",
+    "artifact_key": "256852",
+    "motif_class": "eight_petal_rosette",
+    "filename": "256852_primary_occ_01.jpg",
+    "crop_box": [
+      1589,
+      1027,
+      2440,
+      1893
+    ]
+  },
+  "322628_primary_occ_01": {
+    "crop_id": "322628_primary_occ_01",
+    "artifact_key": "322628",
+    "motif_class": "eight_petal_rosette",
+    "filename": "322628_primary_occ_01.jpg",
+    "crop_box": [
+      1221,
+      672,
+      2682,
+      2177
+    ]
+  },
+  "323986_primary_occ_01": {
+    "crop_id": "323986_primary_occ_01",
+    "artifact_key": "323986",
+    "motif_class": "unclassified",
+    "filename": "323986_primary_occ_01.jpg",
+    "crop_box": [
+      564,
+      1292,
+      1066,
+      1806
+    ]
+  },
+  "324329_primary_occ_01": {
+    "crop_id": "324329_primary_occ_01",
+    "artifact_key": "324329",
+    "motif_class": "eight_petal_rosette",
+    "filename": "324329_primary_occ_01.jpg",
+    "crop_box": [
+      1142,
+      598,
+      1498,
+      1011
+    ]
+  },
+  "325677_primary_occ_01": {
+    "crop_id": "325677_primary_occ_01",
+    "artifact_key": "325677",
+    "motif_class": "eight_petal_rosette",
+    "filename": "325677_primary_occ_01.jpg",
+    "crop_box": [
+      1874,
+      957,
+      2157,
+      1236
+    ]
+  },
+  "325677_primary_occ_02": {
+    "crop_id": "325677_primary_occ_02",
+    "artifact_key": "325677",
+    "motif_class": "eight_petal_rosette",
+    "filename": "325677_primary_occ_02.jpg",
+    "crop_box": [
+      1533,
+      935,
+      1837,
+      1251
+    ]
+  },
+  "326826_primary_occ_01": {
+    "crop_id": "326826_primary_occ_01",
+    "artifact_key": "326826",
+    "motif_class": "eight_petal_rosette",
+    "filename": "326826_primary_occ_01.jpg",
+    "crop_box": [
+      56,
+      57,
+      306,
+      310
+    ]
+  },
+  "326870_primary_occ_01": {
+    "crop_id": "326870_primary_occ_01",
+    "artifact_key": "326870",
+    "motif_class": "eight_petal_rosette",
+    "filename": "326870_primary_occ_01.jpg",
+    "crop_box": [
+      5,
+      4,
+      391,
+      388
+    ]
+  },
+  "327547_primary_occ_01": {
+    "crop_id": "327547_primary_occ_01",
+    "artifact_key": "327547",
+    "motif_class": "rosette_other",
+    "filename": "327547_primary_occ_01.jpg",
+    "crop_box": [
+      944,
+      1676,
+      1157,
+      1886
+    ]
+  },
+  "444589_primary_occ_01": {
+    "crop_id": "444589_primary_occ_01",
+    "artifact_key": "444589",
+    "motif_class": "rosette_other",
+    "filename": "444589_primary_occ_01.jpg",
+    "crop_box": [
+      1952,
+      638,
+      2038,
+      718
+    ]
+  },
+  "444590_primary_occ_01": {
+    "crop_id": "444590_primary_occ_01",
+    "artifact_key": "444590",
+    "motif_class": "unclassified",
+    "filename": "444590_primary_occ_01.jpg",
+    "crop_box": [
+      384,
+      375,
+      657,
+      634
+    ]
+  },
+  "446106_primary_occ_01": {
+    "crop_id": "446106_primary_occ_01",
+    "artifact_key": "446106",
+    "motif_class": "eight_petal_rosette",
+    "filename": "446106_primary_occ_01.jpg",
+    "crop_box": [
+      138,
+      255,
+      277,
+      392
+    ]
+  },
+  "446347_primary_occ_01": {
+    "crop_id": "446347_primary_occ_01",
+    "artifact_key": "446347",
+    "motif_class": "rosette_other",
+    "filename": "446347_primary_occ_01.jpg",
+    "crop_box": [
+      340,
+      287,
+      763,
+      693
+    ]
+  },
+  "447528_primary_occ_01": {
+    "crop_id": "447528_primary_occ_01",
+    "artifact_key": "447528",
+    "motif_class": "unclassified",
+    "filename": "447528_primary_occ_01.jpg",
+    "crop_box": [
+      1257,
+      955,
+      1489,
+      1214
+    ]
+  },
+  "448531_primary_occ_01": {
+    "crop_id": "448531_primary_occ_01",
+    "artifact_key": "448531",
+    "motif_class": "eight_petal_rosette",
+    "filename": "448531_primary_occ_01.jpg",
+    "crop_box": [
+      1391,
+      617,
+      1563,
+      789
+    ]
+  },
+  "449617_primary_occ_01": {
+    "crop_id": "449617_primary_occ_01",
+    "artifact_key": "449617",
+    "motif_class": "eight_petal_rosette",
+    "filename": "449617_primary_occ_01.jpg",
+    "crop_box": [
+      763,
+      890,
+      1520,
+      1699
+    ]
+  },
+  "450448_primary_occ_01": {
+    "crop_id": "450448_primary_occ_01",
+    "artifact_key": "450448",
+    "motif_class": "rosette_other",
+    "filename": "450448_primary_occ_01.jpg",
+    "crop_box": [
+      560,
+      548,
+      834,
+      816
+    ]
+  },
+  "451103_primary_occ_01": {
+    "crop_id": "451103_primary_occ_01",
+    "artifact_key": "451103",
+    "motif_class": "rosette_other",
+    "filename": "451103_primary_occ_01.jpg",
+    "crop_box": [
+      963,
+      1163,
+      1361,
+      1580
+    ]
+  },
+  "451103_primary_occ_02": {
+    "crop_id": "451103_primary_occ_02",
+    "artifact_key": "451103",
+    "motif_class": "rosette_other",
+    "filename": "451103_primary_occ_02.jpg",
+    "crop_box": [
+      617,
+      2084,
+      789,
+      2260
+    ]
+  },
+  "452208_primary_occ_01": {
+    "crop_id": "452208_primary_occ_01",
+    "artifact_key": "452208",
+    "motif_class": "eight_petal_rosette",
+    "filename": "452208_primary_occ_01.jpg",
+    "crop_box": [
+      441,
+      403,
+      532,
+      498
+    ]
+  },
+  "453400_primary_occ_01": {
+    "crop_id": "453400_primary_occ_01",
+    "artifact_key": "453400",
+    "motif_class": "rosette_other",
+    "filename": "453400_primary_occ_01.jpg",
+    "crop_box": [
+      530,
+      301,
+      594,
+      363
+    ]
+  },
+  "454609_primary_occ_02": {
+    "crop_id": "454609_primary_occ_02",
+    "artifact_key": "454609",
+    "motif_class": "eight_petal_rosette",
+    "filename": "454609_primary_occ_02.jpg",
+    "crop_box": [
+      3464,
+      334,
+      3637,
+      500
+    ]
+  },
+  "45596_primary_occ_01": {
+    "crop_id": "45596_primary_occ_01",
+    "artifact_key": "45596",
+    "motif_class": "rosette_other",
+    "filename": "45596_primary_occ_01.jpg",
+    "crop_box": [
+      817,
+      65,
+      941,
+      188
+    ]
+  },
+  "456088_primary_occ_01": {
+    "crop_id": "456088_primary_occ_01",
+    "artifact_key": "456088",
+    "motif_class": "rosette_other",
+    "filename": "456088_primary_occ_01.jpg",
+    "crop_box": [
+      1218,
+      1676,
+      1716,
+      2176
+    ]
+  },
+  "4636_primary_occ_01": {
+    "crop_id": "4636_primary_occ_01",
+    "artifact_key": "4636",
+    "motif_class": "eight_petal_rosette",
+    "filename": "4636_primary_occ_01.jpg",
+    "crop_box": [
+      1716,
+      1281,
+      2123,
+      1702
+    ]
+  },
+  "53183_primary_occ_01": {
+    "crop_id": "53183_primary_occ_01",
+    "artifact_key": "53183",
+    "motif_class": "unclassified",
+    "filename": "53183_primary_occ_01.jpg",
+    "crop_box": [
+      1722,
+      1203,
+      2298,
+      1783
+    ]
+  },
+  "658923_primary_occ_01": {
+    "crop_id": "658923_primary_occ_01",
+    "artifact_key": "658923",
+    "motif_class": "eight_petal_rosette",
+    "filename": "658923_primary_occ_01.jpg",
+    "crop_box": [
+      1185,
+      974,
+      1375,
+      1158
+    ]
+  },
+  "73374_primary_occ_01": {
+    "crop_id": "73374_primary_occ_01",
+    "artifact_key": "73374",
+    "motif_class": "rosette_other",
+    "filename": "73374_primary_occ_01.jpg",
+    "crop_box": [
+      1248,
+      1582,
+      1473,
+      1798
+    ]
+  },
+  "243105_primary_occ_01": {
+    "crop_id": "243105_primary_occ_01",
+    "artifact_key": "243105",
+    "motif_class": "rosette_other",
+    "filename": "243105_primary_occ_01.jpg",
+    "crop_box": [
+      1875,
+      1352,
+      2136,
+      1637
+    ]
+  },
+  "244092_primary_occ_01": {
+    "crop_id": "244092_primary_occ_01",
+    "artifact_key": "244092",
+    "motif_class": "rosette_other",
+    "filename": "244092_primary_occ_01.jpg",
+    "crop_box": [
+      419,
+      926,
+      2540,
+      2996
+    ]
+  },
+  "244098_primary_occ_01": {
+    "crop_id": "244098_primary_occ_01",
+    "artifact_key": "244098",
+    "motif_class": "unclassified",
+    "filename": "244098_primary_occ_01.jpg",
+    "crop_box": [
+      745,
+      765,
+      1556,
+      1567
+    ]
+  },
+  "244100_primary_occ_01": {
+    "crop_id": "244100_primary_occ_01",
+    "artifact_key": "244100",
+    "motif_class": "rosette_other",
+    "filename": "244100_primary_occ_01.jpg",
+    "crop_box": [
+      518,
+      1016,
+      2447,
+      2981
+    ]
+  },
+  "244102_primary_occ_01": {
+    "crop_id": "244102_primary_occ_01",
+    "artifact_key": "244102",
+    "motif_class": "rosette_other",
+    "filename": "244102_primary_occ_01.jpg",
+    "crop_box": [
+      539,
+      1028,
+      2483,
+      2984
+    ]
+  },
+  "246095_primary_occ_01": {
+    "crop_id": "246095_primary_occ_01",
+    "artifact_key": "246095",
+    "motif_class": "rosette_other",
+    "filename": "246095_primary_occ_01.jpg",
+    "crop_box": [
+      1270,
+      613,
+      1379,
+      723
+    ]
+  },
+  "246843_primary_occ_01": {
+    "crop_id": "246843_primary_occ_01",
+    "artifact_key": "246843",
+    "motif_class": "rosette_other",
+    "filename": "246843_primary_occ_01.jpg",
+    "crop_box": [
+      524,
+      710,
+      774,
+      947
+    ]
+  },
+  "246843_primary_occ_02": {
+    "crop_id": "246843_primary_occ_02",
+    "artifact_key": "246843",
+    "motif_class": "rosette_other",
+    "filename": "246843_primary_occ_02.jpg",
+    "crop_box": [
+      879,
+      711,
+      1123,
+      955
+    ]
+  },
+  "249749_primary_occ_01": {
+    "crop_id": "249749_primary_occ_01",
+    "artifact_key": "249749",
+    "motif_class": "rosette_other",
+    "filename": "249749_primary_occ_01.jpg",
+    "crop_box": [
+      437,
+      368,
+      950,
+      885
+    ]
+  },
+  "251702_primary_occ_01": {
+    "crop_id": "251702_primary_occ_01",
+    "artifact_key": "251702",
+    "motif_class": "rosette_other",
+    "filename": "251702_primary_occ_01.jpg",
+    "crop_box": [
+      795,
+      1193,
+      2282,
+      2786
+    ]
+  },
+  "446104_primary_occ_01": {
+    "crop_id": "446104_primary_occ_01",
+    "artifact_key": "446104",
+    "motif_class": "eight_petal_rosette",
+    "filename": "446104_primary_occ_01.jpg",
+    "crop_box": [
+      128,
+      161,
+      235,
+      265
+    ]
+  },
+  "447384_primary_occ_01": {
+    "crop_id": "447384_primary_occ_01",
+    "artifact_key": "447384",
+    "motif_class": "unclassified",
+    "filename": "447384_primary_occ_01.jpg",
+    "crop_box": [
+      627,
+      697,
+      839,
+      895
+    ]
+  },
+  "458739_primary_occ_01": {
+    "crop_id": "458739_primary_occ_01",
+    "artifact_key": "458739",
+    "motif_class": "eight_petal_rosette",
+    "filename": "458739_primary_occ_01.jpg",
+    "crop_box": [
+      1903,
+      1819,
+      2033,
+      1898
+    ]
+  },
+  "europeana_2048128_627074_occ_01": {
+    "crop_id": "europeana_2048128_627074_occ_01",
+    "artifact_key": "europeana_2048128_627074",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_2048128_627074_occ_01.jpg",
+    "crop_box": [
+      298,
+      303,
+      2998,
+      2939
+    ]
+  },
+  "europeana_322_Museu_ProvidedCHO_Mus_es_Royaux_d_Art_et_d_Histoire_315233_occ_01": {
+    "crop_id": "europeana_322_Museu_ProvidedCHO_Mus_es_Royaux_d_Art_et_d_Histoire_315233_occ_01",
+    "artifact_key": "europeana_322_Museu_ProvidedCHO_Mus_es_Royaux_d_Art_et_d_Histoire_315233",
+    "motif_class": "unclassified",
+    "filename": "europeana_322_Museu_ProvidedCHO_Mus_es_Royaux_d_Art_et_d_Histoire_315233_occ_01.jpg",
+    "crop_box": [
+      207,
+      493,
+      1107,
+      1359
+    ]
+  },
+  "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01": {
+    "crop_id": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01",
+    "artifact_key": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01.jpg",
+    "crop_box": [
+      165,
+      440,
+      475,
+      741
+    ]
+  },
+  "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_692581_occ_01": {
+    "crop_id": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_692581_occ_01",
+    "artifact_key": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_692581",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_692581_occ_01.jpg",
+    "crop_box": [
+      199,
+      117,
+      1101,
+      1029
+    ]
+  },
+  "europeana_91639_SMVK_MM_objekt_3300327_occ_01": {
+    "crop_id": "europeana_91639_SMVK_MM_objekt_3300327_occ_01",
+    "artifact_key": "europeana_91639_SMVK_MM_objekt_3300327",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_91639_SMVK_MM_objekt_3300327_occ_01.jpg",
+    "crop_box": [
+      558,
+      1100,
+      805,
+      1341
+    ]
+  },
+  "europeana_2020738_3DICONS_8311_occ_01": {
+    "crop_id": "europeana_2020738_3DICONS_8311_occ_01",
+    "artifact_key": "europeana_2020738_3DICONS_8311",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_2020738_3DICONS_8311_occ_01.jpg",
+    "crop_box": [
+      645,
+      2114,
+      853,
+      2328
+    ]
+  },
+  "europeana_2020738_3DICONS_8311_occ_02": {
+    "crop_id": "europeana_2020738_3DICONS_8311_occ_02",
+    "artifact_key": "europeana_2020738_3DICONS_8311",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_2020738_3DICONS_8311_occ_02.jpg",
+    "crop_box": [
+      1712,
+      2117,
+      1923,
+      2322
+    ]
+  },
+  "europeana_2020738_3DICONS_8311_occ_03": {
+    "crop_id": "europeana_2020738_3DICONS_8311_occ_03",
+    "artifact_key": "europeana_2020738_3DICONS_8311",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_2020738_3DICONS_8311_occ_03.jpg",
+    "crop_box": [
+      561,
+      573,
+      1021,
+      1025
+    ]
+  },
+  "europeana_2020738_3DICONS_8311_occ_04": {
+    "crop_id": "europeana_2020738_3DICONS_8311_occ_04",
+    "artifact_key": "europeana_2020738_3DICONS_8311",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_2020738_3DICONS_8311_occ_04.jpg",
+    "crop_box": [
+      1523,
+      565,
+      1982,
+      1021
+    ]
+  },
+  "europeana_2048221_europeana_fashion_884703_occ_01": {
+    "crop_id": "europeana_2048221_europeana_fashion_884703_occ_01",
+    "artifact_key": "europeana_2048221_europeana_fashion_884703",
+    "motif_class": "eight_petal_rosette",
+    "filename": "europeana_2048221_europeana_fashion_884703_occ_01.jpg",
+    "crop_box": [
+      589,
+      880,
+      1712,
+      1919
+    ]
+  },
+  "cma_123982_occ_01": {
+    "crop_id": "cma_123982_occ_01",
+    "artifact_key": "cma_123982",
+    "motif_class": "unclassified",
+    "filename": "cma_123982_occ_01.jpg",
+    "crop_box": [
+      521,
+      725,
+      563,
+      760
+    ]
+  },
+  "3069_primary_occ_01": {
+    "crop_id": "3069_primary_occ_01",
+    "artifact_key": "3069",
+    "motif_class": "sunburst",
+    "filename": "3069_primary_occ_01.jpg",
+    "crop_box": [
+      1162,
+      2537,
+      1755,
+      3095
+    ]
+  },
+  "506858_primary_occ_01": {
+    "crop_id": "506858_primary_occ_01",
+    "artifact_key": "506858",
+    "motif_class": "negative_control",
+    "filename": "506858_primary_occ_01.jpg",
+    "crop_box": [
+      1165,
+      700,
+      1297,
+      871
+    ]
+  },
+  "197461_primary_occ_01": {
+    "crop_id": "197461_primary_occ_01",
+    "artifact_key": "197461",
+    "motif_class": "sunburst",
+    "filename": "197461_primary_occ_01.jpg",
+    "crop_box": [
+      1564,
+      1495,
+      1998,
+      2029
+    ]
+  },
+  "219357_primary_occ_01": {
+    "crop_id": "219357_primary_occ_01",
+    "artifact_key": "219357",
+    "motif_class": "sunburst",
+    "filename": "219357_primary_occ_01.jpg",
+    "crop_box": [
+      54,
+      195,
+      229,
+      363
+    ]
+  },
+  "323535_primary_occ_01": {
+    "crop_id": "323535_primary_occ_01",
+    "artifact_key": "323535",
+    "motif_class": "unclassified",
+    "filename": "323535_primary_occ_01.jpg",
+    "crop_box": [
+      1408,
+      1458,
+      2367,
+      2512
+    ]
+  },
+  "389602_primary_occ_01": {
+    "crop_id": "389602_primary_occ_01",
+    "artifact_key": "389602",
+    "motif_class": "sunburst",
+    "filename": "389602_primary_occ_01.jpg",
+    "crop_box": [
+      986,
+      560,
+      1818,
+      1369
+    ]
+  },
+  "468129_primary_occ_01": {
+    "crop_id": "468129_primary_occ_01",
+    "artifact_key": "468129",
+    "motif_class": "sunburst",
+    "filename": "468129_primary_occ_01.jpg",
+    "crop_box": [
+      913,
+      784,
+      1436,
+      1098
+    ]
+  },
+  "487292_primary_occ_01": {
+    "crop_id": "487292_primary_occ_01",
+    "artifact_key": "487292",
+    "motif_class": "negative_control",
+    "filename": "487292_primary_occ_01.jpg",
+    "crop_box": [
+      1221,
+      2691,
+      1365,
+      2817
+    ]
+  },
+  "487292_primary_occ_02": {
+    "crop_id": "487292_primary_occ_02",
+    "artifact_key": "487292",
+    "motif_class": "negative_control",
+    "filename": "487292_primary_occ_02.jpg",
+    "crop_box": [
+      1125,
+      977,
+      1417,
+      1083
+    ]
+  },
+  "558991_primary_occ_01": {
+    "crop_id": "558991_primary_occ_01",
+    "artifact_key": "558991",
+    "motif_class": "sunburst",
+    "filename": "558991_primary_occ_01.jpg",
+    "crop_box": [
+      271,
+      392,
+      807,
+      747
+    ]
+  },
+  "559117_primary_occ_01": {
+    "crop_id": "559117_primary_occ_01",
+    "artifact_key": "559117",
+    "motif_class": "sunburst",
+    "filename": "559117_primary_occ_01.jpg",
+    "crop_box": [
+      352,
+      446,
+      1440,
+      1549
+    ]
+  },
+  "559118_primary_occ_01": {
+    "crop_id": "559118_primary_occ_01",
+    "artifact_key": "559118",
+    "motif_class": "sunburst",
+    "filename": "559118_primary_occ_01.jpg",
+    "crop_box": [
+      474,
+      383,
+      1189,
+      1092
+    ]
+  },
+  "173406_primary_occ_01": {
+    "crop_id": "173406_primary_occ_01",
+    "artifact_key": "173406",
+    "motif_class": "sunburst",
+    "filename": "173406_primary_occ_01.jpg",
+    "crop_box": [
+      798,
+      290,
+      910,
+      398
+    ]
+  },
+  "199708_primary_occ_01": {
+    "crop_id": "199708_primary_occ_01",
+    "artifact_key": "199708",
+    "motif_class": "sunburst",
+    "filename": "199708_primary_occ_01.jpg",
+    "crop_box": [
+      982,
+      489,
+      1408,
+      1035
+    ]
+  },
+  "21948_primary_occ_01": {
+    "crop_id": "21948_primary_occ_01",
+    "artifact_key": "21948",
+    "motif_class": "sunburst",
+    "filename": "21948_primary_occ_01.jpg",
+    "crop_box": [
+      603,
+      886,
+      832,
+      1135
+    ]
+  },
+  "21949_primary_occ_01": {
+    "crop_id": "21949_primary_occ_01",
+    "artifact_key": "21949",
+    "motif_class": "sunburst",
+    "filename": "21949_primary_occ_01.jpg",
+    "crop_box": [
+      933,
+      1340,
+      1292,
+      1696
+    ]
+  },
+  "22209_primary_occ_01": {
+    "crop_id": "22209_primary_occ_01",
+    "artifact_key": "22209",
+    "motif_class": "sunburst",
+    "filename": "22209_primary_occ_01.jpg",
+    "crop_box": [
+      1135,
+      958,
+      1341,
+      1131
+    ]
+  },
+  "22405_primary_occ_01": {
+    "crop_id": "22405_primary_occ_01",
+    "artifact_key": "22405",
+    "motif_class": "sunburst",
+    "filename": "22405_primary_occ_01.jpg",
+    "crop_box": [
+      2480,
+      356,
+      3530,
+      1352
+    ]
+  },
+  "25114_primary_occ_01": {
+    "crop_id": "25114_primary_occ_01",
+    "artifact_key": "25114",
+    "motif_class": "sunburst",
+    "filename": "25114_primary_occ_01.jpg",
+    "crop_box": [
+      1369,
+      1552,
+      1620,
+      1842
+    ]
+  },
+  "252144_primary_occ_01": {
+    "crop_id": "252144_primary_occ_01",
+    "artifact_key": "252144",
+    "motif_class": "sunburst",
+    "filename": "252144_primary_occ_01.jpg",
+    "crop_box": [
+      2717,
+      599,
+      3216,
+      1106
+    ]
+  },
+  "25850_primary_occ_01": {
+    "crop_id": "25850_primary_occ_01",
+    "artifact_key": "25850",
+    "motif_class": "sunburst",
+    "filename": "25850_primary_occ_01.jpg",
+    "crop_box": [
+      534,
+      1860,
+      1715,
+      2930
+    ]
+  },
+  "343195_primary_occ_01": {
+    "crop_id": "343195_primary_occ_01",
+    "artifact_key": "343195",
+    "motif_class": "sunburst",
+    "filename": "343195_primary_occ_01.jpg",
+    "crop_box": [
+      945,
+      996,
+      1788,
+      1893
+    ]
+  },
+  "443098_primary_occ_01": {
+    "crop_id": "443098_primary_occ_01",
+    "artifact_key": "443098",
+    "motif_class": "sunburst",
+    "filename": "443098_primary_occ_01.jpg",
+    "crop_box": [
+      1410,
+      2875,
+      1703,
+      3031
+    ]
+  },
+  "504395_primary_occ_01": {
+    "crop_id": "504395_primary_occ_01",
+    "artifact_key": "504395",
+    "motif_class": "sunburst",
+    "filename": "504395_primary_occ_01.jpg",
+    "crop_box": [
+      1003,
+      839,
+      2001,
+      1784
+    ]
+  },
+  "626023_primary_occ_01": {
+    "crop_id": "626023_primary_occ_01",
+    "artifact_key": "626023",
+    "motif_class": "sunburst",
+    "filename": "626023_primary_occ_01.jpg",
+    "crop_box": [
+      528,
+      534,
+      628,
+      631
+    ]
+  },
+  "642980_primary_occ_01": {
+    "crop_id": "642980_primary_occ_01",
+    "artifact_key": "642980",
+    "motif_class": "sunburst",
+    "filename": "642980_primary_occ_01.jpg",
+    "crop_box": [
+      1360,
+      1567,
+      1625,
+      1841
+    ]
+  },
+  "717580_primary_occ_01": {
+    "crop_id": "717580_primary_occ_01",
+    "artifact_key": "717580",
+    "motif_class": "sunburst",
+    "filename": "717580_primary_occ_01.jpg",
+    "crop_box": [
+      1078,
+      845,
+      1190,
+      952
+    ]
+  },
+  "443098_primary_occ_02": {
+    "crop_id": "443098_primary_occ_02",
+    "artifact_key": "443098",
+    "motif_class": "sunburst",
+    "filename": "443098_primary_occ_02.jpg",
+    "crop_box": [
+      1392,
+      810,
+      1678,
+      985
+    ]
+  },
+  "311197_primary_occ_01": {
+    "crop_id": "311197_primary_occ_01",
+    "artifact_key": "311197",
+    "motif_class": "negative_control",
+    "filename": "311197_primary_occ_01.jpg",
+    "crop_box": [
+      1608,
+      420,
+      1755,
+      574
+    ]
+  },
+  "311197_primary_occ_02": {
+    "crop_id": "311197_primary_occ_02",
+    "artifact_key": "311197",
+    "motif_class": "negative_control",
+    "filename": "311197_primary_occ_02.jpg",
+    "crop_box": [
+      1216,
+      723,
+      1494,
+      912
+    ]
+  },
+  "313626_primary_occ_01": {
+    "crop_id": "313626_primary_occ_01",
+    "artifact_key": "313626",
+    "motif_class": "negative_control",
+    "filename": "313626_primary_occ_01.jpg",
+    "crop_box": [
+      566,
+      2568,
+      939,
+      3015
+    ]
+  },
+  "313626_primary_occ_02": {
+    "crop_id": "313626_primary_occ_02",
+    "artifact_key": "313626",
+    "motif_class": "negative_control",
+    "filename": "313626_primary_occ_02.jpg",
+    "crop_box": [
+      1183,
+      798,
+      1274,
+      978
+    ]
+  },
+  "313697_primary_occ_01": {
+    "crop_id": "313697_primary_occ_01",
+    "artifact_key": "313697",
+    "motif_class": "negative_control",
+    "filename": "313697_primary_occ_01.jpg",
+    "crop_box": [
+      570,
+      3097,
+      730,
+      3255
+    ]
+  },
+  "313697_primary_occ_02": {
+    "crop_id": "313697_primary_occ_02",
+    "artifact_key": "313697",
+    "motif_class": "negative_control",
+    "filename": "313697_primary_occ_02.jpg",
+    "crop_box": [
+      489,
+      2156,
+      837,
+      2654
+    ]
+  },
+  "313877_primary_occ_01": {
+    "crop_id": "313877_primary_occ_01",
+    "artifact_key": "313877",
+    "motif_class": "negative_control",
+    "filename": "313877_primary_occ_01.jpg",
+    "crop_box": [
+      2564,
+      1497,
+      2810,
+      1854
+    ]
+  },
+  "319887_primary_occ_01": {
+    "crop_id": "319887_primary_occ_01",
+    "artifact_key": "319887",
+    "motif_class": "negative_control",
+    "filename": "319887_primary_occ_01.jpg",
+    "crop_box": [
+      1026,
+      2289,
+      1119,
+      2394
+    ]
+  },
+  "839896_primary_occ_01": {
+    "crop_id": "839896_primary_occ_01",
+    "artifact_key": "839896",
+    "motif_class": "negative_control",
+    "filename": "839896_primary_occ_01.jpg",
+    "crop_box": [
+      3282,
+      2267,
+      3368,
+      2413
+    ]
+  },
+  "839896_primary_occ_02": {
+    "crop_id": "839896_primary_occ_02",
+    "artifact_key": "839896",
+    "motif_class": "negative_control",
+    "filename": "839896_primary_occ_02.jpg",
+    "crop_box": [
+      2976,
+      2316,
+      3047,
+      2436
+    ]
+  },
+  "9353_primary_occ_01": {
+    "crop_id": "9353_primary_occ_01",
+    "artifact_key": "9353",
+    "motif_class": "eight_pointed_star",
+    "filename": "9353_primary_occ_01.jpg",
+    "crop_box": [
+      954,
+      716,
+      1019,
+      781
+    ]
+  },
+  "europeana_2021007__SLS_285_SLS_285_14_occ_01": {
+    "crop_id": "europeana_2021007__SLS_285_SLS_285_14_occ_01",
+    "artifact_key": "europeana_2021007__SLS_285_SLS_285_14",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2021007__SLS_285_SLS_285_14_occ_01.jpg",
+    "crop_box": [
+      1612,
+      2655,
+      1999,
+      2906
+    ]
+  },
+  "europeana_2021007__SLS_235_SLS_235_171e_occ_01": {
+    "crop_id": "europeana_2021007__SLS_235_SLS_235_171e_occ_01",
+    "artifact_key": "europeana_2021007__SLS_235_SLS_235_171e",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2021007__SLS_235_SLS_235_171e_occ_01.jpg",
+    "crop_box": [
+      1353,
+      511,
+      2699,
+      1650
+    ]
+  },
+  "europeana_2021007__SLS_235_SLS_235_171d_occ_01": {
+    "crop_id": "europeana_2021007__SLS_235_SLS_235_171d_occ_01",
+    "artifact_key": "europeana_2021007__SLS_235_SLS_235_171d",
+    "motif_class": "five_pointed_star",
+    "filename": "europeana_2021007__SLS_235_SLS_235_171d_occ_01.jpg",
+    "crop_box": [
+      1273,
+      703,
+      2762,
+      2030
+    ]
   }
 }

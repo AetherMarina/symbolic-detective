@@ -9,7 +9,7 @@ from symbolic_detective.utils.image_files import artifact_key_from_path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data"
-CROPS_MANIFEST = DEFAULT_DATA_DIR / "crops.json"
+CROPS_MANIFEST = DEFAULT_DATA_DIR / "crops" / "crops.json"
 
 
 def record_crop(crop_id: str, artifact_key: str, motif_class: str, filename: str, bbox: list) -> None:
@@ -69,15 +69,24 @@ def get_unprocessed_images(raw_dir, base_crop_dir):
 
 def rapid_crop(
         raw_dir=DEFAULT_DATA_DIR / "raw",
-        crop_dir=DEFAULT_DATA_DIR / "crops" / "eight_pointed_star",
+        crop_dir=DEFAULT_DATA_DIR / "crops" / "unclassified",
         base_crop_dir=DEFAULT_DATA_DIR / "crops",
+        single_image_path=None
 ):
     crop_path = Path(crop_dir)
     crop_path.mkdir(parents=True, exist_ok=True)
     motif_class = crop_path.name
 
-    images_to_process = get_unprocessed_images(raw_dir, base_crop_dir)
-    print(f"Found {len(images_to_process)} images left to process.")
+    if single_image_path:
+        img_path = Path(single_image_path)
+        if not img_path.exists():
+            print(f"Error: Could not find {img_path}")
+            return
+        images_to_process = [img_path]
+        print(f"Processing single image: {img_path.name}")
+    else:
+        images_to_process = get_unprocessed_images(raw_dir, base_crop_dir)
+        print(f"Found {len(images_to_process)} images left to process.")
 
     for img_file in images_to_process:
         img = cv2.imread(str(img_file))
@@ -94,14 +103,26 @@ def rapid_crop(
 
             title = (
                 f"Motif {occurrence} on {img_file.name}\n"
-                f"1. Click Magnifying Glass (bottom) to zoom. Click it AGAIN to turn it off.\n"
-                f"2. Draw your crop box.\n"
-                f"3. Close the window to save the crop.\n"
-                f"(Close window WITHOUT drawing to move to the next image)"
+                f"1. Draw crop box \n"
+                f"2. Press 'Enter' to save crop\n"
+                f"3. Press 'Esc' or 'q' to skip/move to next image"
             )
             ax.set_title(title)
 
             crop_coords = []
+
+            # --- KEYBOARD SHORTCUTS ---
+            def on_key(event):
+                if event.key == 'enter':
+                    # Close window to process the drawn coordinates
+                    plt.close()
+                elif event.key in ['escape', 'q']:
+                    # Clear coordinates to signal "skip" and close window
+                    crop_coords.clear()
+                    plt.close()
+
+            fig.canvas.mpl_connect('key_press_event', on_key)
+            # --------------------------
 
             def onselect(eclick, erelease):
                 x1, y1 = int(eclick.xdata), int(eclick.ydata)
@@ -117,8 +138,18 @@ def rapid_crop(
                 interactive=True,
             )
 
+            manager = plt.get_current_fig_manager()
+            try:
+                manager.window.showMaximized()
+            except AttributeError:
+                try:
+                    manager.resize(*manager.window.maxsize())
+                except AttributeError:
+                    manager.full_screen_toggle()
+
             plt.show()
 
+            # If Esc was pressed or window closed without drawing
             if not crop_coords:
                 print(f"Moving to next image. Total saved: {occurrence - 1}")
                 break
@@ -133,7 +164,7 @@ def rapid_crop(
                 print("Invalid crop, trying again...")
                 continue
 
-            crop_stem = f"{artifact_key}__occ_{occurrence:02d}"
+            crop_stem = f"{img_file.stem}_occ_{occurrence:02d}"
             crop_filename = f"{crop_stem}{img_file.suffix}"
             save_name = crop_path / crop_filename
             cv2.imwrite(str(save_name), cropped_motif)
@@ -151,4 +182,7 @@ def rapid_crop(
 
 
 if __name__ == "__main__":
-    rapid_crop()
+    for p in ["europeana", "met"]:
+        rapid_crop(
+            raw_dir=DEFAULT_DATA_DIR / "raw" / p,
+            crop_dir=DEFAULT_DATA_DIR / "crops" / "unclassified")
