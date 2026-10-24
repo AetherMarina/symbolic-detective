@@ -1,12 +1,13 @@
 """
 Robustness Stress Tests.
 Evaluates Hybrid Search against synthetically degraded query images using
-deterministic Albumentations 2.0.8 transformations.
+deterministic Albumentations transformations on a strictly defined development split.
 """
 import argparse
 import random
 import hashlib
 import cv2
+import json
 import numpy as np
 import logging
 from pathlib import Path
@@ -21,13 +22,14 @@ from symbolic_detective.evaluate import artifact_key_from_path, calculate_metric
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
+DEFAULT_SPLIT_FILE = PROJECT_ROOT / "data/splits/v0.2_split.json"
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 def apply_corruption(img_path: Path, corruption_type: str, seed: int) -> np.ndarray:
-    """Applies a deterministic synthetic degradation using Albumentations 2.0.8."""
+    """Applies a deterministic synthetic degradation using Albumentations."""
     image = cv2.imread(str(img_path))
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     h, w = image.shape[:2]
@@ -77,17 +79,42 @@ def extract_features(img_array):
     return shape_f, dino_f
 
 
-def evaluate_robustness(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "eight_pointed_star", k_folds: int = 5):
-    print(f"--- Starting {k_folds}-Fold Robustness Evaluation ---")
+def evaluate_robustness(data_dir: Path = DEFAULT_DATA_DIR,
+                        split_file: Path = DEFAULT_SPLIT_FILE,
+                        target_class: str = "eight_pointed_star",
+                        k_folds: int = 5):
+    print(f"--- Starting {k_folds}-Fold Robustness Evaluation (Dev Split Only) ---")
+
+    # 1. Load Dev Split Manifest
+    if not split_file.exists():
+        raise FileNotFoundError(f"Split manifest not found at {split_file}. Run create_split.py first.")
+
+    with open(split_file, "r", encoding="utf-8") as f:
+        manifest = json.load(f)
+
+    dev_aids = set(manifest["partitions"]["dev"])
+    print(f"Loaded {len(dev_aids)} allowed artifacts from {split_file.name}")
 
     rng = random.Random(42)
-    classes = sorted([d for d in data_dir.iterdir() if d.is_dir()], key=lambda p: p.name)
-    all_clean_items = []
+    classes = sorted(
+        [d for d in data_dir.iterdir()
+         if d.is_dir() and d.name != "unclassified"],
+        key=lambda p: p.name
+    )
 
-    print("Extracting clean index corpus...")
+    all_clean_items = []
+    skipped_test_crops = 0
+
+    print("Extracting clean index corpus for development artifacts...")
     for cls_dir in classes:
         for img in collect_images(cls_dir):
             aid = artifact_key_from_path(img)
+
+            # --- STRICT LEAKAGE PREVENTION ---
+            if aid not in dev_aids:
+                skipped_test_crops += 1
+                continue
+
             shape_f, dino_f = extract_features(img)
 
             if shape_f is not None and dino_f is not None:
@@ -95,6 +122,9 @@ def evaluate_robustness(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "
                     "path": img, "class": cls_dir.name, "aid": aid,
                     "raw_shape": shape_f["feature_vector"], "dino_vec": dino_f
                 })
+
+    print(f"Dataset extracted: {len(all_clean_items)} total crops.")
+    print(f"Skipped test partition crops: {skipped_test_crops}")
 
     queryable_aids = sorted({item["aid"] for item in all_clean_items if item["class"] != "negative_control"})
     rng.shuffle(queryable_aids)
@@ -158,7 +188,7 @@ def evaluate_robustness(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "
                     shape_f, dino_f = extract_features(image_input)
 
                     if shape_f is None or dino_f is None:
-                        logger.warning(f"Feature extraction failed: image={q_meta["path"].name}, corruption={corruption},"
+                        logger.warning(f"Feature extraction failed: image={q_meta['path'].name}, corruption={corruption},"
                                        f" shape_failed={shape_f is None}, dino_failed={dino_f is None}")
 
                     for method_name, alpha in alphas.items():
@@ -242,7 +272,10 @@ def evaluate_robustness(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR)
+    parser = argparse.ArgumentParser(description="Evaluate Symbolic Detective Robustness (Dev Set Only).")
+    parser.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR, help="Path to cropped images directory")
+    parser.add_argument("--split-file", type=str, default=DEFAULT_SPLIT_FILE, help="Path to split manifest JSON")
+    parser.add_argument("--k-folds", type=int, default=5, help="Number of folds for cross-validation")
     args = parser.parse_args()
-    evaluate_robustness(Path(args.data_dir))
+
+    evaluate_robustness(Path(args.data_dir), Path(args.split_file), k_folds=args.k_folds)

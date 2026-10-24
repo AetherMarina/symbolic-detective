@@ -1,10 +1,6 @@
 import pytest
 
-# Assuming evaluate.py is accessible via the package namespace
-from symbolic_detective.evaluate import (
-    calculate_metrics,
-    build_confusion_matrix,
-)
+from symbolic_detective.evaluation_metrics import calculate_metrics, build_confusion_matrix
 
 
 def test_hit_at_1():

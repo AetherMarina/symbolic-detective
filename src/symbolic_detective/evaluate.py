@@ -1,69 +1,78 @@
 """
 Benchmark & Evaluation Script (K-Fold Cross-Validation).
 Calculates Hit@1, Hit@5, and MRR for OpenCV, DINOv2, and Hybrid Search
-using artifact-grouped k-fold cross validation. Includes per-query error analysis
-and multi-class confusion matrices.
+using artifact-grouped k-fold cross validation on a strictly defined development split.
+Includes per-query error analysis and multi-class confusion matrices.
 """
 import argparse
 import random
-import re
 import json
 from pathlib import Path
-from typing import List, Dict, Any, Tuple
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import classification_report, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 
+from symbolic_detective.evaluation_metrics import build_confusion_matrix, calculate_metrics
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import extract_visual_embedding, compute_embedding_similarity
-from symbolic_detective.utils.image_files import collect_images
+from symbolic_detective.utils.image_files import collect_images, artifact_key_from_path
 
 random.seed(42)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
+DEFAULT_SPLIT_FILE = PROJECT_ROOT / "data/splits/v0.2_split.json"
 
 
-def calculate_metrics(rankings: List[Dict[str, Any]], true_class: str) -> Tuple[int, int, float]:
-    """Computes Hit@1, Hit@5, and Reciprocal Rank for ranked retrieval outputs."""
-    hit_1 = 1 if rankings[0]["class"] == true_class else 0
-    hit_5 = 1 if any(r["class"] == true_class for r in rankings[:5]) else 0
-
-    reciprocal_rank = 0.0
-    for rank, item in enumerate(rankings, start=1):
-        if item["class"] == true_class:
-            reciprocal_rank = 1.0 / rank
-            break
-
-    return hit_1, hit_5, reciprocal_rank
-
-
-def artifact_key_from_path(path: Path) -> str:
-    """
-    Extracts the source-qualified artifact key robustly.
-    Handles '__occ_', '_occ_', and '_primary' delimiters safely without
-    breaking internal underscores in museum IDs.
-    """
-    parts = re.split(r'__occ_|_occ_|_primary', path.stem)
-    return parts[0]
-
-
-def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "eight_pointed_star",
+def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
+                      split_file: Path = DEFAULT_SPLIT_FILE,
+                      target_class: str = "eight_pointed_star",
                       k_folds: int = 5) -> None:
-    print(f"--- Starting {k_folds}-Fold Motif Retrieval Benchmark ---")
 
-    classes = sorted([d for d in data_dir.iterdir() if d.is_dir()], key=lambda p: p.name)
+    print(f"--- Starting {k_folds}-Fold Motif Retrieval Benchmark (Dev Split Only) ---")
 
-    # 1. Global Feature Extraction
-    print("Extracting raw features for the entire dataset...")
+    # 1. Load Dev Split Manifest
+    if not split_file.exists():
+        raise FileNotFoundError(f"Split manifest not found at {split_file}. Run create_split.py first.")
+
+    with open(split_file, "r", encoding="utf-8") as f:
+        manifest = json.load(f)
+
+    dev_aids = set(manifest["partitions"]["dev"])
+    test_aids = set(manifest["partitions"]["test"])
+
+    overlap = dev_aids & test_aids
+
+    if overlap:
+        raise RuntimeError(
+            f"Dev/test artifact leakage detected: {len(overlap)} "
+            f"overlapping artifacts: {sorted(overlap)}"
+        )
+
+    print(f"Loaded {len(dev_aids)} allowed artifacts from {split_file.name}")
+
+    classes = sorted(
+        d for d in data_dir.iterdir()
+        if d.is_dir() and d.name not in {"unclassified"}
+    )
+
+    # 2. Global Feature Extraction (Filtered by Dev Split)
+    print("Extracting raw features for development artifacts...")
     all_items = []
+    skipped_test_crops = 0
 
     for cls_dir in classes:
         images = collect_images(cls_dir)
         for img in images:
             aid = artifact_key_from_path(img)
+
+            # --- STRICT LEAKAGE PREVENTION ---
+            if aid not in dev_aids:
+                skipped_test_crops += 1
+                continue
+
             cv_img = preprocess_for_opencv(img)
             dino_img = preprocess_for_dinov2(img)
 
@@ -87,14 +96,23 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
     if not all_items:
         raise RuntimeError("No valid features were extracted from the dataset.")
 
-    # 2. Artifact-Grouped K-Fold Partitioning
+    extracted_aids = {item["aid"] for item in all_items}
+    unexpected_aids = extracted_aids - dev_aids
+    if unexpected_aids:
+        raise RuntimeError(
+            f"Non-development artifacts detected in evaluation: "
+            f"{sorted(unexpected_aids)}"
+        )
+
+    # 3. Artifact-Grouped K-Fold Partitioning
     queryable_aids = sorted({item["aid"] for item in all_items if item["class"] != "negative_control"})
     random.shuffle(queryable_aids)
 
     folds = [queryable_aids[i::k_folds] for i in range(k_folds)]
 
     print(f"Dataset extracted: {len(all_items)} total crops.")
-    print(f"Partitioned {len(queryable_aids)} valid artifacts into {k_folds} folds.\n")
+    print(f"Skipped test partition crops: {skipped_test_crops}")
+    print(f"Partitioned {len(queryable_aids)} valid dev artifacts into {k_folds} folds.\n")
 
     alphas_to_test = [0.0, 0.25, 0.50, 0.75, 1.0]
 
@@ -109,10 +127,11 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
     total_dropped_queries = 0
     total_evaluated_queries = 0
     total_target_queries = 0
-
     error_analysis = []
 
-    # 3. K-Fold Evaluation Loop
+    print("Development dataset validation passed.")
+
+    # 4. K-Fold Evaluation Loop
     for fold_idx, query_aids in enumerate(folds):
         query_aids_set = set(query_aids)
 
@@ -120,6 +139,15 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
         corpus_raw = [item for item in all_items if item["aid"] not in query_aids_set]
         queries_raw = [item for item in all_items if
                        item["aid"] in query_aids_set and item["class"] != "negative_control"]
+
+        corpus_aids = {item["aid"] for item in corpus_raw}
+        query_artifact_ids = {item["aid"] for item in queries_raw}
+        overlap = corpus_aids & query_artifact_ids
+        if overlap:
+            raise RuntimeError(
+                f"Artifact leakage detected in fold {fold_idx + 1}: "
+                f"{sorted(overlap)}"
+            )
 
         scaler = StandardScaler()
         corpus_shapes = [item["raw_shape"] for item in corpus_raw]
@@ -240,7 +268,7 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
                 target_metrics[alpha]["h5"].append(np.mean(fold_target[alpha]["h5"]))
                 target_metrics[alpha]["mrr"].append(np.mean(fold_target[alpha]["mrr"]))
 
-    # 4. Aggregate & Display Results (Mean ± Std Dev Across Folds)
+    # 5. Aggregate & Display Results (Mean ± Std Dev Across Folds)
     print(f"Total queries evaluated: {total_evaluated_queries}")
     if total_dropped_queries > 0:
         print(f"⚠️ Queries excluded (missing from index): {total_dropped_queries}")
@@ -287,11 +315,10 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
     else:
         print(f"\n⚠️ Target class '{target_class}' not found in query results.")
 
-    # 5. Discrimination Metrics & Confusion Matrices
+    # 6. Discrimination Metrics & Confusion Matrices
     results_dir = PROJECT_ROOT / "results"
     results_dir.mkdir(parents=True, exist_ok=True)
     class_names = [cls.name for cls in classes if cls.name != "negative_control"]
-    cm_labels = class_names + ["negative_control"]
 
     for alpha in (0.0, 0.25):
         method = "DINOv2" if alpha == 0.0 else "Hybrid"
@@ -304,11 +331,13 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
             zero_division=0,
         )
         print(report)
-        cm = confusion_matrix(
+
+        cm, cm_labels = build_confusion_matrix(
             y_true_all[alpha],
             y_pred_all[alpha],
-            labels=cm_labels,
+            class_names,
         )
+
         fig, ax = plt.subplots(figsize=(11, 9))
         disp = ConfusionMatrixDisplay(
             confusion_matrix=cm,
@@ -327,8 +356,8 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
         plt.close(fig)
         print(f"Saved: {path}")
 
-    # 6. Export Error Analysis
-    output_path = PROJECT_ROOT / "results" / "v0.2_baseline_error_analysis.json"
+    # 7. Export Error Analysis
+    output_path = PROJECT_ROOT / "results" / "v0.2_error_analysis.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(error_analysis, f, indent=2)
@@ -336,9 +365,10 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR, target_class: str = "ei
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Evaluate Symbolic Detective Retrieval with K-Fold CV.")
+    parser = argparse.ArgumentParser(description="Evaluate Symbolic Detective Retrieval with K-Fold CV (Dev Set Only).")
     parser.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR, help="Path to cropped images directory")
+    parser.add_argument("--split-file", type=str, default=DEFAULT_SPLIT_FILE, help="Path to split manifest JSON")
     parser.add_argument("--k-folds", type=int, default=5, help="Number of folds for cross-validation")
     args = parser.parse_args()
 
-    evaluate_pipeline(Path(args.data_dir), k_folds=args.k_folds)
+    evaluate_pipeline(Path(args.data_dir), Path(args.split_file), k_folds=args.k_folds)
