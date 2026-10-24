@@ -265,7 +265,7 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 ### v0.2 — Related Motif Discrimination 🚧 In Progress
 - [x] Establish baseline confusion matrices on the v0.1 dataset
 - [x] Expand and rebalance related motif classes
-- [ ] Establish artifact-grouped development/test split
+- [x] Establish artifact-grouped development/test split
 - [ ] Evaluate fine-grained discrimination across related motifs
 - [ ] Analyze incorrect top-1 retrievals and class confusion
 - [ ] Investigate improved geometric representations
