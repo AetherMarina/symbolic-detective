@@ -63,55 +63,88 @@ graph TD
 
 
 ## 📂 Project Structure
+<details>
+<summary>Expand project structure</summary>
 
 ```text
 symbolic-detective/
 ├── data/
-│   ├── raw/                        # Downloaded open-access images
-│   ├── crops/                      # Curated crops (only redistribution-permitted images committed)
-│   │   ├── eight_pointed_star/     # Case 001 target family
-│   │   ├── rosette/                # Hard negative / related radial motif
-│   │   ├── five_pointed_star/      # Hard negative / related star geometry
-│   │   ├── six_pointed_star/       # Hard negative / related star geometry
-│   │   ├── negative_control/       # Other geometric motifs
-│   │   └── crops.json              # Crops ids, original ids, size
-│   ├── metadata.json               # Provenance, period, material, museum IDs
-│   └── index.npz                   # Generated local feature index (not committed)
+│   ├── raw/                         # Downloaded open-access images
+│   ├── crops/                       # Curated motif crops
+│   │   ├── eight_petal_rosette/
+│   │   ├── eight_pointed_star/
+│   │   ├── five_pointed_star/
+│   │   ├── negative_control/
+│   │   ├── rosette_other/
+│   │   ├── six_pointed_star/
+│   │   ├── sunburst/
+│   │   ├── unclassified/            # Excluded from evaluation
+│   │   └── crops.json               # Crop metadata and source references
+│   ├── splits/
+│   │   └── v0.2_split.json          # Artifact-grouped 80/20 dev/test split
+│   ├── metadata.json                # Provenance, period, material, museum IDs
+│   └── index.npz                    # Generated local feature index (not committed)
+│
 ├── results/
-│   ├── v0.1/
-│   │   ├── evaluation.md              # Benchmark, error analysis, robustness
-│   │   ├── error_analysis.json        # Per-query retrieval outcomes
+│   ├── v0.1/                        # Frozen v0.1 evaluation
+│   │   ├── evaluation.md
+│   │   ├── error_analysis.json
 │   │   └── figures/
 │   │       ├── hit1_vs_alpha.png
 │   │       └── robustness_hit1.png
-│   └── v0.2_baseline/
-│       ├── evaluation.md          # Benchmark, error analysis, robustness
-│       ├── error_analysis.json    # Per-query retrieval outcomes
+│   │
+│   ├── v0.2_baseline/               # Initial baseline on v0.1 dataset
+│   │   ├── evaluation.md
+│   │   ├── error_analysis.json
+│   │   └── figures/
+│   │       ├── confusion_dinov2.png
+│   │       └── confusion_hybrid.png
+│   │
+│   └──  v0.2_dev_baseline/              # Expanded v0.2 dataset, initial representation
+│       ├── evaluation.md
+│       ├── error_analysis.json
+│       ├── voting_evaluation.md
+│       ├── class_voting.json
+│       ├── voting_error_analysis.json
 │       └── figures/
 │           ├── confusion_dinov2.png
 │           └── confusion_hybrid.png
+│
 ├── scripts/
-│   ├── data_stats.py               # Dataset statistics
-│   ├── plot_evaluation.py          # Benchmark visualizations
-│   └── list_restricted_images.py   # Image redistribution checks
+│   ├── create_split.py              # Stratified artifact-grouped splitting
+│   ├── data_stats.py                # Dataset and crop statistics
+│   ├── crops_update.py              # Crop class reassignment
+│   ├── plot_evaluation.py           # Benchmark visualizations
+│   └── list_restricted_images.py    # Image redistribution checks
+│
 ├── src/
 │   └── symbolic_detective/
-│       ├── ingestion/              # Museum API harvesters
-│       │   ├── met_api.py          # Met client
-│       │   └── europeana_api.py    # Europeana REST client
+│       ├── ingestion/               # Museum API harvesters
+│       │   ├── met_api.py           # Met client
+│       │   ├── europeana_api.py     # Europeana REST API
+│       │   └── cleveland_api.py     # Cleveland Museum of Art API
 │       ├── pipeline/
-│       │   ├── preprocess.py       # Image normalization routines
-│       │   ├── shape_features.py   # OpenCV edge-based geometric feature extraction
-│       │   ├── embeddings.py       # Latent feature generation
-│       │   └── hybrid_search.py    # Similarity computation and ranking
+│       │   ├── preprocess.py        # Image normalization
+│       │   ├── shape_features.py    # OpenCV geometric descriptors
+│       │   ├── embeddings.py        # DINOv2 embeddings
+│       │   ├── hybrid_search.py     # Similarity scoring and retrieval
+│       │   └── class_voting.py      # Top-1, majority, weighted voting
 │       ├── utils/
-│       │   ├── image_crop.py       # Manual motif cropping utility
-│       │   └── image_files.py      # Image discovery and collection
-│       │── evaluate.py             # Artifact-grouped retrieval benchmark
-│       └── evaluate_robustness.py  # Synthetic degradation experiments
+│       │   ├── image_crop.py        # Manual motif cropping utility
+│       │   └── image_files.py       # Image discovery and collection
+│       ├── evaluation_metrics.py    # Hit@K, MRR, confusion matrix
+│       ├── evaluate.py              # Stratified artifact-grouped retrieval benchmark
+│       └── evaluate_robustness.py   # Synthetic degradation experiments
+│
 ├── ui/
-│   └── app.py                      # Streamlit exploration dashboard
-├── tests/                          # Unit tests for feature extraction
+│   └── app.py                       # Streamlit exploration dashboard
+│
+├── tests/                           # Automated unit tests
+│
+├── .github/
+│   └── workflows/
+│       └── tests.yml                # Continuous integration
+│
 ├── .gitignore
 ├── pyproject.toml
 ├── requirements-lock.txt
@@ -119,6 +152,7 @@ symbolic-detective/
 └── README.md
 ```
 
+</details>
 
 ## 📊 Benchmark & Evaluation
 
@@ -208,7 +242,7 @@ Harvest candidate artifacts from The Metropolitan Museum of Art Open Access API 
 ```bash
 python -m symbolic_detective.ingestion.met_api --query "star" --department 33 --limit 2
 ```
-Harvest candidate artifacts from The Metropolitan Museum of Art Open Access API (using the paginated v1.1 endpoint):
+Harvest candidate artifacts from Europeana REST API:
 ```bash
 python -m symbolic_detective.ingestion.europeana_api --query "star" --limit 2
 ```

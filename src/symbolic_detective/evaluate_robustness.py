@@ -13,6 +13,7 @@ import logging
 from pathlib import Path
 import albumentations as A
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import StratifiedGroupKFold
 
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
@@ -95,7 +96,6 @@ def evaluate_robustness(data_dir: Path = DEFAULT_DATA_DIR,
     dev_aids = set(manifest["partitions"]["dev"])
     print(f"Loaded {len(dev_aids)} allowed artifacts from {split_file.name}")
 
-    rng = random.Random(42)
     classes = sorted(
         [d for d in data_dir.iterdir()
          if d.is_dir() and d.name != "unclassified"],
@@ -123,12 +123,28 @@ def evaluate_robustness(data_dir: Path = DEFAULT_DATA_DIR,
                     "raw_shape": shape_f["feature_vector"], "dino_vec": dino_f
                 })
 
+    # Artifact-Grouped K-Fold Partitioning (Stratified)
+    print("\nStratifying development cross-validation folds...")
+
+    artifact_to_class = {}
+    for item in all_clean_items:
+        if item["class"] != "negative_control":
+            if item["aid"] not in artifact_to_class:
+                artifact_to_class[item["aid"]] = item["class"]
+
+    queryable_aids = list(artifact_to_class.keys())
+    y = [artifact_to_class[aid] for aid in queryable_aids]
+    groups = queryable_aids
+
+    sgkf = StratifiedGroupKFold(n_splits=k_folds, shuffle=True, random_state=42)
+
+    folds = []
+    for _, test_idx in sgkf.split(queryable_aids, y, groups):
+        folds.append([queryable_aids[i] for i in test_idx])
+
     print(f"Dataset extracted: {len(all_clean_items)} total crops.")
     print(f"Skipped test partition crops: {skipped_test_crops}")
-
-    queryable_aids = sorted({item["aid"] for item in all_clean_items if item["class"] != "negative_control"})
-    rng.shuffle(queryable_aids)
-    folds = [queryable_aids[i::k_folds] for i in range(k_folds)]
+    print(f"Partitioned {len(queryable_aids)} valid dev artifacts into {k_folds} folds.\n")
 
     corruptions = ["clean", "rotation_90", "blur_5x5", "blur_11x11", "low_light", "low_contrast", "occlusion_10"]
     alphas = {"DINOv2 (0.0)": 0.0, "Hybrid (0.25)": 0.25}
