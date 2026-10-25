@@ -85,30 +85,27 @@ symbolic-detective/
 │   ├── metadata.json                # Provenance, period, material, museum IDs
 │   └── index.npz                    # Generated local feature index (not committed)
 │
+├── notebooks/
+│   └── v0.2_class_voting_analysis.ipynb
+│
 ├── results/
 │   ├── v0.1/                        # Frozen v0.1 evaluation
 │   │   ├── evaluation.md
 │   │   ├── error_analysis.json
 │   │   └── figures/
-│   │       ├── hit1_vs_alpha.png
-│   │       └── robustness_hit1.png
 │   │
 │   ├── v0.2_baseline/               # Initial baseline on v0.1 dataset
 │   │   ├── evaluation.md
 │   │   ├── error_analysis.json
 │   │   └── figures/
-│   │       ├── confusion_dinov2.png
-│   │       └── confusion_hybrid.png
 │   │
-│   └──  v0.2_dev_baseline/              # Expanded v0.2 dataset, initial representation
+│   └──  v0.2_dev_baseline/          # Expanded v0.2 dataset, initial representation
 │       ├── evaluation.md
 │       ├── error_analysis.json
 │       ├── voting_evaluation.md
 │       ├── class_voting.json
 │       ├── voting_error_analysis.json
 │       └── figures/
-│           ├── confusion_dinov2.png
-│           └── confusion_hybrid.png
 │
 ├── scripts/
 │   ├── create_split.py              # Stratified artifact-grouped splitting

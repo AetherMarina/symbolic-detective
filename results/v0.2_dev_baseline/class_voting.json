@@ -10,13 +10,43 @@
       "cv_macro_f1_std": 0.0725096451699866,
       "pooled_accuracy": 0.6075949367088608,
       "pooled_macro_f1": 0.6081853757806972,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.5882352941176471,
-        "eight_pointed_star": 0.75,
-        "five_pointed_star": 0.6666666666666666,
-        "rosette_other": 0.5483870967741935,
-        "six_pointed_star": 0.4634146341463415,
-        "sunburst": 0.5675675675675675
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5555555555555556,
+          "recall": 0.5882352941176471,
+          "f1-score": 0.5714285714285714,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6724137931034483,
+          "recall": 0.75,
+          "f1-score": 0.7090909090909091,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.5957446808510638,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.6292134831460674,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.5,
+          "recall": 0.5483870967741935,
+          "f1-score": 0.5230769230769231,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.6129032258064516,
+          "recall": 0.4634146341463415,
+          "f1-score": 0.5277777777777778,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.875,
+          "recall": 0.5675675675675675,
+          "f1-score": 0.6885245901639344,
+          "support": 37
+        }
       }
     }
   },
@@ -31,13 +61,43 @@
       "cv_macro_f1_std": 0.056473247373758056,
       "pooled_accuracy": 0.6160337552742616,
       "pooled_macro_f1": 0.6158187065207953,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.6470588235294118,
-        "eight_pointed_star": 0.75,
-        "five_pointed_star": 0.6428571428571429,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4634146341463415,
-        "sunburst": 0.6216216216216216
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5238095238095238,
+          "recall": 0.6470588235294118,
+          "f1-score": 0.5789473684210527,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6610169491525424,
+          "recall": 0.75,
+          "f1-score": 0.7027027027027027,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6136363636363636,
+          "recall": 0.6428571428571429,
+          "f1-score": 0.627906976744186,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.5333333333333333,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.5245901639344263,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5588235294117647,
+          "recall": 0.4634146341463415,
+          "f1-score": 0.5066666666666667,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.9583333333333334,
+          "recall": 0.6216216216216216,
+          "f1-score": 0.7540983606557377,
+          "support": 37
+        }
       }
     }
   },
@@ -52,13 +112,43 @@
       "cv_macro_f1_std": 0.059998368033977706,
       "pooled_accuracy": 0.6075949367088608,
       "pooled_macro_f1": 0.6078343663436337,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.6470588235294118,
-        "eight_pointed_star": 0.75,
-        "five_pointed_star": 0.6190476190476191,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4878048780487805,
-        "sunburst": 0.5675675675675675
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5238095238095238,
+          "recall": 0.6470588235294118,
+          "f1-score": 0.5789473684210527,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6724137931034483,
+          "recall": 0.75,
+          "f1-score": 0.7090909090909091,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6190476190476191,
+          "f1-score": 0.6419753086419753,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.47058823529411764,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.49230769230769234,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5405405405405406,
+          "recall": 0.4878048780487805,
+          "f1-score": 0.5128205128205128,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.9545454545454546,
+          "recall": 0.5675675675675675,
+          "f1-score": 0.711864406779661,
+          "support": 37
+        }
       }
     }
   },
@@ -73,13 +163,43 @@
       "cv_macro_f1_std": 0.07446966899674955,
       "pooled_accuracy": 0.6033755274261603,
       "pooled_macro_f1": 0.6009766150894688,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.6470588235294118,
-        "eight_pointed_star": 0.8076923076923077,
-        "five_pointed_star": 0.5714285714285714,
-        "rosette_other": 0.5483870967741935,
-        "six_pointed_star": 0.43902439024390244,
-        "sunburst": 0.5405405405405406
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5365853658536586,
+          "recall": 0.6470588235294118,
+          "f1-score": 0.5866666666666667,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8076923076923077,
+          "f1-score": 0.7304347826086957,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6,
+          "recall": 0.5714285714285714,
+          "f1-score": 0.5853658536585366,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.4857142857142857,
+          "recall": 0.5483870967741935,
+          "f1-score": 0.5151515151515151,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5454545454545454,
+          "recall": 0.43902439024390244,
+          "f1-score": 0.4864864864864865,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 1.0,
+          "recall": 0.5405405405405406,
+          "f1-score": 0.7017543859649122,
+          "support": 37
+        }
       }
     }
   },
@@ -94,13 +214,43 @@
       "cv_macro_f1_std": 0.056473247373758056,
       "pooled_accuracy": 0.6160337552742616,
       "pooled_macro_f1": 0.6158187065207953,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.6470588235294118,
-        "eight_pointed_star": 0.75,
-        "five_pointed_star": 0.6428571428571429,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4634146341463415,
-        "sunburst": 0.6216216216216216
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5238095238095238,
+          "recall": 0.6470588235294118,
+          "f1-score": 0.5789473684210527,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6610169491525424,
+          "recall": 0.75,
+          "f1-score": 0.7027027027027027,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6136363636363636,
+          "recall": 0.6428571428571429,
+          "f1-score": 0.627906976744186,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.5333333333333333,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.5245901639344263,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5588235294117647,
+          "recall": 0.4634146341463415,
+          "f1-score": 0.5066666666666667,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.9583333333333334,
+          "recall": 0.6216216216216216,
+          "f1-score": 0.7540983606557377,
+          "support": 37
+        }
       }
     }
   },
@@ -115,13 +265,43 @@
       "cv_macro_f1_std": 0.05666780955150729,
       "pooled_accuracy": 0.6118143459915611,
       "pooled_macro_f1": 0.6108826693919368,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.6470588235294118,
-        "eight_pointed_star": 0.7692307692307693,
-        "five_pointed_star": 0.6190476190476191,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4878048780487805,
-        "sunburst": 0.5675675675675675
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5238095238095238,
+          "recall": 0.6470588235294118,
+          "f1-score": 0.5789473684210527,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6779661016949152,
+          "recall": 0.7692307692307693,
+          "f1-score": 0.7207207207207207,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6190476190476191,
+          "f1-score": 0.6419753086419753,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.47058823529411764,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.49230769230769234,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5555555555555556,
+          "recall": 0.4878048780487805,
+          "f1-score": 0.5194805194805194,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.9545454545454546,
+          "recall": 0.5675675675675675,
+          "f1-score": 0.711864406779661,
+          "support": 37
+        }
       }
     }
   },
@@ -136,13 +316,43 @@
       "cv_macro_f1_std": 0.07373525788810875,
       "pooled_accuracy": 0.6118143459915611,
       "pooled_macro_f1": 0.6090137418876832,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.6764705882352942,
-        "eight_pointed_star": 0.8269230769230769,
-        "five_pointed_star": 0.5714285714285714,
-        "rosette_other": 0.5483870967741935,
-        "six_pointed_star": 0.4146341463414634,
-        "sunburst": 0.5675675675675675
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5476190476190477,
+          "recall": 0.6764705882352942,
+          "f1-score": 0.6052631578947368,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.671875,
+          "recall": 0.8269230769230769,
+          "f1-score": 0.7413793103448276,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6153846153846154,
+          "recall": 0.5714285714285714,
+          "f1-score": 0.5925925925925926,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.5151515151515151,
+          "recall": 0.5483870967741935,
+          "f1-score": 0.53125,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5151515151515151,
+          "recall": 0.4146341463414634,
+          "f1-score": 0.4594594594594595,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 1.0,
+          "recall": 0.5675675675675675,
+          "f1-score": 0.7241379310344828,
+          "support": 37
+        }
       }
     }
   },
@@ -157,13 +367,43 @@
       "cv_macro_f1_std": 0.035772964748533996,
       "pooled_accuracy": 0.6075949367088608,
       "pooled_macro_f1": 0.6157045000181399,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.6470588235294118,
-        "eight_pointed_star": 0.75,
-        "five_pointed_star": 0.5714285714285714,
-        "rosette_other": 0.5806451612903226,
-        "six_pointed_star": 0.4878048780487805,
-        "sunburst": 0.5675675675675675
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.6666666666666666,
+          "recall": 0.6470588235294118,
+          "f1-score": 0.6567164179104478,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.582089552238806,
+          "recall": 0.75,
+          "f1-score": 0.6554621848739496,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.5853658536585366,
+          "recall": 0.5714285714285714,
+          "f1-score": 0.5783132530120482,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.6206896551724138,
+          "recall": 0.5806451612903226,
+          "f1-score": 0.6,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5714285714285714,
+          "recall": 0.4878048780487805,
+          "f1-score": 0.5263157894736842,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.84,
+          "recall": 0.5675675675675675,
+          "f1-score": 0.6774193548387096,
+          "support": 37
+        }
       }
     }
   },
@@ -178,13 +418,43 @@
       "cv_macro_f1_std": 0.0580914376920666,
       "pooled_accuracy": 0.5949367088607594,
       "pooled_macro_f1": 0.5974061763045673,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.7647058823529411,
-        "eight_pointed_star": 0.7884615384615384,
-        "five_pointed_star": 0.47619047619047616,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4146341463414634,
-        "sunburst": 0.5675675675675675
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.6666666666666666,
+          "recall": 0.7647058823529411,
+          "f1-score": 0.7123287671232876,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6119402985074627,
+          "recall": 0.7884615384615384,
+          "f1-score": 0.6890756302521008,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.5555555555555556,
+          "recall": 0.47619047619047616,
+          "f1-score": 0.5128205128205128,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.5517241379310345,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.5333333333333333,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5151515151515151,
+          "recall": 0.4146341463414634,
+          "f1-score": 0.4594594594594595,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.84,
+          "recall": 0.5675675675675675,
+          "f1-score": 0.6774193548387096,
+          "support": 37
+        }
       }
     }
   },
@@ -199,13 +469,43 @@
       "cv_macro_f1_std": 0.021688591275129444,
       "pooled_accuracy": 0.6075949367088608,
       "pooled_macro_f1": 0.6104038525709309,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.7352941176470589,
-        "eight_pointed_star": 0.8076923076923077,
-        "five_pointed_star": 0.5,
-        "rosette_other": 0.5483870967741935,
-        "six_pointed_star": 0.4146341463414634,
-        "sunburst": 0.5945945945945946
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.625,
+          "recall": 0.7352941176470589,
+          "f1-score": 0.6756756756756757,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6176470588235294,
+          "recall": 0.8076923076923077,
+          "f1-score": 0.7,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6363636363636364,
+          "recall": 0.5,
+          "f1-score": 0.56,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.53125,
+          "recall": 0.5483870967741935,
+          "f1-score": 0.5396825396825397,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.53125,
+          "recall": 0.4146341463414634,
+          "f1-score": 0.4657534246575342,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.9166666666666666,
+          "recall": 0.5945945945945946,
+          "f1-score": 0.7213114754098361,
+          "support": 37
+        }
       }
     }
   },
@@ -220,13 +520,43 @@
       "cv_macro_f1_std": 0.04671417778882964,
       "pooled_accuracy": 0.620253164556962,
       "pooled_macro_f1": 0.6241976224436737,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.7647058823529411,
-        "eight_pointed_star": 0.8076923076923077,
-        "five_pointed_star": 0.5,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4878048780487805,
-        "sunburst": 0.5945945945945946
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5652173913043478,
+          "recall": 0.7647058823529411,
+          "f1-score": 0.65,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6268656716417911,
+          "recall": 0.8076923076923077,
+          "f1-score": 0.7058823529411765,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6176470588235294,
+          "recall": 0.5,
+          "f1-score": 0.5526315789473685,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.64,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.5714285714285714,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5555555555555556,
+          "recall": 0.4878048780487805,
+          "f1-score": 0.5194805194805194,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 1.0,
+          "recall": 0.5945945945945946,
+          "f1-score": 0.7457627118644068,
+          "support": 37
+        }
       }
     }
   },
@@ -241,13 +571,43 @@
       "cv_macro_f1_std": 0.0580914376920666,
       "pooled_accuracy": 0.5949367088607594,
       "pooled_macro_f1": 0.5974061763045673,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.7647058823529411,
-        "eight_pointed_star": 0.7884615384615384,
-        "five_pointed_star": 0.47619047619047616,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4146341463414634,
-        "sunburst": 0.5675675675675675
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.6666666666666666,
+          "recall": 0.7647058823529411,
+          "f1-score": 0.7123287671232876,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6119402985074627,
+          "recall": 0.7884615384615384,
+          "f1-score": 0.6890756302521008,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.5555555555555556,
+          "recall": 0.47619047619047616,
+          "f1-score": 0.5128205128205128,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.5517241379310345,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.5333333333333333,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5151515151515151,
+          "recall": 0.4146341463414634,
+          "f1-score": 0.4594594594594595,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.84,
+          "recall": 0.5675675675675675,
+          "f1-score": 0.6774193548387096,
+          "support": 37
+        }
       }
     }
   },
@@ -262,13 +622,43 @@
       "cv_macro_f1_std": 0.021688591275129444,
       "pooled_accuracy": 0.6075949367088608,
       "pooled_macro_f1": 0.6104038525709309,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.7352941176470589,
-        "eight_pointed_star": 0.8076923076923077,
-        "five_pointed_star": 0.5,
-        "rosette_other": 0.5483870967741935,
-        "six_pointed_star": 0.4146341463414634,
-        "sunburst": 0.5945945945945946
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.625,
+          "recall": 0.7352941176470589,
+          "f1-score": 0.6756756756756757,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6176470588235294,
+          "recall": 0.8076923076923077,
+          "f1-score": 0.7,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6363636363636364,
+          "recall": 0.5,
+          "f1-score": 0.56,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.53125,
+          "recall": 0.5483870967741935,
+          "f1-score": 0.5396825396825397,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.53125,
+          "recall": 0.4146341463414634,
+          "f1-score": 0.4657534246575342,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 0.9166666666666666,
+          "recall": 0.5945945945945946,
+          "f1-score": 0.7213114754098361,
+          "support": 37
+        }
       }
     }
   },
@@ -283,13 +673,43 @@
       "cv_macro_f1_std": 0.04247587627483032,
       "pooled_accuracy": 0.620253164556962,
       "pooled_macro_f1": 0.6257336717863033,
-      "per_class_recall": {
-        "eight_petal_rosette": 0.7647058823529411,
-        "eight_pointed_star": 0.7884615384615384,
-        "five_pointed_star": 0.5,
-        "rosette_other": 0.5161290322580645,
-        "six_pointed_star": 0.4878048780487805,
-        "sunburst": 0.6216216216216216
+      "per_class_metrics": {
+        "eight_petal_rosette": {
+          "precision": 0.5652173913043478,
+          "recall": 0.7647058823529411,
+          "f1-score": 0.65,
+          "support": 34
+        },
+        "eight_pointed_star": {
+          "precision": 0.6307692307692307,
+          "recall": 0.7884615384615384,
+          "f1-score": 0.7008547008547008,
+          "support": 52
+        },
+        "five_pointed_star": {
+          "precision": 0.6176470588235294,
+          "recall": 0.5,
+          "f1-score": 0.5526315789473685,
+          "support": 42
+        },
+        "rosette_other": {
+          "precision": 0.64,
+          "recall": 0.5161290322580645,
+          "f1-score": 0.5714285714285714,
+          "support": 31
+        },
+        "six_pointed_star": {
+          "precision": 0.5405405405405406,
+          "recall": 0.4878048780487805,
+          "f1-score": 0.5128205128205128,
+          "support": 41
+        },
+        "sunburst": {
+          "precision": 1.0,
+          "recall": 0.6216216216216216,
+          "f1-score": 0.7666666666666667,
+          "support": 37
+        }
       }
     }
   }

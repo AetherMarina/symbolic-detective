@@ -17,7 +17,7 @@ from symbolic_detective.pipeline.class_voting import predict_class
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
 DEFAULT_SPLIT_FILE = PROJECT_ROOT / "data/splits/v0.2_split.json"
-BASELINE_RESULTS_DIR = PROJECT_ROOT / "results" / "v0.2_dev_baseline"
+RESULTS_DIR = PROJECT_ROOT / "results" / "v0.2_dev_baseline"
 
 
 def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
@@ -372,8 +372,8 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
 
     # 7. Discrimination Metrics & Confusion Matrices
     if mode in ["baseline", "all"]:
-        BASELINE_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-        figs_dir = BASELINE_RESULTS_DIR / "figures"
+        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+        figs_dir = RESULTS_DIR / "figures"
         figs_dir.mkdir(parents=True, exist_ok=True)
 
         for alpha in (0.0, 0.25):
@@ -431,14 +431,24 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                 print(
                     f"| {a:<5} | {strat:<10} | {k_val:<3} | {acc_m:.4f} ± {acc_s:.4f}       | {f1_m:.4f} ± {f1_s:.4f}       |")
 
-                recalls = recall_score(
+                report_dict=classification_report(
                     voting_y_true_all[a],
                     voting_y_pred_all[cfg],
                     labels=class_names,
-                    average=None,
+                    target_names=class_names,
+                    output_dict=True,
                     zero_division=0,
                 )
-                per_class_recall = {cls: float(recall) for cls, recall in zip(class_names, recalls)}
+
+                per_class_metrics = {
+                    cls: {
+                        "precision": float(report_dict[cls]["precision"]),
+                        "recall": float(report_dict[cls]["recall"]),
+                        "f1-score": float(report_dict[cls]["f1-score"]),
+                        "support": int(report_dict[cls]["support"])
+                    }
+                    for cls in class_names
+                }
 
                 voting_export_data.append({
                     "alpha": a,
@@ -451,25 +461,25 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                         "cv_macro_f1_std": float(f1_s),
                         "pooled_accuracy": float(pool_acc),
                         "pooled_macro_f1": float(pool_f1),
-                        "per_class_recall": per_class_recall
+                        "per_class_metrics": per_class_metrics
                     }
                 })
 
     # 9. Exports
-    BASELINE_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
     if mode in ["baseline", "all"]:
-        error_path = BASELINE_RESULTS_DIR / "error_analysis.json"
+        error_path = RESULTS_DIR / "error_analysis.json"
         with open(error_path, "w", encoding="utf-8") as f:
             json.dump(error_analysis, f, indent=2)
         print(f"\nSaved per-query error analysis to: {error_path}")
 
     if mode in ["voting", "all"]:
-        voting_path = BASELINE_RESULTS_DIR / "class_voting.json"
+        voting_path = RESULTS_DIR / "class_voting.json"
         with open(voting_path, "w", encoding="utf-8") as f:
             json.dump(voting_export_data, f, indent=2)
 
-        voting_error_path = BASELINE_RESULTS_DIR / "voting_error_analysis.json"
+        voting_error_path = RESULTS_DIR / "voting_error_analysis.json"
         with open(voting_error_path, "w", encoding="utf-8") as f:
             json.dump(voting_error_analysis, f, indent=2)
 
