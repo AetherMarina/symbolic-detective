@@ -10,9 +10,24 @@ This evaluation assesses whether aggregating the predicted classes of the Top-K 
     *   *Top-1:* Baseline classification based on the highest-ranked neighbor.
     *   *Majority:* Most frequent class among the top $K$ neighbors.
     *   *Weighted:* Class with the highest summed similarity scores among the top $K$ neighbors.
-*   **Neighborhood Sizes ($K$):** $K \in \{1, 3, 5, 7\}$.
+* **Neighborhood Sizes ($K$):** $K=1$ for Top-1; $K \in \{3, 5, 7\}$ for Majority and Weighted voting.
 *   **Constraint:** Strict artifact deduplication was applied before voting (maximum one vote per source artifact) to prevent multi-crop artifacts from skewing the neighborhood distribution.
 
+### Voting Implementation Details
+
+**Tie-Breaking:** In majority voting, ties are resolved in favor of the class whose highest-ranked neighbor has the greatest similarity score.
+
+**Similarity-Weighted Voting:** Each class receives the sum of similarity scores from its representatives among the Top-K retrieved unique artifacts:
+
+$$Score(c) = \sum_{i \in TopK,\;label_i=c} S_\alpha(i)$$
+
+where $S_\alpha(i)$ is the similarity score for the selected representation ($\alpha=0.0$ for DINOv2 and $\alpha=0.25$ for Hybrid).
+
+**Evaluation Metrics:**
+- **Accuracy:** Overall correctness of the final class prediction.
+- **Macro F1:** Primary metric for evaluating discrimination across motif classes.
+- **Per-Class Precision, Recall, and F1:** Identify class-specific improvements and regressions.
+- **Aggregation:** Accuracy and macro F1 are reported as mean ± standard deviation across five cross-validation folds. Per-class metrics are calculated from pooled predictions.
 ---
 
 ## 2. Overall Performance Comparison

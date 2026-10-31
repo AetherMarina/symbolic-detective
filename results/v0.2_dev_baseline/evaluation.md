@@ -41,7 +41,23 @@ The table below represents the average performance across all 5 stratified cross
 | Hybrid Ensemble | 0.75 | 0.458 ± 0.118 | 0.825 ± 0.076 | 0.623 ± 0.079 |
 | OpenCV Geometric Features | 1.00 | 0.363 ± 0.043 | 0.684 ± 0.119 | 0.521 ± 0.049 | 
 
-## 4. Key Behavioral Insights & Error Analysis
+## 4. Multi-Class Discrimination Performance
+
+| Motif class         | Support |  DINO P  |  DINO R  | DINO F1  | Hybrid P | Hybrid R | Hybrid F1 |
+|:--------------------| :---: |:--------:|:--------:|:--------:|:--------:|:--------:| :---: |
+| eight_petal_rosette | 34 |   0.56   |   0.59   |   0.57   |   0.67   |   0.65   | 0.66 |
+| eight_pointed_star  | 52 |   0.67   |   0.75   |   0.71   |   0.58   |   0.75   | 0.66 |
+| five_pointed_star   | 42 |   0.60   |   0.67   |   0.63   |   0.59   |   0.57   | 0.58 |
+| rosette_other       | 31 |   0.50   |   0.55   |   0.52   |   0.62   |   0.58   | 0.60 |
+| six_pointed_star    | 41 |   0.61   |   0.46   |   0.53   |   0.57   |   0.49   | 0.53 |
+| sunburst            | 37 |   0.88   |   0.57   |   0.69   |   0.84   |   0.57   | 0.68 |
+| **Micro avg**       | **237** | **0.63** | **0.61** | **0.62** | **0.63** | **0.61** | **0.62** |
+| **Macro avg**       | **237** | **0.64** | **0.60** | **0.61** | **0.64** | **0.60** | **0.62** |
+| **Weighted avg**    | **237** | **0.64** | **0.61** | **0.62** | **0.64** | **0.61** | **0.62** |
+
+Per-class precision, recall, and F1 are calculated from pooled predictions across all five cross-validation folds (237 queries). These differ from the fold-level mean ± standard deviation reported in Sections 2 and 3. DINOv2 corresponds to α=0.0, and Hybrid to α=0.25.
+
+## 5. Key Behavioral Insights & Error Analysis
 
 The introduction of closely related geometries (rosettes, sunbursts, and highly variable star points) successfully stress-tested the retrieval pipeline.
 
@@ -55,23 +71,8 @@ The introduction of closely related geometries (rosettes, sunbursts, and highly 
 
 * **Pipeline Vulnerabilities:** Two development crops failed feature extraction (`173406_primary_occ_01.jpg` and `41417_primary_occ_01.jpg`). These cases should be inspected separately to determine whether the failure originates in preprocessing or geometric feature extraction.
 
-## 5. Proposed Experiments: Multi-Neighbor Class Voting
+## 6. Follow-up Experiment: Multi-Neighbor Class Voting
 
-To address point-counting ambiguities and stabilize predictions, the next phase of v0.2 will evaluate whether aggregating multiple top-ranked images improves classification accuracy over a strict 1-nearest-neighbor (Top-1) approach. 
+To investigate whether aggregating multiple retrieved neighbors improves fine-grained motif discrimination, we evaluated majority and similarity-weighted voting against the Top-1 baseline.
 
-### Experimental Design
-The experiment will compare three retrieval strategies using the frozen Hybrid (α=0.25) configuration, evaluating across $K \in \{1, 3, 5, 7\}$. 
-
-To prevent multi-crop artifacts from dominating the aggregation, **a strict limit of one vote per source artifact** will be enforced before applying the following voting strategies:
-
-*   **Strategy A — Top-1 (Baseline):** The predicted class is strictly derived from the single highest-ranked image.
-*   **Strategy B — K-NN Majority Voting:** The predicted class is the most frequent class among the top $K$ retrieved unique artifacts. 
-    *   *Tie-Breaking Rule:* If two or more classes receive an equal number of votes, the tie is broken by selecting the tied class whose first occurrence has the highest similarity score (the highest-ranked neighbor).
-*   **Strategy C — Similarity-Weighted Voting:** The predicted class is determined by summing the similarity scores ($S_{hybrid}$) for each class present in the top $K$ unique artifacts, selecting the class with the highest total score:
-    $$Score(c) = \sum_{i \in TopK,\;label_i=c} S_i$$
-
-### Success Metrics
-Because standard Hit@K only measures if the correct class is *present* in the top results, this experiment will evaluate the final corrected prediction using:
-1.  **Top-1 Class Accuracy:** Overall correctness of the final aggregated prediction.
-2.  **Macro F1 & Per-Class Recall:** To determine if aggregation successfully rescues the highly confused `six_pointed_star` without degrading the well-performing rosette classes.
-3.  **Aggregated Confusion Matrices:** To map how the class-confusion distribution shifts compared to the Top-1 baseline.
+The follow-up experiment has been completed. See [Class Voting Experiment Evaluation](../v0.2_dev_baseline/voting_evaluation.md) for methodology, results, and per-class analysis.
