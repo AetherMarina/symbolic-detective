@@ -1,15 +1,45 @@
-# Experiments 01–05
-## Geometric Features — Theory & Ablation Rationale
+# Geometric Feature Ablations — v0.2
+## Experiments 01–07: Theory & Ablation Rationale
 
-These notes document the theoretical background, geometric feature definitions, and experimental rationale behind the v0.2 ablation studies. They are part of the ongoing research and learning process; feature effectiveness is evaluated empirically rather than assumed.
+These notes document the theoretical background, feature definitions, and experimental rationale for the v0.2 geometric ablation studies. Feature effectiveness must be measured empirically rather than assumed.
 
-The v0.2 ablation study evaluates the incremental contribution of five explicit geometric feature groups:
+## Experimental Design
 
-1. **`exp01_harmonics`** — Baseline Fourier features for target rotational frequencies ($k = 5, 6, 8$).
-2. **`exp02_harmonics_peaks`** — Adds radial peak counting and prominence-based noise filtering.
-3. **`exp03_harmonics_peaks_pointedness`** — Adds a measure of peak sharpness based on angular width.
-4. **`exp04_harmonics_peaks_pointedness_radius`** — Adds the inner-to-outer radius ratio.
-5. **`exp05_full_geometry`** — Adds central-structure features to complete the evaluated feature set.
+The original cumulative design added features sequentially (harmonics → peaks → pointedness → radius → central structure). That design can test whether an increasingly complex representation helps, but **cannot isolate the contribution of each individual feature group**. For example, an improvement with harmonics + peaks does not establish whether peaks would help on their own.
+
+The revised plan evaluates **one additional feature group at a time against the same unchanged baseline**, then tests selected combinations. Here, **base** means the fixed reference retrieval configuration chosen for these experiments; define and hold its preprocessing, dataset split, candidate corpus, similarity settings, and evaluation protocol constant. Do not treat the baseline as a new feature group.
+
+```text
+v0.2_dev/
+├── exp01_harmonics/          # base + harmonics
+├── exp02_peaks/              # base + peak count / prominence
+├── exp03_pointedness/        # base + pointedness
+├── exp04_radius/             # base + inner / outer radius
+├── exp05_central_structure/  # base + central edge structure
+├── exp06_combined/           # base + selected useful features
+└── exp07_full_geometry/      # optional: base + all five groups
+```
+
+| Experiment | Added geometric module | Primary question |
+| --- | --- | --- |
+| `exp01_harmonics` | Harmonics only | Do target angular frequencies help? |
+| `exp02_peaks` | Peaks only | Does explicit peak count/prominence help? |
+| `exp03_pointedness` | Pointedness only | Does peak width capture useful shape differences? |
+| `exp04_radius` | Radius only | Does valley-to-peak depth help? |
+| `exp05_central_structure` | Central structure only | Do internal edges add useful information? |
+| `exp06_combined` | Selected useful modules | Do individually promising features work together? |
+| `exp07_full_geometry` *(optional)* | All five modules | Does the complete representation outperform the selected subset, or introduce noise? |
+
+### Comparison principles
+
+- Compare each isolated experiment with the **same base** (`base` vs. `base + feature`), not only against the previous experiment.
+- Keep artifact-level dev/test separation, grouped CV folds, preprocessing, and query/gallery composition fixed to make differences interpretable.
+- Use the same retrieval metrics (Hit@1, Hit@5, MRR) and inspect per-class discrimination/error patterns where relevant.
+- Select features for `exp06_combined` using development evidence, including consistency across folds and target classes; do **not** automatically include all five.
+- Treat `exp07_full_geometry` as an optional diagnostic comparison. The held-out test set should remain untouched while choosing modules and configurations.
+- Isolated ablations estimate each feature's incremental contribution relative to the base. They do **not** rule out interactions: a feature that is weak alone may still complement another one.
+
+The purpose is to answer **which geometric features actually help**, and then whether combining them yields further improvement.
 
 ## Geometric Feature Modules
 

@@ -153,6 +153,6 @@ Detailed splits, settings, and measured results belong in the corresponding expe
 
 ## 7. Scope and Next Steps
 
-The original OpenCV baseline does **not** directly count contour peaks or measure individual tip widths. The separate [`experiments_01_05.md`](experiments_01_05.md) describes the **v0.2 geometric ablation experiments** exploring harmonics, peaks, pointedness, radius relationships, and central structure. Those experimental features should not be confused with the original 26D representation.
+The original OpenCV baseline does **not** directly count contour peaks or measure individual tip widths. The separate [`Geometric Feature Ablations`](geometric_feature_ablations.md) describes the **v0.2 geometric ablation experiments** exploring harmonics, peaks, pointedness, radius relationships, and central structure. Those experimental features should not be confused with the original 26D representation.
 
 **Implementation references:** `shape_features.py` (geometric extraction), `embeddings.py` (DINOv2 extraction), and `hybrid_search.py` (retrieval integration, as described in the project notes). The source code remains authoritative for current parameters and behavior.

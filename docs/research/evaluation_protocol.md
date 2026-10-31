@@ -162,6 +162,6 @@ Additional interpretation cautions:
 - `class_voting.py` — voting strategies and artifact deduplication.
 - `data/splits/v0.2_split.json` — fixed artifact-level development/test assignments.
 - [Hybrid Retrieval Pipeline](hybrid_retrieval_pipeline.md) — preprocessing and similarity architecture.
-- [Experiments 01–05](experiments_01_05.md) — geometric ablation rationale.
+- [Geometric Feature Ablations](geometric_feature_ablations.md) — geometric ablation rationale.
 
 *This document describes the v0.2 evaluation implementation provided for review; the source code remains authoritative for subsequent changes.*
