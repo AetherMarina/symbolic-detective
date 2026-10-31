@@ -222,8 +222,6 @@ data/raw/
 data/debug/
 data/*.npz
 
-docs/
-
 # Exclude cropped images without redistribution permission
 data/crops/eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_01.jpg
 data/crops/eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_02.jpg
