@@ -99,13 +99,21 @@ symbolic-detective/
 │   │   ├── error_analysis.json
 │   │   └── figures/
 │   │
-│   └──  v0.2_dev_baseline/          # Expanded v0.2 dataset, initial representation
-│       ├── evaluation.md
-│       ├── error_analysis.json
-│       ├── voting_evaluation.md
-│       ├── class_voting.json
-│       ├── voting_error_analysis.json
-│       └── figures/
+│   ├──  v0.2_dev_baseline/          # Expanded v0.2 dataset, initial representation
+│   │   ├── evaluation.md
+│   │   ├── retrieval_metrics.json
+│   │   ├── error_analysis.json
+│   │   ├── voting_evaluation.md
+│   │   ├── class_voting.json
+│   │   ├── voting_error_analysis.json
+│   │   └── figures/
+│   │
+│   └── v0.2_dev/                    # Feature-improvement experiments
+│       ├── exp01_harmonics/
+│       ├── exp02_harmonics_peaks/
+│       ├── exp03_harmonics_peaks_pointedness/
+│       ├── exp04_harmonics_peaks_pointedness_radius/
+│       └── exp05_full_geometry/
 │
 ├── scripts/
 │   ├── create_split.py              # Stratified artifact-grouped splitting

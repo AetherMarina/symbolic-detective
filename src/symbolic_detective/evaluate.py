@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import classification_report, ConfusionMatrixDisplay, accuracy_score, f1_score, recall_score
+from sklearn.metrics import classification_report, ConfusionMatrixDisplay, accuracy_score, f1_score
 from sklearn.model_selection import StratifiedGroupKFold
 import matplotlib.pyplot as plt
 
@@ -379,14 +379,15 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
         for alpha in (0.0, 0.25):
             method = "DINOv2" if alpha == 0.0 else "Hybrid"
             print(f"\n### Multi-Class Discrimination Report ({method}, α={alpha})")
-            report = classification_report(
+            # Print the standard text report for the console
+            text_report = classification_report(
                 y_true_all[alpha],
                 y_pred_all[alpha],
                 labels=class_names,
                 target_names=class_names,
                 zero_division=0,
             )
-            print(report)
+            print(text_report)
 
             cm, cm_labels = build_confusion_matrix(
                 y_true_all[alpha],
@@ -431,7 +432,7 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                 print(
                     f"| {a:<5} | {strat:<10} | {k_val:<3} | {acc_m:.4f} ± {acc_s:.4f}       | {f1_m:.4f} ± {f1_s:.4f}       |")
 
-                report_dict=classification_report(
+                report_dict = classification_report(
                     voting_y_true_all[a],
                     voting_y_pred_all[cfg],
                     labels=class_names,
@@ -472,7 +473,83 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
         error_path = RESULTS_DIR / "error_analysis.json"
         with open(error_path, "w", encoding="utf-8") as f:
             json.dump(error_analysis, f, indent=2)
-        print(f"\nSaved per-query error analysis to: {error_path}")
+
+        retrieval_metrics = {
+            "experiment": RESULTS_DIR.name,
+            "cross_validation": {
+                "overall": [],
+                "target_eight_pointed_star": []
+            },
+            "multi_class_discrimination": {
+                "dinov2": {},
+                "hybrid_025": {}
+            }
+        }
+
+        # Populate CV metrics
+        for alpha in alphas_to_test:
+            alpha_str = f"{alpha:.2f}"
+
+            retrieval_metrics["cross_validation"]["overall"].append({
+                "alpha": alpha,
+                "hit_at_1": {"mean": float(np.mean(overall_metrics[alpha]["h1"])),
+                             "std": float(np.std(overall_metrics[alpha]["h1"])),
+                             "folds": [float(x) for x in overall_metrics[alpha]["h1"]]},
+                "hit_at_5": {"mean": float(np.mean(overall_metrics[alpha]["h5"])),
+                             "std": float(np.std(overall_metrics[alpha]["h5"])),
+                             "folds": [float(x) for x in overall_metrics[alpha]["h5"]]},
+                "mrr": {"mean": float(np.mean(overall_metrics[alpha]["mrr"])),
+                        "std": float(np.std(overall_metrics[alpha]["mrr"])),
+                        "folds": [float(x) for x in overall_metrics[alpha]["mrr"]]}
+            })
+
+            if target_metrics[alpha]["h1"]:
+                retrieval_metrics["cross_validation"]["target_eight_pointed_star"].append({
+                    "alpha": alpha,
+                    "hit_at_1": {"mean": float(np.mean(target_metrics[alpha]["h1"])),
+                                 "std": float(np.std(target_metrics[alpha]["h1"])),
+                                 "folds": [float(x) for x in target_metrics[alpha]["h1"]]},
+                    "hit_at_5": {"mean": float(np.mean(target_metrics[alpha]["h5"])),
+                                 "std": float(np.std(target_metrics[alpha]["h5"])),
+                                 "folds": [float(x) for x in target_metrics[alpha]["h5"]]},
+                    "mrr": {"mean": float(np.mean(target_metrics[alpha]["mrr"])),
+                            "std": float(np.std(target_metrics[alpha]["mrr"])),
+                            "folds": [float(x) for x in target_metrics[alpha]["mrr"]]}
+                })
+
+        # Populate Multi-Class metrics for Top-1 (Alpha 0.0 and 0.25)
+        for alpha in (0.0, 0.25):
+            method_key = "dinov2" if alpha == 0.0 else "hybrid_025"
+            report_dict = classification_report(
+                y_true_all[alpha],
+                y_pred_all[alpha],
+                labels=class_names,
+                target_names=class_names,
+                output_dict=True,
+                zero_division=0,
+            )
+
+            cm, cm_labels = build_confusion_matrix(
+                y_true_all[alpha],
+                y_pred_all[alpha],
+                class_names,
+            )
+
+            retrieval_metrics["multi_class_discrimination"][method_key] = {
+                "per_class": {cls: report_dict[cls] for cls in class_names},
+                "micro_avg": report_dict.get("accuracy", report_dict.get("micro avg")),
+                "macro_avg": report_dict["macro avg"],
+                "weighted_avg": report_dict["weighted avg"],
+                "confusion_matrix": cm.tolist(),
+                "confusion_matrix_labels": cm_labels
+            }
+
+        retrieval_metrics_path = RESULTS_DIR / "retrieval_metrics.json"
+        with open(retrieval_metrics_path, "w", encoding="utf-8") as f:
+            json.dump(retrieval_metrics, f, indent=2)
+
+        print(f"\nSaved retrieval metrics to: {retrieval_metrics_path}")
+        print(f"Saved per-query error analysis to: {error_path}")
 
     if mode in ["voting", "all"]:
         voting_path = RESULTS_DIR / "class_voting.json"
