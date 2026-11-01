@@ -17,15 +17,22 @@ from symbolic_detective.pipeline.class_voting import predict_class
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
 DEFAULT_SPLIT_FILE = PROJECT_ROOT / "data/splits/v0.2_split.json"
-RESULTS_DIR = PROJECT_ROOT / "results" / "v0.2_dev_baseline"
+DEFAULT_RESULTS_DIR = PROJECT_ROOT / "results" / "v0.2_dev_baseline"
 
 
 def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                       split_file: Path = DEFAULT_SPLIT_FILE,
                       target_class: str = "eight_pointed_star",
                       k_folds: int = 5,
-                      mode: str = "voting") -> None:
+                      mode: str = "all",
+                      results_dir: Path | None = None,
+                      feature_config: dict | None = None) -> None:
     print(f"--- Starting {k_folds}-Fold Motif Retrieval Benchmark (Dev Split Only) ---")
+
+    if results_dir is None:
+        results_dir = DEFAULT_RESULTS_DIR
+    if feature_config is None:
+        feature_config = {}
 
     # 1. Load Dev Split Manifest
     if not split_file.exists():
@@ -54,6 +61,8 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
     class_names = [c.name for c in classes if c.name != "negative_control"]
 
     # 2. Global Feature Extraction (Filtered by Dev Split)
+    active_features = [name for name, enabled in (feature_config or {}).items() if enabled]
+    print(f"Active geometric features: {active_features or 'baseline only'}")
     print("Extracting raw features for development artifacts...")
     all_items = []
     skipped_test_crops = 0
@@ -73,7 +82,7 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
             if cv_img is None or dino_img is None:
                 continue
 
-            shape_f = compute_shape_features(cv_img)
+            shape_f = compute_shape_features(cv_img, config=feature_config)
             dino_f = extract_visual_embedding(dino_img)
 
             if shape_f is not None and dino_f is not None:
@@ -372,8 +381,8 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
 
     # 7. Discrimination Metrics & Confusion Matrices
     if mode in ["baseline", "all"]:
-        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-        figs_dir = RESULTS_DIR / "figures"
+        results_dir.mkdir(parents=True, exist_ok=True)
+        figs_dir = results_dir / "figures"
         figs_dir.mkdir(parents=True, exist_ok=True)
 
         for alpha in (0.0, 0.25):
@@ -467,15 +476,15 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                 })
 
     # 9. Exports
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    results_dir.mkdir(parents=True, exist_ok=True)
 
     if mode in ["baseline", "all"]:
-        error_path = RESULTS_DIR / "error_analysis.json"
+        error_path = results_dir / "error_analysis.json"
         with open(error_path, "w", encoding="utf-8") as f:
             json.dump(error_analysis, f, indent=2)
 
         retrieval_metrics = {
-            "experiment": RESULTS_DIR.name,
+            "experiment": results_dir.name,
             "cross_validation": {
                 "overall": [],
                 "target_eight_pointed_star": []
@@ -488,8 +497,6 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
 
         # Populate CV metrics
         for alpha in alphas_to_test:
-            alpha_str = f"{alpha:.2f}"
-
             retrieval_metrics["cross_validation"]["overall"].append({
                 "alpha": alpha,
                 "hit_at_1": {"mean": float(np.mean(overall_metrics[alpha]["h1"])),
@@ -544,7 +551,7 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                 "confusion_matrix_labels": cm_labels
             }
 
-        retrieval_metrics_path = RESULTS_DIR / "retrieval_metrics.json"
+        retrieval_metrics_path = results_dir / "retrieval_metrics.json"
         with open(retrieval_metrics_path, "w", encoding="utf-8") as f:
             json.dump(retrieval_metrics, f, indent=2)
 
@@ -552,11 +559,11 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
         print(f"Saved per-query error analysis to: {error_path}")
 
     if mode in ["voting", "all"]:
-        voting_path = RESULTS_DIR / "class_voting.json"
+        voting_path = results_dir / "class_voting.json"
         with open(voting_path, "w", encoding="utf-8") as f:
             json.dump(voting_export_data, f, indent=2)
 
-        voting_error_path = RESULTS_DIR / "voting_error_analysis.json"
+        voting_error_path = results_dir / "voting_error_analysis.json"
         with open(voting_error_path, "w", encoding="utf-8") as f:
             json.dump(voting_error_analysis, f, indent=2)
 
@@ -571,6 +578,7 @@ if __name__ == "__main__":
     parser.add_argument("--k-folds", type=int, default=5, help="Number of folds for cross-validation")
     parser.add_argument("--mode", choices=["baseline", "voting", "all"], default="all",
                         help="Evaluation mode: baseline retrieval and/or class voting experiment")
+    parser.add_argument("--results-dir", type=str, default=DEFAULT_DATA_DIR, help="Path to output directory")
     args = parser.parse_args()
 
     evaluate_pipeline(

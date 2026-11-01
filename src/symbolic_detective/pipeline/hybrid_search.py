@@ -15,7 +15,7 @@ from symbolic_detective.pipeline.embeddings import MODEL_NAME, extract_visual_em
 from symbolic_detective.utils.image_files import collect_images
 
 INDEX_VERSION = "1"
-FEATURE_VERSION = "edge26-v1"
+FEATURE_VERSION = "geometry-v02-exp01"
 
 
 class MotifIndex:

@@ -110,17 +110,18 @@ symbolic-detective/
 │   │
 │   └── v0.2_dev/                    # Feature-improvement experiments
 │       ├── exp01_harmonics/
-│       ├── exp02_harmonics_peaks/
-│       ├── exp03_harmonics_peaks_pointedness/
-│       ├── exp04_harmonics_peaks_pointedness_radius/
-│       └── exp05_full_geometry/
+│       ├── exp02_peaks/
+│       ├── exp03_pointedness/
+│       ├── exp04_radius/
+│       └── exp05_central_structure/
 │
 ├── scripts/
 │   ├── create_split.py              # Stratified artifact-grouped splitting
 │   ├── data_stats.py                # Dataset and crop statistics
 │   ├── crops_update.py              # Crop class reassignment
 │   ├── plot_evaluation.py           # Benchmark visualizations
-│   └── list_restricted_images.py    # Image redistribution checks
+│   ├── list_restricted_images.py    # Image redistribution checks
+│   └── run_experiments.py           # CLI entry point
 │
 ├── src/
 │   └── symbolic_detective/
@@ -137,6 +138,7 @@ symbolic-detective/
 │       ├── utils/
 │       │   ├── image_crop.py        # Manual motif cropping utility
 │       │   └── image_files.py       # Image discovery and collection
+│       ├── experiment_configs.py
 │       ├── evaluation_metrics.py    # Hit@K, MRR, confusion matrix
 │       ├── evaluate.py              # Stratified artifact-grouped retrieval benchmark
 │       └── evaluate_robustness.py   # Synthetic degradation experiments
@@ -253,14 +255,25 @@ python -m symbolic_detective.ingestion.europeana_api --query "star" --limit 2
 ```
 
 ### 3. Run Benchmark Evaluation
-Compare the OpenCV, DINOv2, and hybrid retrieval baselines on the held-out query set:
+
+Evaluate DINOv2, OpenCV, and hybrid retrieval using artifact-grouped 5-fold cross-validation on the **v0.2 development split**. The held-out test set remains reserved for final evaluation.
+
 ```bash
-# Main retrieval benchmark
-python -m symbolic_detective.evaluate --data-dir data/crops/
+# Original v0.2 baseline
+python scripts/run_experiments.py --experiment baseline --mode all
+
+# Individual geometric feature ablation
+python scripts/run_experiments.py --experiment exp01_harmonics --mode all
+
+# Run all registered ablation experiments
+python scripts/run_experiments.py --all --mode all
 
 # Robustness evaluation
 python -m symbolic_detective.evaluate_robustness --data-dir data/crops/
 ```
+
+Results are saved under `results/v0.2_dev_baseline/` and `results/v0.2_dev/<experiment_name>/`.
+For methodology details, see [Evaluation Protocol](docs/research/evaluation_protocol.md).
 
 ### 4. Launch the Exploration UI
 ```bash
@@ -305,13 +318,14 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 - [x] Establish baseline confusion matrices on the v0.1 dataset
 - [x] Expand and rebalance related motif classes
 - [x] Establish artifact-grouped development/test split
-- [ ] Evaluate fine-grained discrimination across related motifs
-- [ ] Analyze incorrect top-1 retrievals and class confusion
-- [ ] Investigate improved geometric representations
+- [x] Evaluate fine-grained discrimination across related motifs on the development set
+- [x] Analyze incorrect top-1 retrievals and class confusion on the development set
+- [ ] Investigate improved geometric representations (harmonics, peaks, pointedness, radius)
 - [ ] Evaluate negative-query rejection
+- [ ] Select and freeze the final configuration using development-set results
+- [ ] Run final evaluation on the untouched held-out test set
 - [ ] Extend the Streamlit UI to visualize motif discrimination, comparing top-ranked candidates, geometric feature differences, and similarity-score contributions to explain why one motif class is preferred over another.
 - [ ] Publish v0.2 evaluation results
-
 
 ## Future Horizons
 
