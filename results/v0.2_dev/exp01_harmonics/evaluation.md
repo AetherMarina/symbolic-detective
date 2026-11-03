@@ -53,9 +53,7 @@ All comparisons are conducted against the frozen v0.2 development baseline to is
 
 ## 2. Retrieval Performance Comparison
 
-This section compares the harmonic-enhanced geometric representation against the frozen v0.2 development baseline.
-
-Results are reported as **mean ± standard deviation across five cross-validation folds**. The change (Δ) represents the difference between harmonic-enhanced and baseline mean scores; positive values indicate improvement.
+Results are reported as **mean ± standard deviation across five cross-validation folds**. Δ represents experiment − baseline, calculated from unrounded means; positive values indicate improvement.
 
 ### 2.1 Overall Multi-Class Retrieval
 
@@ -86,9 +84,7 @@ Results are reported as **mean ± standard deviation across five cross-validatio
 - **Hybrid (α=0.50–0.75):** Small improvements appear across retrieval metrics, particularly Hit@5 at α=0.75.
 - **Geometry-only (α=1.0):** Hit@1 and MRR decrease despite a modest improvement in Hit@5, indicating that the added harmonic features do not improve top-ranked retrieval on their own.
 
-### 2.2 Target-Class Retrieval: `eight_pointed_star`
-
-The target-class evaluation focuses on 52 query crops belonging to `eight_pointed_star`, allowing closer inspection of the effect of harmonic features on eight-fold star motifs.
+### 2.2 Target-Class Retrieval: `eight_pointed_star` (52 Queries)
 
 | α | Metric | Baseline (Mean ± SD) | Harmonics (Mean ± SD) | Δ |
 |---|---|---:|---:|---:|
@@ -117,13 +113,27 @@ The target-class evaluation focuses on 52 query crops belonging to `eight_pointe
 - **Hybrid (α=0.75):** A noticeable Hit@5 improvement (+0.0730), accompanied by lower Hit@1.
 - **Geometry-only (α=1.0):** Hit@5 increases, but Hit@1 drops substantially, indicating that more correct-class candidates appear within the top five without improving their highest-rank placement.
 
-### 2.3 Preliminary Retrieval Assessment
+### 2.3 Fold-Level Consistency and Retrieval Assessment
 
-Harmonic augmentation produces **mixed retrieval effects rather than a consistent improvement**.
+To assess whether the observed retrieval changes are consistent across cross-validation folds, paired fold-level differences were examined for overall Hit@1.
 
-At intermediate hybrid weights, some improvements are observed in candidate retrieval within the Top-5 neighborhood. However, geometry-only Hit@1 decreases for both overall retrieval and the eight-pointed-star target class.
+| α | Improved folds | Worsened folds | Unchanged folds | Mean Δ Hit@1 |
+|---|---:|---:|---:|---:|
+| 0.00 | 0 | 0 | 5 | +0.0000 |
+| 0.25 | 2 | 2 | 1 | −0.0095 |
+| 0.50 | 2 | 3 | 0 | +0.0138 |
+| 0.75 | 1 | 2 | 2 | +0.0043 |
+| 1.00 | 0 | 4 | 1 | −0.0298 |
 
-These observations motivate further examination of per-class discrimination and confusion patterns to determine whether harmonic features improve the separation of closely related star geometries.
+**Key observations:**
+
+- **Hybrid configurations (α=0.25–0.75):** Fold-level effects are mixed. At α=0.50, mean Hit@1 improves despite three of five folds worsening, indicating that gains in the remaining folds outweigh the declines.
+- **Geometry-only (α=1.00):** Hit@1 worsens in four folds and remains unchanged in one, providing the clearest evidence of a consistently negative effect from harmonic augmentation on first-rank retrieval.
+- **Top-5 retrieval:** Some improvements occur at intermediate hybrid weights, but these do not consistently translate into better Hit@1 performance.
+
+Overall, harmonic augmentation produces **mixed retrieval effects rather than a consistent improvement**, with the most systematic deterioration observed in geometry-only Top-1 retrieval.
+
+These findings motivate further examination of per-class discrimination and confusion patterns to determine whether harmonic features improve the separation of closely related star geometries.
 
 The differences are descriptive development-set observations and have not been established as statistically significant.
 
@@ -169,82 +179,49 @@ To assess whether harmonics improve discrimination between five-, six-, and eigh
 | eight_pointed_star | −0.0063 | −0.0192 | −0.0114 |
 
 **Key observations:**
-
 - **`five_pointed_star`:** Recall remains unchanged at 57.1%, while precision decreases. Harmonics do not improve identification of actual five-pointed stars and introduce additional false positives.
 - **`six_pointed_star`:** Precision increases from 57.1% to 62.1%, but recall decreases from 48.8% to 43.9%. Predictions of this class become more precise, but fewer actual six-pointed stars are correctly identified.
 - **`eight_pointed_star`:** Both precision and recall decrease slightly. The representation does not improve recognition of eight-fold star
 
 ## 4. Confusion Pattern Analysis
 
-This section examines how harmonic features affect class-to-class misclassification patterns under Hybrid Top-1 retrieval (α=0.25).
-
-The difference matrix is computed as:
-
-**Δ Confusion Matrix = Harmonics − Baseline**
-
-- **Diagonal:** Positive values indicate more correct classifications; negative values indicate fewer.
-- **Off-diagonal:** Negative values indicate fewer misclassifications between the corresponding classes; positive values indicate more.
+The confusion-matrix difference is **Harmonics − Baseline** for Hybrid Top-1 (α=0.25). Positive diagonal values indicate more correct predictions; negative off-diagonal values indicate fewer misclassifications of the corresponding type.
 
 ### 4.1 Confusion Matrix Difference
 
 ![Confusion Matrix Delta — Harmonics vs Baseline](figures/confusion_delta_hybrid.png)
 
-The matrix reveals several changes in prediction distribution, particularly among the three star classes.
-
 ### 4.2 Star-Class Confusion Changes
 
-| True class | Predicted class | Δ Count |
-|---|---|---:|
-| five_pointed_star | eight_pointed_star | +2 |
-| five_pointed_star | six_pointed_star | −3 |
-| six_pointed_star | five_pointed_star | +1 |
-| six_pointed_star | eight_pointed_star | −1 |
-| six_pointed_star | negative_control | +2 |
-| eight_pointed_star | five_pointed_star | +1 |
-| eight_pointed_star | six_pointed_star | −1 |
-| eight_pointed_star | negative_control | +1 |
+| True class | Baseline correct | Harmonics correct | Δ |
+|---|---:|---:|---:|
+| `five_pointed_star` | 24 / 42 | 24 / 42 | 0 |
+| `six_pointed_star` | 20 / 41 | 18 / 41 | −2 |
+| `eight_pointed_star` | 39 / 52 | 38 / 52 | −1 |
 
-**Key observations:**
+Harmonics redistribute star-class errors rather than systematically reducing them. Confusion between five- and six-pointed stars decreases by three predictions, but confusion between five- and eight-pointed stars increases by two.
 
-- **Five-pointed stars:** Confusion with six-pointed stars decreases by three predictions, but confusion with eight-pointed stars increases by two. The number of correctly classified five-pointed stars remains unchanged (24/42).
+Six-pointed-star correct predictions decrease by two, with two additional assignments to `negative_control`. Eight-pointed-star correct predictions decrease by one.
 
-- **Six-pointed stars:** Correct classifications decrease from 20 to 18 out of 41 queries. Although confusion with eight-pointed stars decreases slightly, two additional queries are classified as `negative_control`.
-
-- **Eight-pointed stars:** Correct classifications decrease from 39 to 38 out of 52 queries. Confusion with six-pointed stars decreases by one, but misclassification as five-pointed stars and `negative_control` each increases by one.
-
-These changes indicate a **redistribution of classification errors rather than a systematic reduction in star-class confusion**.
+**Harmonics do not improve star point-count discrimination under Hybrid Top-1 classification.**
 
 ### 4.3 Other Motif Classes and Negative Controls
 
-Outside the star classes, changes are relatively small:
+- **`eight_petal_rosette`:** Correct predictions remain at 22 / 34.
+- **`rosette_other`:** Correct predictions improve from 18 to 19 / 31.
+- **`sunburst`:** Correct predictions remain at 21 / 37.
+- **Negative-control assignments:** Additional star queries are incorrectly assigned to `negative_control`.
 
-- `eight_petal_rosette` retains 22 correct classifications, with minor changes in its misclassification distribution.
-- `rosette_other` improves from 18 to 19 correct classifications.
-- `sunburst` predictions remain unchanged.
-
-The increased prediction of `negative_control` for some star queries is also noteworthy. Although negative-control images are included in the retrieval corpus, they are excluded from the query set. Consequently, the negative-control row contains no evaluated queries, but its prediction column captures incorrect assignments of valid motifs to that class.
-
-### 4.4 Confusion Pattern Assessment
-
-Harmonic augmentation does not consistently improve separation between five-, six-, and eight-pointed stars.
-
-Some individual confusion pairs improve, particularly `five_pointed_star` → `six_pointed_star`, but these reductions do not translate into improved overall star-class recognition.
-
-The decrease in correct six-pointed-star predictions and the additional assignments to `negative_control` suggest that the current harmonic-enhanced representation may alter nearest-neighbor rankings without reliably preserving motif identity.
-
-These findings reinforce the need to investigate whether **neighborhood aggregation can benefit from the modified retrieval rankings**, even when Top-1 classification does not improve.
+Negative controls are retrieval candidates but not evaluation queries, explaining the all-zero `negative_control` row.
 
 ## 5. Class Voting Performance Comparison
 
-This section evaluates whether harmonic features improve neighborhood-based motif classification through majority and similarity-weighted voting.
-
-The experiment compares the frozen v0.2 development baseline against the harmonic-enhanced representation using artifact-deduplicated Top-K retrieval.
-
-Results are reported as **mean ± standard deviation across five cross-validation folds**. Δ values represent the difference between harmonic-enhanced and baseline mean scores.
+This section compares baseline and feature-augmented class voting using artifact-deduplicated Top-K retrieval. The primary analysis focuses on Hybrid α=0.25.
+Results are reported as **mean ± standard deviation across five cross-validation folds**. Δ values represent experiment − baseline.
 
 ### 5.1 Hybrid Voting Performance (α=0.25)
 
-| Strategy | K | Baseline Accuracy | Harmonics Accuracy | Δ Accuracy | Baseline Macro F1 | Harmonics Macro F1 | Δ Macro F1 |
+| Strategy | K | Baseline Accuracy | Experiment Accuracy | Δ Accuracy | Baseline Macro F1 | Experiment Macro F1 | Δ Macro F1 |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | **Top-1** | 1 | 0.6058 ± 0.0374 | 0.5962 ± 0.0645 | −0.0096 | 0.6089 ± 0.0358 | 0.6069 ± 0.0638 | −0.0020 |
 | Majority | 3 | 0.5944 ± 0.0559 | 0.6076 ± 0.0738 | +0.0132 | 0.5913 ± 0.0581 | 0.6071 ± 0.0767 | +0.0158 |
@@ -255,133 +232,98 @@ Results are reported as **mean ± standard deviation across five cross-validatio
 | **Weighted** | **7** | **0.6185 ± 0.0443** | **0.6483 ± 0.0407** | **+0.0298** | **0.6214 ± 0.0425** | **0.6463 ± 0.0413** | **+0.0249** |
 
 **Key observations:**
-
 - **Top-1 performance:** Harmonic augmentation slightly decreases both accuracy and macro F1, consistent with the retrieval and discrimination results from Sections 2 and 3.
 - **Neighborhood voting:** Both majority and weighted voting improve over their corresponding baseline configurations across all tested neighborhood sizes (K=3, 5, 7).
 - **Best-performing configuration:** Hybrid Weighted K=7 achieves the highest observed accuracy (0.6483) and macro F1 (0.6463), improving by 2.98 and 2.49 percentage points, respectively, over the corresponding baseline.
 - **Neighborhood size:** Larger neighborhoods generally benefit the harmonic-enhanced representation, with K=7 producing the strongest results among the tested configurations.
 - **Weighting strategy:** Similarity weighting does not consistently outperform majority voting. At K=5, majority voting achieves higher macro F1 (0.6300 vs. 0.6093), while weighted voting performs better at K=7 (0.6463 vs. 0.6375).
 
-### 5.2 DINOv2 Voting Performance (α=0.0)
+### 5.2 Per-Class Voting Performance
 
-DINOv2 voting results remain identical between baseline and harmonic experiments, as expected, since harmonic descriptors affect only the geometric representation.
+Per-class values below are **pooled across all five folds**, not fold-averaged macro F1. Results correspond to Hybrid α=0.25, Weighted K=7.
 
-The strongest DINOv2 voting configurations remain Majority K=3 and Weighted K=3, both achieving:
+| Motif class | Δ Precision | Δ Recall | Δ F1 |
+|---|---:|---:|---:|
+| `eight_pointed_star` | −0.0039 | +0.0192 | +0.0050 |
+| `five_pointed_star` | +0.0040 | +0.0476 | +0.0296 |
+| `six_pointed_star` | +0.0845 | +0.0000 | +0.0351 |
+| `eight_petal_rosette` | +0.0093 | +0.0294 | +0.0167 |
+| `rosette_other` | +0.0267 | +0.0645 | **+0.0493** |
+| `sunburst` | +0.0000 | +0.0270 | +0.0202 |
 
-- **Accuracy:** 0.6144 ± 0.0530
-- **Macro F1:** 0.6082 ± 0.0565
+**All six motif classes improve in F1 under Weighted K=7 voting**, unlike Top-1 classification, where the three star classes show small declines.
 
-The harmonic-enhanced Hybrid Weighted K=7 configuration exceeds these observed scores, although the improvement depends on the chosen representation and neighborhood size.
+- **Star classes:** Five-pointed-star recall increases by 0.0476 (two additional correct predictions), while eight-pointed-star recall increases by 0.0192 (one additional correct prediction). Six-pointed-star recall remains unchanged, but precision improves by 0.0845.
+- **Non-star classes:** All three classes improve in F1, with the largest gain for `rosette_other` (+0.0493).
 
-### 5.3 Voting Performance Assessment
+These improvements are consistent with the increase in fold-averaged macro F1 from 0.6214 to 0.6463.
 
-The voting results reveal an important contrast with Top-1 classification.
+### 5.3 Per-Query Prediction Transitions
 
-Although harmonic augmentation does not improve Top-1 accuracy or macro F1 at α=0.25, it improves performance when predictions are aggregated across multiple retrieved artifacts.
+To examine how harmonic features affect individual voting predictions, baseline and harmonics predictions were compared across 237 identical queries using Hybrid α=0.25, Weighted K=7.
 
-This suggests that harmonic features may modify the local retrieval neighborhood in ways that support class-level consensus, even when the highest-ranked neighbor is not more frequently correct.
+| Transition | Query crops |
+|---|---:|
+| Both correct | 143 |
+| Both wrong | 79 |
+| Rescued | 11 |
+| Regressed | 4 |
 
-However, this interpretation remains a hypothesis. The current aggregate metrics do not establish whether harmonics increase the concentration of correct-class neighbors or simply redistribute similarity rankings.
+Of the 237 queries, **19 changed their predicted class**: 11 were corrected, four regressed, and four remained incorrect but switched to another class. The net improvement was seven correctly classified crops.
 
-Furthermore, **improved aggregate voting performance does not necessarily imply that the point-counting problem has been resolved**. Per-class voting analysis is needed to establish whether the improvements extend to five-, six-, and eight-pointed-star discrimination.
+**Prediction transitions by true motif class:**
 
-The observed gains are limited to development-set cross-validation and should not be treated as statistically established improvements without further analysis.
+| Motif class | Rescued | Regressed | Net change |
+|---|---:|---:|---:|
+| `eight_pointed_star` | 2 | 1 | +1 |
+| `five_pointed_star` | 2 | 0 | +2 |
+| `six_pointed_star` | 2 | 2 | 0 |
+| `eight_petal_rosette` | 1 | 0 | +1 |
+| `rosette_other` | 2 | 0 | +2 |
+| `sunburst` | 2 | 1 | +1 |
 
-Overall, the results indicate that **harmonic features offer more promising benefits through neighborhood aggregation than through strict Top-1 classification**, motivating investigation of additional geometric descriptors and their interactions with retrieval and voting strategies.
+**Key finding:** Star classes gain three net correct predictions, while non-star classes gain four. Six previously incorrect star-to-star predictions are corrected, although three previously correct star predictions regress to another star class. The improvements extend across both motif families, supporting the observed increase in overall voting macro F1.
+
+### 5.4 Artifact-Grouped Transition Analysis
+
+To determine whether prediction changes are concentrated within individual artifacts, crop-level transitions were grouped by source artifact and true motif class.
+
+Among 15 artifact-class groups with changes in prediction correctness:
+
+- **11** show a net improvement.
+- **4** show a net regression.
+- **0** exhibit mixed outcomes.
+
+All 19 changed crop-level predictions correspond to distinct source artifacts, indicating that the observed improvements are not driven by repeated crops of a single artifact.
+
+The 11 rescued and four regressed predictions therefore span 15 distinct artifacts, with a net gain of seven correctly classified crops.
+
+**Assessment:** Harmonic augmentation produces improvements across multiple independent source artifacts, including both star and non-star motifs, rather than concentrating gains within a small number of multiply cropped artifacts.
+
+These summaries describe crop-level prediction changes grouped by artifact; they do not represent independently computed artifact-level classification accuracy.
+
+### 5.5 Voting Performance Assessment
+
+Harmonic augmentation improves neighborhood voting despite slightly weaker Top-1 classification. Hybrid Weighted K=7 achieves the strongest macro F1 (0.6463 vs. 0.6214 baseline), with F1 improvements across all six motif classes.
+
+Per-query analysis confirms 11 rescued and four regressed predictions across distinct artifacts, including corrections of star-to-star confusions.
+
+**Harmonics show greater promise through neighborhood aggregation than Top-1 retrieval**, although the underlying mechanism remains unverified and the results require held-out validation.
 
 ## 6. Key Findings and Interpretation
 
-### 6.1 Summary of Experimental Findings
+1. **Retrieval improvements are inconsistent.** Harmonic augmentation produces mixed results across hybrid configurations. Geometry-only overall Hit@1 decreases from 0.2667 to 0.2368, with four of five folds showing deterioration.
 
-The experiment evaluated whether adding radial symmetry harmonics (`harmonic_5`, `harmonic_6`, `harmonic_8`) improves fine-grained motif discrimination relative to the frozen v0.2 development baseline.
+2. **Top-1 point-count discrimination remains unresolved.** Under Hybrid α=0.25, all three star classes exhibit small F1 decreases. Six-pointed-star recall declines from 0.4878 to 0.4390, and confusion patterns show a redistribution of errors rather than systematic improvement.
 
-Four main findings emerged:
+3. **Neighborhood voting benefits from harmonic augmentation.** All tested Hybrid majority and weighted configurations (K=3, 5, 7) improve over their corresponding baselines. Weighted K=7 achieves the highest cross-validation macro F1 (0.6463 vs. 0.6214 baseline).
 
-1. **No consistent improvement in retrieval performance.** Harmonic augmentation produced mixed results across retrieval configurations. Geometry-only Hit@1 decreased from 0.267 to 0.237, while intermediate hybrid configurations showed small improvements in selected metrics, particularly Hit@5.
+4. **Weighted K=7 improves all six motif classes.** Pooled per-class F1 increases across both star and non-star motifs. Prediction transitions confirm 11 rescued and four regressed crops, including six corrected star-to-star confusions. All 19 changed predictions correspond to distinct source artifacts.
 
-2. **The point-counting problem remains unresolved.** Under Hybrid Top-1 (α=0.25), all three star classes experienced small F1 decreases. Six-pointed-star recall declined from 48.8% to 43.9%, while confusion matrix analysis revealed a redistribution of errors rather than consistent improvements in star-class separation.
+5. **The mechanism behind voting improvements remains unverified.** Per-query analysis identifies which predictions change, but Top-K neighbor analysis is needed to determine whether the gains arise from altered neighbor composition, similarity rankings, or score distributions.
 
-3. **Neighborhood voting benefited from harmonic augmentation.** Despite weaker Top-1 performance, all tested Hybrid majority and weighted voting configurations (K=3, 5, 7) improved relative to their corresponding baselines. The strongest observed configuration, Weighted K=7, increased cross-validation macro F1 from 0.6214 to 0.6463.
+### Limitations
 
-4. **Benefits depend on the retrieval and aggregation configuration.** Harmonic features did not consistently improve results across all α values or voting strategies. Their contribution appears sensitive to how geometric similarity is combined with latent embeddings and how retrieved neighbors are aggregated.
+These findings are exploratory development-set results from five artifact-grouped cross-validation folds. Multiple configurations were examined, and the observed improvements have not been established as statistically significant. The held-out test partition remains untouched.
 
-### 6.2 Interpretation: Retrieval Ranking vs. Neighborhood Structure
-
-The contrast between Top-1 and voting performance is the most interesting outcome of this experiment.
-
-One possible explanation is that harmonic features alter similarity rankings without consistently improving the identity of the highest-ranked neighbor. These changes may nevertheless produce neighborhoods that are more useful for class-level aggregation.
-
-However, the current aggregate results do not establish this mechanism. Confirming it would require examining the class composition, similarity distributions, and prediction changes within Top-K neighborhoods.
-
-An alternative explanation is that the observed voting gains are sensitive to particular neighborhood sizes, samples, or cross-validation folds.
-
-Therefore, the findings support further investigation of the interaction between harmonic descriptors and neighborhood voting, rather than demonstrating that harmonic features independently improve motif discrimination.
-
-### 6.3 Experimental Limitations
-
-Several limitations should be considered when interpreting these results:
-
-- **Limited geometric discrimination:** The current harmonic representation does not reliably separate motifs according to their number of points.
-- **Representation interactions:** Harmonics were evaluated as additional features within the existing geometric representation. Their independent contribution has not been isolated.
-- **Development-set evaluation:** Results are based on five artifact-grouped cross-validation folds. The held-out test partition remains untouched.
-- **Exploratory configuration selection:** Multiple α values, voting strategies, and neighborhood sizes were evaluated. The best observed configuration may not generalize.
-- **Unverified class-specific voting improvements:** Higher aggregate voting macro F1 does not establish that voting specifically improves discrimination among five-, six-, and eight-pointed stars.
-
-### 6.4 Overall Assessment
-
-**The original hypothesis is not supported for strict Top-1 star-class discrimination, but harmonic augmentation shows preliminary promise when combined with neighborhood-based voting.**
-
-The experiment suggests that explicit radial symmetry information may contribute useful complementary signals, although the current implementation is insufficient to reliably resolve point-counting ambiguities.
-
-The next experiments should investigate whether combining harmonic descriptors with more explicit geometric characteristics—particularly radial peak detection and pointedness—improves both individual retrieval rankings and class-level discrimination.
-
-Harmonics should therefore be retained as a candidate feature for further ablation studies, rather than considered a validated improvement to the geometric representation.
-
-## 7. Next Steps
-
-The results of `exp01_harmonics` motivate a systematic investigation of additional geometric descriptors to determine which features contribute to fine-grained motif discrimination.
-
-Rather than progressively adding features, the next phase will evaluate each feature group independently against the frozen v0.2 development baseline.
-
-### 7.1 Phase A — Independent Feature Evaluation
-
-Each experiment extends the original geometric representation with a single feature group.
-
-| Experiment | Added Features | Research Question |
-|---|---|---|
-| `exp01_harmonics` | Radial harmonics (5, 6, 8) | Does rotational symmetry information improve motif discrimination? |
-| `exp02_peaks` | Radial peak detection | Does explicit peak detection improve star point-count discrimination? |
-| `exp03_pointedness` | Tip sharpness / pointedness | Can angular and rounded motif structures be distinguished more reliably? |
-| `exp04_radius` | Radial profile characteristics | Does radial variation provide additional discriminative information? |
-| `exp05_central_structure` | Central disk / ring descriptors | Can internal structural features improve separation of stars, rosettes, and sunbursts? |
-
-The objective is to measure the incremental contribution of each feature group independently, without confounding its effect with other newly introduced descriptors.
-
-### 7.2 Phase B — Feature Combination
-
-Following individual feature evaluation, promising descriptors will be combined to investigate complementary effects and feature interactions.
-
-Combination experiments will be informed by individual results rather than assuming that adding more geometric features necessarily improves performance.
-
-### 7.3 Evaluation Consistency
-
-All experiments will follow the same development evaluation protocol:
-
-- Identical dataset partitions and artifact-grouped cross-validation folds.
-- Consistent retrieval configurations, voting strategies, and neighborhood sizes.
-- Retrieval comparison using Hit@1, Hit@5, and MRR.
-- Multi-class discrimination comparison using precision, recall, and F1.
-- Confusion-pattern analysis focusing on five-, six-, and eight-pointed stars.
-- Class voting evaluation to investigate improvements beyond Top-1 classification.
-
-Feature scaling will continue to be fitted exclusively on the training/retrieval corpus within each cross-validation fold.
-
-The held-out test partition will remain untouched during feature development and experimental selection.
-
-### 7.4 Expected Outcome
-
-The goal is to identify which geometric descriptors provide useful complementary information to DINOv2 embeddings and whether their combinations improve fine-grained motif discrimination.
-
-Particular emphasis will be placed on distinguishing improvements in **Top-1 recognition** from improvements in **Top-K neighborhood quality and class voting**.
-
-The resulting evidence will guide the selection of a geometric feature representation for subsequent v0.2 validation.
+**Overall assessment:** Harmonic features do not resolve Top-1 point-counting ambiguities, but show promising improvements through neighborhood voting without the star/non-star F1 trade-off observed with radial peaks. Harmonics remain a candidate for Phase B feature-combination experiments, pending further evaluation.

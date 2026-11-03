@@ -12,7 +12,7 @@ from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, prepro
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import extract_visual_embedding, compute_embedding_similarity
 from symbolic_detective.utils.image_files import collect_images, artifact_key_from_path
-from symbolic_detective.pipeline.class_voting import predict_class
+from symbolic_detective.pipeline.class_voting import predict_class, deduplicate_rankings
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
@@ -145,6 +145,7 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
         voting_y_true_all = {a: [] for a in voting_alphas}
         voting_y_pred_all = {(a, s, k): [] for a in voting_alphas for s, k in voting_configs}
         voting_error_analysis = []
+        voting_predictions_records = []
 
     total_dropped_queries = 0
     total_evaluated_queries = 0
@@ -247,6 +248,16 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                     voting_y_true_all[alpha].append(q["class"])
                     query_preds = {}
 
+                    deduped_rankings = deduplicate_rankings(sorted_scores)
+                    top_7_neighbors = []
+                    for rank, neighbor in enumerate(deduped_rankings[:7], start=1):
+                        top_7_neighbors.append({
+                            "artifact_id": neighbor["aid"],
+                            "class": neighbor["class"],
+                            "rank": rank,
+                            "similarity": float(neighbor["s_hybrid"])
+                        })
+
                     for strat, k_val in voting_configs:
                         predicted_class = predict_class(
                             rankings=sorted_scores,
@@ -258,6 +269,18 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
                         fold_voting_y_pred[(alpha, strat, k_val)].append(predicted_class)
                         voting_y_pred_all[(alpha, strat, k_val)].append(predicted_class)
                         query_preds[f"{strat}_k{k_val}"] = predicted_class
+
+                        voting_predictions_records.append({
+                            "query_id": str(Path(q["path"]).relative_to(data_dir)),
+                            "artifact_id": q["aid"],
+                            "fold": fold_idx,
+                            "true_class": q["class"],
+                            "alpha": alpha,
+                            "strategy": strat,
+                            "k": k_val,
+                            "predicted_class": predicted_class,
+                            "neighbors": top_7_neighbors
+                        })
 
                     if any(p != q["class"] for p in query_preds.values()):
                         voting_error_analysis.append({
@@ -567,8 +590,13 @@ def evaluate_pipeline(data_dir: Path = DEFAULT_DATA_DIR,
         with open(voting_error_path, "w", encoding="utf-8") as f:
             json.dump(voting_error_analysis, f, indent=2)
 
+        voting_predictions_path = results_dir / "voting_predictions.json"
+        with open(voting_predictions_path, "w", encoding="utf-8") as f:
+            json.dump(voting_predictions_records, f, indent=2)
+
         print(f"Saved class voting metrics to: {voting_path}")
         print(f"Saved voting error analysis to: {voting_error_path}")
+        print(f"Saved voting predictions to: {voting_predictions_path}")
 
 
 if __name__ == "__main__":

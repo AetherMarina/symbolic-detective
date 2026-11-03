@@ -123,6 +123,33 @@ Voting is evaluated only for **DINOv2 (`α = 0.00`)** and **Hybrid (`α = 0.25`)
 
 Reported voting accuracy and macro-F1 are **mean ± standard deviation of fold-level scores**; the export also includes **pooled** accuracy and macro-F1. These are different aggregations and may not be numerically identical.
 
+### 5.1 Voting Implementation Details
+
+For each query, ranked results are deduplicated by source artifact ID **before selecting the Top-K neighbors**. Since candidates are sorted by descending similarity, only the highest-scoring crop from each artifact is retained. The Top-K selection is then performed over these unique artifact representatives, ensuring that each source artifact contributes at most one vote.
+
+Three voting strategies are evaluated:
+
+- **Top-1:** Assigns the class label of the highest-ranked retrieved neighbor ($K=1$).
+- **Majority Voting:** Assigns the most frequent class among the Top-K retrieved unique artifacts ($K \in \{3,5,7\}$). Ties are resolved in favor of the class whose highest-ranked representative has the greatest similarity score.
+- **Similarity-Weighted Voting:** Assigns the class with the highest cumulative similarity score among the Top-K retrieved unique artifacts ($K \in \{3,5,7\}$).
+
+For similarity-weighted voting, the score assigned to class $c$ is:
+
+$$
+\operatorname{VoteScore}(c) =
+\sum_{\substack{i \in N_K(q)\\ y_i=c}} S_\alpha(q,i)
+$$
+
+where:
+
+- $N_K(q)$ is the set of Top-K artifact-deduplicated neighbors for query $q$.
+- $y_i$ is the class label of neighbor $i$.
+- $S_\alpha(q,i)$ is the retrieval similarity score between query $q$ and neighbor $i$, using the selected representation ($\alpha=0.00$ for DINOv2 or $\alpha=0.25$ for Hybrid).
+
+The final predicted class is the class with the highest voting score. **Tie-Breaking:** In similarity-weighted voting, exact ties in cumulative class scores are resolved in favor of the class whose representative appears first in the ranked Top-K neighbors.
+
+**Evaluation objective:** Determine whether aggregating evidence from multiple retrieved examples improves motif-class discrimination compared with the Top-1 nearest-neighbor baseline.
+
 ## 6. Error Analysis and Outputs
 
 The current script supports `--mode baseline`, `--mode voting`, or `--mode all` (CLI default: `all`). The results location is currently set in the script to:
