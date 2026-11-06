@@ -1,6 +1,6 @@
 import pytest
 
-from symbolic_detective.evaluation_metrics import calculate_metrics, build_confusion_matrix
+from symbolic_detective.evaluation.evaluation_metrics import calculate_metrics, build_confusion_matrix
 
 
 def test_hit_at_1():
