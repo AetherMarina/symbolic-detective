@@ -86,7 +86,8 @@ symbolic-detective/
 │   └── index.npz                    # Generated local feature index (not committed)
 │
 ├── notebooks/
-│   └── v0.2_class_voting_analysis.ipynb
+│   ├── v0.2_class_voting_analysis.ipynb
+│   └── v0.2_geometry_ablation_analysis.ipynb
 │
 ├── results/
 │   ├── v0.1/                        # Frozen v0.1 evaluation
@@ -113,9 +114,11 @@ symbolic-detective/
 │       ├── exp02_peaks/
 │       ├── exp03_pointedness/
 │       ├── exp04_radius/
-│       └── exp05_central_structure/
+│       ├── exp05_central_structure/
+│       └── phase_b_combinations/
 │
 ├── scripts/
+│   ├── compare_phase_b.py           # Compare phase_b metrics
 │   ├── create_split.py              # Stratified artifact-grouped splitting
 │   ├── data_stats.py                # Dataset and crop statistics
 │   ├── crops_update.py              # Crop class reassignment
@@ -320,10 +323,10 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 - [x] Establish artifact-grouped development/test split
 - [x] Evaluate fine-grained discrimination across related motifs on the development set
 - [x] Analyze incorrect top-1 retrievals and class confusion on the development set
-- [ ] Investigate improved geometric representations (harmonics, peaks, pointedness, radius)
-- [ ] Evaluate negative-query rejection
-- [ ] Select and freeze the final configuration using development-set results
+- [x] Investigate improved geometric representations (harmonics, peaks, pointedness, radius)
+- [x] Select and freeze the final configuration using development-set results
 - [ ] Run final evaluation on the untouched held-out test set
+- [ ] Evaluate negative-query rejection
 - [ ] Extend the Streamlit UI to visualize motif discrimination, comparing top-ranked candidates, geometric feature differences, and similarity-score contributions to explain why one motif class is preferred over another.
 - [ ] Publish v0.2 evaluation results
 

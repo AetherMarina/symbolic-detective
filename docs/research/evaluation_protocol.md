@@ -7,7 +7,7 @@
 The evaluation examines two related but distinct questions:
 
 1. **Retrieval:** Does the system rank crops from the query's motif class near the top of its search results?
-2. **Multi-class discrimination:** Can a motif class be inferred from the ranked examples, using either the top result or class voting?
+2. **Classification:** Can a motif class be inferred from the ranked examples, using either the top result or class voting?
 
 The benchmark compares the learned DINOv2 representation, explicit OpenCV geometry, and their weighted hybrid. The v0.2 experiments investigate whether geometric changes improve fine-grained discrimination among visually related motifs, especially stars and rosettes.
 

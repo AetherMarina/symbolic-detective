@@ -5,20 +5,36 @@ from symbolic_detective.experiment_configs import EXPERIMENTS
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+# Strict baseline forcing all ablation flags to False
+BASE_FEATURE_CONFIG = {
+    "harmonics": False,
+    "peaks": False,
+    "pointedness": False,
+    "radius": False,
+    "central_structure": False
+}
+
 
 def run_experiment(experiment_name: str, data_dir: Path, split_file: Path, k_folds: int, mode: str) -> None:
     """Run one experiment with its registered feature configuration."""
 
     if experiment_name == "baseline":
-        feature_config = {}
+        feature_config = BASE_FEATURE_CONFIG.copy()
         results_dir = PROJECT_ROOT / "results" / "v0.2_dev_baseline"
     else:
-        feature_config = EXPERIMENTS[experiment_name].copy()
-        results_dir = PROJECT_ROOT / "results" / "v0.2_dev" / experiment_name
+        # Start with all False, then enable ONLY the specified features
+        feature_config = BASE_FEATURE_CONFIG.copy()
+        feature_config.update(EXPERIMENTS[experiment_name])
+
+        # Route Phase B experiments to their dedicated subfolder
+        if experiment_name.startswith("b"):
+            results_dir = PROJECT_ROOT / "results" / "v0.2_dev" / "phase_b_combinations" / "results" / experiment_name
+        else:
+            results_dir = PROJECT_ROOT / "results" / "v0.2_dev" / experiment_name
 
     print(f"\n{'=' * 70}")
     print(f"Experiment: {experiment_name}")
-    print(f"Features: {feature_config or 'baseline only'}")
+    print(f"Features: {feature_config}")
     print(f"Results: {results_dir}")
     print(f"{'=' * 70}\n")
 

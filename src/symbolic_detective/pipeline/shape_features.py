@@ -330,13 +330,12 @@ def compute_radial_peak_features(contour_angles: np.ndarray, contour_radii: np.n
     return [peak_count, avg_prominence]
 
 
-def compute_pointedness_features(contour_angles: np.ndarray, contour_radii: np.ndarray,
-                                 prominence_threshold: float = 0.05) -> List[float]:
+def compute_radial_peak_width_features(contour_angles: np.ndarray, contour_radii: np.ndarray,
+                                       prominence_threshold: float = 0.05) -> List[float]:
     """
-    Measures the sharpness (pointedness) of the star rays or petals.
-    Calculated as the average angular peak width at half-prominence on the 1D boundary signal,
-    mapped to a uniform 360-degree grid, normalized by the total angular length (360).
+    Measures the average angular width of radial peaks at half-prominence.
     Smaller values indicate sharp/pointed rays; larger values indicate rounded petals.
+    Used as a proxy for motif pointedness.
     """
     if len(contour_radii) < 10:
         return [0.0]
@@ -561,7 +560,7 @@ def compute_shape_features(preprocessed_img: np.ndarray, config: Optional[Dict[s
 
             # Module: Pointedness
             if config.get("pointedness", False):
-                features.extend(compute_pointedness_features(contour_angles, contour_radii))
+                features.extend(compute_radial_peak_width_features(contour_angles, contour_radii))
 
             # Module: Radius Ratio
             if config.get("radius", False):
