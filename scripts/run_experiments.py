@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
-from symbolic_detective.evaluate import evaluate_pipeline
-from symbolic_detective.experiment_configs import EXPERIMENTS
+from symbolic_detective.evaluation.evaluate import evaluate_pipeline
+from symbolic_detective.evaluation.experiment_configs import EXPERIMENTS
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 

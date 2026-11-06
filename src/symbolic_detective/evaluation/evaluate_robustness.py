@@ -4,7 +4,6 @@ Evaluates Hybrid Search against synthetically degraded query images using
 deterministic Albumentations transformations on a strictly defined development split.
 """
 import argparse
-import random
 import hashlib
 import cv2
 import json
@@ -19,9 +18,9 @@ from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, prepro
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import extract_visual_embedding, compute_embedding_similarity
 from symbolic_detective.utils.image_files import collect_images
-from symbolic_detective.evaluate import artifact_key_from_path, calculate_metrics
+from symbolic_detective.evaluation.evaluate import artifact_key_from_path, calculate_metrics
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
 DEFAULT_SPLIT_FILE = PROJECT_ROOT / "data/splits/v0.2_split.json"
 

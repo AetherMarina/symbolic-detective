@@ -1,5 +1,5 @@
 {
-  "experiment": "b06_harmonics_peaks",
+  "experiment": "b06_harmonics_pointedness",
   "cross_validation": {
     "overall": [
       {

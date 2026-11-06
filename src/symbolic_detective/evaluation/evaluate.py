@@ -7,14 +7,14 @@ from sklearn.metrics import classification_report, ConfusionMatrixDisplay, accur
 from sklearn.model_selection import StratifiedGroupKFold
 import matplotlib.pyplot as plt
 
-from symbolic_detective.evaluation_metrics import build_confusion_matrix, calculate_metrics
+from symbolic_detective.evaluation.evaluation_metrics import build_confusion_matrix, calculate_metrics
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import extract_visual_embedding, compute_embedding_similarity
 from symbolic_detective.utils.image_files import collect_images, artifact_key_from_path
 from symbolic_detective.pipeline.class_voting import predict_class, deduplicate_rankings
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
 DEFAULT_SPLIT_FILE = PROJECT_ROOT / "data/splits/v0.2_split.json"
 DEFAULT_RESULTS_DIR = PROJECT_ROOT / "results" / "v0.2_dev_baseline"

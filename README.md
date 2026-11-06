@@ -280,7 +280,7 @@ python scripts/run_experiments.py --experiment exp01_harmonics --mode all
 python scripts/run_experiments.py --all --mode all
 
 # Robustness evaluation
-python -m symbolic_detective.evaluate_robustness --data-dir data/crops/
+python -m symbolic_detective.evaluation.evaluate_robustness --data-dir data/crops/
 
 # Held-out test evaluation
 python -m symbolic_detective.evaluation.evaluate_test
