@@ -1,16 +1,17 @@
 import json
 from pathlib import Path
 import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score, classification_report
+from sklearn.metrics import classification_report, ConfusionMatrixDisplay, accuracy_score
 import matplotlib.pyplot as plt
 
 from symbolic_detective.evaluation.evaluation_metrics import build_confusion_matrix, calculate_metrics
-from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
-from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
-from symbolic_detective.pipeline.embeddings import extract_visual_embedding, compute_embedding_similarity
-from symbolic_detective.utils.image_files import collect_images, artifact_key_from_path
 from symbolic_detective.pipeline.class_voting import predict_class, deduplicate_rankings
+from symbolic_detective.evaluation.evaluation_common import (
+    load_split_manifest,
+    extract_evaluation_features,
+    scale_evaluation_features,
+    rank_candidates
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data/crops"
@@ -18,84 +19,36 @@ DEFAULT_SPLIT_FILE = PROJECT_ROOT / "data/splits/v0.2_split.json"
 RESULTS_DIR = PROJECT_ROOT / "results" / "v0.2_test_final"
 
 
-def extract_features_for_split(data_dir: Path, allowed_aids: set, split_name: str, is_query: bool = False):
-    print(f"Extracting features for the {split_name} split...")
-    classes = sorted(d for d in data_dir.iterdir() if d.is_dir() and d.name not in {"unclassified"})
-    class_names = [c.name for c in classes]
-
-    base_config = {
-        "harmonics": False,
-        "peaks": False,
-        "pointedness": False,
-        "radius": False,
-        "central_structure": False
-    }
-
-    harm_config = {
-        "harmonics": True,
-        "peaks": False,
-        "pointedness": False,
-        "radius": False,
-        "central_structure": False
-    }
-
-    point_config = {
-        "harmonics": False,
-        "peaks": False,
-        "pointedness": True,
-        "radius": False,
-        "central_structure": False
-    }
-
-    items = []
-    for cls_dir in classes:
-        if is_query and cls_dir.name == "negative_control":
-            continue
-
-        for img in collect_images(cls_dir):
-            aid = artifact_key_from_path(img)
-            if aid not in allowed_aids:
-                continue
-
-            cv_img = preprocess_for_opencv(img)
-            dino_img = preprocess_for_dinov2(img)
-
-            if cv_img is None or dino_img is None:
-                continue
-
-            shape_base = compute_shape_features(cv_img, config=base_config)
-            shape_harm = compute_shape_features(cv_img, config=harm_config)
-            shape_point = compute_shape_features(cv_img, config=point_config)
-            dino_f = extract_visual_embedding(dino_img)
-
-            if shape_base is not None and shape_harm is not None and shape_point is not None and dino_f is not None:
-                items.append({
-                    "path": img,
-                    "class": cls_dir.name,
-                    "aid": aid,
-                    "raw_shape_base": shape_base["feature_vector"],
-                    "raw_shape_harm": shape_harm["feature_vector"],
-                    "raw_shape_point": shape_point["feature_vector"],
-                    "dino_vec": dino_f
-                })
-    return items, class_names
-
-
 def evaluate_test_set(data_dir: Path = DEFAULT_DATA_DIR, split_file: Path = DEFAULT_SPLIT_FILE):
     print("=== Running FINAL HELD-OUT Evaluation ===")
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    with open(split_file, "r", encoding="utf-8") as f:
-        manifest = json.load(f)
+    # 1. Load Data Splits
+    dev_aids, test_aids = load_split_manifest(split_file)
 
-    dev_aids = set(manifest["partitions"]["dev"])
-    test_aids = set(manifest["partitions"]["test"])
+    feature_configs = {
+        "raw_shape_base": {
+            "harmonics": False, "peaks": False, "pointedness": False,
+            "radius": False, "central_structure": False
+        },
+        "raw_shape_harm": {
+            "harmonics": True, "peaks": False, "pointedness": False,
+            "radius": False, "central_structure": False
+        },
+        "raw_shape_point": {
+            "harmonics": False, "peaks": False, "pointedness": True,
+            "radius": False, "central_structure": False
+        }
+    }
 
-    assert dev_aids.isdisjoint(test_aids), "Error: Data leakage detected between dev and test sets!"
+    # 2. Extract and Scale Features
+    print("\\nExtracting features for the Gallery (Dev) split...")
+    gallery_items, class_names = extract_evaluation_features(data_dir, dev_aids, feature_configs)
 
-    gallery_items, class_names = extract_features_for_split(data_dir, dev_aids, "Gallery (Dev)", is_query=False)
-    query_items, _ = extract_features_for_split(data_dir, test_aids, "Queries (Test)", is_query=True)
+    print("Extracting features for the Queries (Test) split...")
+    query_items, _ = extract_evaluation_features(data_dir, test_aids, feature_configs,
+                                                 exclude_classes={"negative_control"})
 
     print(f"\\nGallery (Dev corpus):  {len(gallery_items)} crops")
     print(f"Queries (Test set):    {len(query_items)} crops\\n")
@@ -103,50 +56,30 @@ def evaluate_test_set(data_dir: Path = DEFAULT_DATA_DIR, split_file: Path = DEFA
     if not gallery_items or not query_items:
         raise RuntimeError("Missing data for gallery or queries.")
 
-    scaler_base = StandardScaler()
-    scaler_harm = StandardScaler()
-    scaler_point = StandardScaler()
+    gallery_scaled, queries_scaled = scale_evaluation_features(
+        gallery_items, query_items, list(feature_configs.keys())
+    )
 
-    scaler_base.fit([item["raw_shape_base"] for item in gallery_items])
-    scaler_harm.fit([item["raw_shape_harm"] for item in gallery_items])
-    scaler_point.fit([item["raw_shape_point"] for item in gallery_items])
-
-    def scale_items(items):
-        scaled = []
-        for item in items:
-            scaled.append({
-                "class": item["class"],
-                "path": str(item["path"]),
-                "aid": item["aid"],
-                "shape_base": scaler_base.transform([item["raw_shape_base"]])[0],
-                "shape_harm": scaler_harm.transform([item["raw_shape_harm"]])[0],
-                "shape_point": scaler_point.transform([item["raw_shape_point"]])[0],
-                "dino_vec": item["dino_vec"]
-            })
-        return scaled
-
-    gallery_scaled = scale_items(gallery_items)
-    queries_scaled = scale_items(query_items)
-
+    # 3. Models Setup
     models = {
         "dinov2_only": {
             "title": "Baseline (DINOv2 Only, Maj K=3)",
-            "alpha": 0.0, "strategy": "majority", "k": 3, "shape_key": "shape_base",
+            "alpha": 0.0, "strategy": "majority", "k": 3, "shape_key": "raw_shape_base",
             "y_pred": [], "h1": [], "h5": [], "mrr": []
         },
         "hybrid_base": {
             "title": "Baseline Hybrid (Base Shape, W K=7)",
-            "alpha": 0.25, "strategy": "weighted", "k": 7, "shape_key": "shape_base",
+            "alpha": 0.25, "strategy": "weighted", "k": 7, "shape_key": "raw_shape_base",
             "y_pred": [], "h1": [], "h5": [], "mrr": []
         },
         "hybrid_harmonics": {
             "title": "Hybrid (Harmonics, W K=7)",
-            "alpha": 0.25, "strategy": "weighted", "k": 7, "shape_key": "shape_harm",
+            "alpha": 0.25, "strategy": "weighted", "k": 7, "shape_key": "raw_shape_harm",
             "y_pred": [], "h1": [], "h5": [], "mrr": []
         },
         "hybrid_pointedness": {
             "title": "Hybrid (Pointedness, Top-1)",
-            "alpha": 0.25, "strategy": "top1", "k": 1, "shape_key": "shape_point",
+            "alpha": 0.25, "strategy": "top1", "k": 1, "shape_key": "raw_shape_point",
             "y_pred": [], "h1": [], "h5": [], "mrr": []
         }
     }
@@ -154,40 +87,24 @@ def evaluate_test_set(data_dir: Path = DEFAULT_DATA_DIR, split_file: Path = DEFA
     y_true = []
     hybrid_predictions_log = []
 
+    # 4. Evaluation Loop
     for q in queries_scaled:
         y_true.append(q["class"])
 
         for mode, m_data in models.items():
-            alpha = m_data["alpha"]
-            strat = m_data["strategy"]
-            k_val = m_data["k"]
-            shape_key = m_data["shape_key"]
-
-            scores = []
-
-            for doc in gallery_scaled:
-                s_shape = compute_shape_similarity(q[shape_key], doc[shape_key])
-                s_embed = compute_embedding_similarity(q["dino_vec"], doc["dino_vec"])
-                s_combined = (alpha * s_shape) + ((1.0 - alpha) * s_embed)
-
-                scores.append({
-                    "class": doc["class"],
-                    "path": doc["path"],
-                    "aid": doc["aid"],
-                    "s_hybrid": s_combined
-                })
-
-            sorted_scores = sorted(scores, key=lambda x: x["s_hybrid"], reverse=True)
+            sorted_scores = rank_candidates(q, gallery_scaled, m_data["alpha"], m_data["shape_key"])
             h1, h5, mrr = calculate_metrics(sorted_scores, q["class"])
 
             m_data["h1"].append(h1)
             m_data["h5"].append(h5)
             m_data["mrr"].append(mrr)
 
-            predicted_class = predict_class(sorted_scores, k=k_val, strategy=strat, score_key="s_hybrid", dedup=True)
+            predicted_class = predict_class(
+                sorted_scores, k=m_data["k"], strategy=m_data["strategy"],
+                score_key="s_hybrid", dedup=True
+            )
             m_data["y_pred"].append(predicted_class)
 
-            # Retain prediction logging for our primary selected hybrid (Harmonics, W K=7)
             if mode == "hybrid_harmonics":
                 deduped = deduplicate_rankings(sorted_scores)
                 top_neighbors = [{"aid": n["aid"], "class": n["class"], "sim": float(n["s_hybrid"])} for n in
@@ -200,16 +117,12 @@ def evaluate_test_set(data_dir: Path = DEFAULT_DATA_DIR, split_file: Path = DEFA
                     "neighbors": top_neighbors
                 })
 
-    # Calculate final metrics exclusively for the 6 target classes
+    # 5. Calculate final metrics exclusively for the 6 target classes
     target_classes = [c for c in class_names if c != "negative_control"]
 
     for mode, m_data in models.items():
         report = classification_report(
-            y_true,
-            m_data["y_pred"],
-            labels=target_classes,
-            output_dict=True,
-            zero_division=0
+            y_true, m_data["y_pred"], labels=target_classes, output_dict=True, zero_division=0
         )
         m_data["macro_f1"] = report["macro avg"]["f1-score"]
         m_data["acc"] = accuracy_score(y_true, m_data["y_pred"])
@@ -246,9 +159,7 @@ def evaluate_test_set(data_dir: Path = DEFAULT_DATA_DIR, split_file: Path = DEFA
     fig.savefig(RESULTS_DIR / "test_confusion_matrix.png", dpi=300)
     plt.close(fig)
 
-    final_metrics = {
-        "metrics": {}
-    }
+    final_metrics = {"metrics": {}}
     for mode_name in ["dinov2_only", "hybrid_base", "hybrid_harmonics", "hybrid_pointedness"]:
         final_metrics["metrics"][mode_name] = {
             "hit_at_1": float(np.mean(models[mode_name]["h1"])),
