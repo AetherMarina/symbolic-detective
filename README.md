@@ -109,6 +109,13 @@ symbolic-detective/
 │   │   ├── voting_error_analysis.json
 │   │   └── figures/
 │   │
+│   ├──  v0.2_test_final/            # Held-out test evaluation
+│   │   ├── evaluation.md
+│   │   ├── test_confusion_matrix.png
+│   │   ├── test_error_analysis.json
+│   │   ├── test_metrics.json
+│   │   └── test_predictions.json
+│   │
 │   └── v0.2_dev/                    # Feature-improvement experiments
 │       ├── exp01_harmonics/
 │       ├── exp02_peaks/
@@ -144,6 +151,7 @@ symbolic-detective/
 │       ├── experiment_configs.py
 │       ├── evaluation_metrics.py    # Hit@K, MRR, confusion matrix
 │       ├── evaluate.py              # Stratified artifact-grouped retrieval benchmark
+│       ├── evaluate_test.py         # Final held-out evaluation
 │       └── evaluate_robustness.py   # Synthetic degradation experiments
 │
 ├── ui/
@@ -273,6 +281,9 @@ python scripts/run_experiments.py --all --mode all
 
 # Robustness evaluation
 python -m symbolic_detective.evaluate_robustness --data-dir data/crops/
+
+# Held-out test evaluation
+python -m symbolic_detective.evaluation.evaluate_test
 ```
 
 Results are saved under `results/v0.2_dev_baseline/` and `results/v0.2_dev/<experiment_name>/`.
@@ -325,7 +336,7 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 - [x] Analyze incorrect top-1 retrievals and class confusion on the development set
 - [x] Investigate improved geometric representations (harmonics, peaks, pointedness, radius)
 - [x] Select and freeze the final configuration using development-set results
-- [ ] Run final evaluation on the untouched held-out test set
+- [x] Run final evaluation on the untouched held-out test set
 - [ ] Evaluate negative-query rejection
 - [ ] Extend the Streamlit UI to visualize motif discrimination, comparing top-ranked candidates, geometric feature differences, and similarity-score contributions to explain why one motif class is preferred over another.
 - [ ] Publish v0.2 evaluation results
