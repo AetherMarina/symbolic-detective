@@ -38,6 +38,7 @@ Weighted class voting
        v         v
   Known class   unknown
 ```
+The diagram illustrates independent confidence-based rejection. Combined rejection strategies using two confidence signals are described in Section 4.
 
 The gallery contains only known motif classes. Negative controls are treated as unknown queries rather than gallery candidates.
 
@@ -81,14 +82,73 @@ For example, a confidence of 0.80 means the winning class receives 80% of the to
 
 Neither score is a calibrated probability.
 
-## 4. Threshold Calibration
+## 4. Threshold Calibration and Rejection Strategies
 
-A rejection threshold determines the minimum confidence required to accept a known-class prediction.
+A rejection threshold defines the minimum confidence required to accept a known-class prediction.
 
-- **Development:** Evaluate known and negative-control queries using artifact-disjoint galleries, then select thresholds without accessing held-out test data.
-- **Held-out test:** Apply the frozen thresholds to known and negative-control queries without further tuning.
+### Experiment 1 - Independent Threshold Calibration
 
-The two confidence methods are evaluated independently.
+The two confidence signals are initially calibrated independently:
+
+- **Maximum Similarity:** Reject if \(C_{\mathrm{sim}} < t_{\mathrm{sim}}\).
+- **Weighted Vote Confidence:** Reject if \(C_{\mathrm{vote}} < t_{\mathrm{vote}}\).
+
+For each method, the optimal threshold is selected on development data by maximizing **Balanced Accuracy**.
+
+$$
+t^* = \arg\max_t \mathrm{BalancedAccuracy}(t)
+$$
+
+### Experiment 1 - Combined Confidence Rejection
+
+The two confidence signals can also be combined to make a single accept/reject decision.
+
+Two strategies are evaluated:
+
+| Strategy | Rejection Rule | Interpretation |
+|---|---|---|
+| **REJECT_OR** | Reject if either confidence score falls below its threshold | Stricter rejection |
+| **REJECT_AND** | Reject only if both confidence scores fall below their thresholds | More permissive rejection |
+
+**REJECT_OR**
+
+$$
+\mathrm{Reject} =
+(C_{\mathrm{sim}} < t_{\mathrm{sim}})
+\lor
+(C_{\mathrm{vote}} < t_{\mathrm{vote}})
+$$
+
+**REJECT_AND**
+
+$$
+\mathrm{Reject} =
+(C_{\mathrm{sim}} < t_{\mathrm{sim}})
+\land
+(C_{\mathrm{vote}} < t_{\mathrm{vote}})
+$$
+
+### Joint Threshold Optimization
+
+Unlike independent calibration, combined rejection requires finding an optimal **pair of thresholds**.
+
+For each strategy, different pairs \((t_{\mathrm{sim}},t_{\mathrm{vote}})\) are evaluated on development data.
+
+$$
+(t_{\mathrm{sim}}^*,t_{\mathrm{vote}}^*)
+=
+\arg\max_{t_{\mathrm{sim}},t_{\mathrm{vote}}}
+\mathrm{BalancedAccuracy}
+$$
+
+The optimization is performed separately for REJECT_OR and REJECT_AND, so each strategy may select a different threshold pair.
+
+### Evaluation Protocol
+
+- **Development:** Generate confidence scores using artifact-disjoint folds, calibrate independent and combined thresholds, and compare strategies.
+- **Held-out evaluation:** Apply the selected strategy and frozen thresholds without further tuning.
+
+Combined strategies are exploratory extensions of the original v0.2 rejection baseline. Since the original held-out results have already been examined, improvements from a newly selected strategy would require fresh independent evaluation to establish generalization.
 
 ## 5. Evaluation Metrics
 

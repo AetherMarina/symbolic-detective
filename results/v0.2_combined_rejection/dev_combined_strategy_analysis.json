@@ -1,0 +1,32 @@
+{
+  "1D_independent_calibration": {
+    "max_sim": {
+      "threshold": 0.6977038974227299,
+      "calibration_trr": 0.88,
+      "calibration_frr": 0.32067510548523204,
+      "calibration_balanced_accuracy": 0.779662447257384
+    },
+    "weight_conf": {
+      "threshold": 0.5670598525609368,
+      "calibration_trr": 0.72,
+      "calibration_frr": 0.3966244725738397,
+      "calibration_balanced_accuracy": 0.6616877637130801
+    }
+  },
+  "2D_joint_calibration": {
+    "reject_or": {
+      "threshold_max_sim": 0.6692884661860287,
+      "threshold_weight_conf": 0.30907346875049524,
+      "calibration_trr": 0.78,
+      "calibration_frr": 0.21097046413502107,
+      "calibration_balanced_accuracy": 0.7845147679324895
+    },
+    "reject_and": {
+      "threshold_max_sim": 0.6977038974227299,
+      "threshold_weight_conf": 0.8565443821612839,
+      "calibration_trr": 0.88,
+      "calibration_frr": 0.2784810126582279,
+      "calibration_balanced_accuracy": 0.8007594936708861
+    }
+  }
+}
