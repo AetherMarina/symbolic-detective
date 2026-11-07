@@ -380,7 +380,8 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 - [x] Investigate improved geometric representations (harmonics, peaks, pointedness, radius)
 - [x] Select and freeze the final configuration using development-set results
 - [x] Run final evaluation on the untouched held-out test set
-- [ ] Evaluate negative-query rejection
+- [x] Evaluate negative-query rejection
+- [x] Run robustness experiments
 - [ ] Extend the Streamlit UI to visualize motif discrimination, comparing top-ranked candidates, geometric feature differences, and similarity-score contributions to explain why one motif class is preferred over another.
 - [ ] Publish v0.2 evaluation results
 

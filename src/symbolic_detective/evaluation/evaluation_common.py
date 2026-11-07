@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set, Tuple, Any
 from sklearn.preprocessing import StandardScaler
 
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
@@ -90,8 +90,8 @@ def extract_evaluation_features(data_dir: Path, allowed_aids: Set[str], feature_
     return items, class_names
 
 
-def scale_evaluation_features(corpus_items: List[dict], query_items: List[dict],
-                              feature_keys: List[str]) -> Tuple[List[dict], List[dict]]:
+def scale_evaluation_features(corpus_items: List[dict], query_items: List[dict], feature_keys: List[str],
+                              return_scalers: bool = False) -> Any:
     scalers = {key: StandardScaler() for key in feature_keys}
 
     for key in feature_keys:
@@ -107,17 +107,26 @@ def scale_evaluation_features(corpus_items: List[dict], query_items: List[dict],
                 "dino_vec": item["dino_vec"]
             }
             for key in feature_keys:
-                s_item[key] = scalers[key].transform([item[key]])[0]
+                if key in item and item[key] is not None:
+                    s_item[key] = scalers[key].transform([item[key]])[0]
+                else:
+                    s_item[key] = None
             scaled.append(s_item)
         return scaled
 
+    if return_scalers:
+        return apply_scaling(corpus_items), apply_scaling(query_items), scalers
     return apply_scaling(corpus_items), apply_scaling(query_items)
 
 
 def rank_candidates(query: dict, corpus: List[dict], alpha: float, shape_key: str) -> List[dict]:
     scores = []
     for doc in corpus:
-        s_shape = compute_shape_similarity(query[shape_key], doc[shape_key])
+        s_shape = 0.0
+        # If alpha is 0.0, we only care about embedding similarity (shape might be missing in robust testing)
+        if alpha > 0.0:
+            s_shape = compute_shape_similarity(query[shape_key], doc[shape_key])
+
         s_embed = compute_embedding_similarity(query["dino_vec"], doc["dino_vec"])
         s_combined = (alpha * s_shape) + ((1.0 - alpha) * s_embed)
 

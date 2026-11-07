@@ -112,3 +112,12 @@ The results support evaluating retrieval ranking and motif classification as dis
 The frozen Harmonics configuration is retained as the evaluated **v0.2 classification baseline**. Held-out results will not be used for retrospective parameter tuning.
 
 Future work should focus on negative query rejection and qualitative analysis of motif confusion patterns, using a new evaluation protocol for subsequent model improvements.
+
+## 5. Robustness Evaluation
+## Robustness Evaluation
+
+The frozen v0.2 retrieval and classification configurations were additionally evaluated under synthetic image degradations using artifact-disjoint 5-fold cross-validation on the development split.
+
+The Hybrid approach showed better clean-image classification performance but greater sensitivity to degradation, particularly strong blur.
+
+See [v0.2 Robustness Evaluation](../v0.2_robustness/evaluation.md) for methodology, results, and limitations.
