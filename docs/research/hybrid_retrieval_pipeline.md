@@ -156,3 +156,14 @@ Detailed splits, settings, and measured results belong in the corresponding expe
 The original OpenCV baseline does **not** directly count contour peaks or measure individual tip widths. The separate [`Geometric Feature Ablations`](geometric_feature_ablations.md) describes the **v0.2 geometric ablation experiments** exploring harmonics, peaks, pointedness, radius relationships, and central structure. Those experimental features should not be confused with the original 26D representation.
 
 **Implementation references:** `shape_features.py` (geometric extraction), `embeddings.py` (DINOv2 extraction), and `hybrid_search.py` (retrieval integration, as described in the project notes). The source code remains authoritative for current parameters and behavior.
+
+## 8. v0.2 — Retrieval and Classification Integration
+
+The v0.2 prototype separates **similarity search** from **classification and rejection**, using two complementary modules:
+
+- **`hybrid_search.py` (`MotifIndex`):** Builds and caches feature indices, computes hybrid similarity, and ranks visually similar motifs. It supports both retrieval (Pointedness, α=0.25) and classification (Harmonics, α=0.25) configurations.
+- **`motif_classifier.py`:** Uses the classification index to predict motif classes through similarity-weighted KNN (K=7, artifact-deduplicated), computes confidence scores, and applies the calibrated `max_sim` threshold to reject unknown queries.
+
+The Streamlit interface combines both pipelines: **classification determines the predicted class or `unknown`, while retrieval independently displays visually similar motifs**, regardless of the classification outcome.
+
+See the [v0.2 Final Summary](../../results/v0.2_final_summary.md) for the complete system configuration and evaluation findings.

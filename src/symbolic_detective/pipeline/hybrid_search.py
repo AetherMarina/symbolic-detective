@@ -5,28 +5,36 @@ with every indexed image using geometric and DINOv2 similarity,
 and returns the highest-scoring matches.
 """
 import hashlib
+import json
 import numpy as np
 from pathlib import Path
 from typing import List, Dict, Any, Optional
+from sklearn.preprocessing import StandardScaler
 
 from symbolic_detective.pipeline.preprocess import preprocess_for_opencv, preprocess_for_dinov2
 from symbolic_detective.pipeline.shape_features import compute_shape_features, compute_shape_similarity
 from symbolic_detective.pipeline.embeddings import MODEL_NAME, extract_visual_embedding, compute_embedding_similarity
-from symbolic_detective.utils.image_files import collect_images
+from symbolic_detective.utils.image_files import artifact_key_from_path
 
-INDEX_VERSION = "1"
-FEATURE_VERSION = "geometry-v02-exp01"
+INDEX_VERSION = "4"
+FEATURE_VERSION = "geometry-v02"
+
+
+def file_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class MotifIndex:
-    def __init__(self):
+    def __init__(self, feature_config: Optional[Dict[str, Any]] = None):
         self.corpus: List[Dict[str, Any]] = []
         self.shape_mean: Optional[np.ndarray] = None
-        self.shape_std: Optional[np.ndarray] = None
+        self.shape_scale: Optional[np.ndarray] = None
         self.index_version = INDEX_VERSION
         self.feature_version = FEATURE_VERSION
         self.dino_model = MODEL_NAME
         self.corpus_fingerprint = ""
+        # Store configuration to dictate which shape features to compute
+        self.feature_config = feature_config
 
     @staticmethod
     def compute_fingerprint(image_paths: List[Path]) -> str:
@@ -61,12 +69,15 @@ class MotifIndex:
             if cv_img is None or dino_img is None:
                 continue
 
-            shape_feats = compute_shape_features(cv_img)
+            # Pass the configured feature set for extraction
+            shape_feats = compute_shape_features(cv_img, config=self.feature_config)
             dino_feats = extract_visual_embedding(dino_img)
 
             if shape_feats is not None and dino_feats is not None:
                 raw_corpus.append({
                     "path": path,
+                    "class": path.parent.name,
+                    "aid": artifact_key_from_path(path),
                     "raw_shape": shape_feats["feature_vector"],
                     "dino_vec": dino_feats
                 })
@@ -74,15 +85,23 @@ class MotifIndex:
         if not raw_corpus:
             raise ValueError("No valid features could be extracted to build the index.")
 
+        # STRICT PARITY: Use sklearn.preprocessing.StandardScaler to ensure
+        # scaling math identically matches the v0.2 calibration baseline.
         shape_matrix = np.array([item["raw_shape"] for item in raw_corpus], dtype=np.float32)
-        self.shape_mean = shape_matrix.mean(axis=0)
-        self.shape_std = shape_matrix.std(axis=0) + 1e-8
+        scaler = StandardScaler()
+        scaler.fit(shape_matrix)
+
+        self.shape_mean = scaler.mean_.astype(np.float32)
+        # scale_ holds the std deviation, natively handling zero-variance features safely
+        self.shape_scale = scaler.scale_.astype(np.float32)
 
         self.corpus = []
         for item in raw_corpus:
-            scaled_shape = (item["raw_shape"] - self.shape_mean) / self.shape_std
+            scaled_shape = (item["raw_shape"] - self.shape_mean) / self.shape_scale
             self.corpus.append({
                 "path": item["path"],
+                "class": item["class"],
+                "aid": item["aid"],
                 "shape_vec": scaled_shape,
                 "dino_vec": item["dino_vec"]
             })
@@ -93,21 +112,29 @@ class MotifIndex:
             raise RuntimeError("Cannot save an empty index.")
 
         paths = np.array([str(item["path"]) for item in self.corpus])
+        classes = np.array([item.get("class", "unknown") for item in self.corpus])
+        aids = np.array([item.get("aid", "unknown") for item in self.corpus])
         shape_vecs = np.array([item["shape_vec"] for item in self.corpus], dtype=np.float32)
         dino_vecs = np.array([item["dino_vec"] for item in self.corpus], dtype=np.float32)
 
         filepath.parent.mkdir(parents=True, exist_ok=True)
+        # Store configuration json directly in the archive if one was set
+        conf_str = np.array([json.dumps(self.feature_config)] if self.feature_config else ["{}"])
+
         np.savez_compressed(
             filepath,
             paths=paths,
+            classes=classes,
+            aids=aids,
             shape_vecs=shape_vecs,
             dino_vecs=dino_vecs,
             shape_mean=self.shape_mean,
-            shape_std=self.shape_std,
+            shape_scale=self.shape_scale,
             index_version=np.array([self.index_version]),
             feature_version=np.array([self.feature_version]),
             dino_model=np.array([self.dino_model]),
-            corpus_fingerprint=np.array([self.corpus_fingerprint])
+            corpus_fingerprint=np.array([self.corpus_fingerprint]),
+            feature_config=conf_str
         )
 
     def load(self, filepath: Path, expected_fingerprint: Optional[str] = None) -> None:
@@ -117,9 +144,6 @@ class MotifIndex:
             raise FileNotFoundError(f"Index file not found: {filepath}")
 
         with np.load(filepath, allow_pickle=False) as data:
-            self.shape_mean = data["shape_mean"].astype(np.float32)
-            self.shape_std = data["shape_std"].astype(np.float32)
-
             if data["index_version"][0] != self.index_version:
                 raise RuntimeError(f"Incompatible index version: {data['index_version'][0]} != {self.index_version}")
 
@@ -133,12 +157,29 @@ class MotifIndex:
                 if "corpus_fingerprint" not in data or data["corpus_fingerprint"][0] != expected_fingerprint:
                     raise RuntimeError("Corpus fingerprint mismatch. Collection has been modified.")
 
+            # Stricter configuration check
+            if self.feature_config:
+                if "feature_config" not in data:
+                    raise RuntimeError("Cached index is missing feature_config, but a specific config was requested.")
+                loaded_conf = json.loads(data["feature_config"][0])
+                if not loaded_conf or self.feature_config != loaded_conf:
+                    raise RuntimeError("Config mismatch: The requested geometric features differ from the cached index.")
+
+            self.shape_mean = data["shape_mean"].astype(np.float32)
+            self.shape_scale = data["shape_scale"].astype(np.float32)
             self.corpus_fingerprint = data.get("corpus_fingerprint", [""])[0]
 
             self.corpus = []
-            for p, s_vec, d_vec in zip(data['paths'], data['shape_vecs'], data['dino_vecs']):
+
+            # Safe extraction
+            class_arr = data.get('classes', np.array(["unknown"] * len(data['paths'])))
+            aid_arr = data.get('aids', np.array(["unknown"] * len(data['paths'])))
+
+            for p, c, a, s_vec, d_vec in zip(data['paths'], class_arr, aid_arr, data['shape_vecs'], data['dino_vecs']):
                 self.corpus.append({
                     "path": Path(p),
+                    "class": c,
+                    "aid": a,
                     "shape_vec": s_vec,
                     "dino_vec": d_vec
                 })
@@ -154,7 +195,7 @@ class MotifIndex:
 
         if filepath.exists():
             try:
-                self.load(filepath, expected_fingerprint=current_fingerprint,)
+                self.load(filepath, expected_fingerprint=current_fingerprint)
                 return False
             except (RuntimeError, KeyError, ValueError, OSError):
                 pass
@@ -163,10 +204,11 @@ class MotifIndex:
         self.save(filepath)
         return True
 
-    def search(self, query_path: Path, alpha: float = 0.5, top_k: int = 5) -> List[Dict[str, Any]]:
+    def search(self, query_path: Path, alpha: float = 0.5, top_k: Optional[int] = None) -> List[Dict[str, Any]]:
         """
-        Executes a Top-K retrieval. Reuses cached features if the query is
-        already in the index, and excludes the query itself from the results.
+        Executes a retrieval. Reuses cached features if the query is
+        already in the index, and excludes the query itself and identical files from the results.
+        If top_k is None, returns ALL ranked candidates.
         """
         if not 0.0 <= alpha <= 1.0:
             raise ValueError("Alpha must be between 0.0 and 1.0.")
@@ -178,6 +220,8 @@ class MotifIndex:
 
         # 1. Check if query is already indexed (Feature Reuse)
         resolved_query_path = query_path.resolve()
+        query_hash = file_hash(query_path)
+
         for item in self.corpus:
             if item["path"].resolve() == resolved_query_path:
                 q_shape_scaled = item["shape_vec"]
@@ -192,20 +236,23 @@ class MotifIndex:
             if cv_img is None or dino_img is None:
                 raise ValueError(f"Failed to load query image: {query_path}")
 
-            q_shape = compute_shape_features(cv_img)
+            # Extract features according to the specific configuration passed at initialization
+            q_shape = compute_shape_features(cv_img, config=self.feature_config)
             q_embed_raw = extract_visual_embedding(dino_img)
 
             if q_shape is None or q_embed_raw is None:
                 raise ValueError("Failed to extract complete feature set from the query image.")
 
-            q_shape_scaled = (q_shape["feature_vector"] - self.shape_mean) / self.shape_std
+            q_shape_scaled = (q_shape["feature_vector"] - self.shape_mean) / self.shape_scale
             q_embed = q_embed_raw
 
         # 3. Compute similarities
         results = []
         for item in self.corpus:
-            # Exclude self-matches
+            # Exclude self-matches (path or content hash match)
             if item["path"].resolve() == resolved_query_path:
+                continue
+            if file_hash(item["path"]) == query_hash:
                 continue
 
             s_shape = compute_shape_similarity(q_shape_scaled, item["shape_vec"])
@@ -214,42 +261,14 @@ class MotifIndex:
 
             results.append({
                 "path": item["path"],
+                "class": item.get("class", "unknown"),
+                "aid": item.get("aid", "unknown"),
                 "s_shape": s_shape,
                 "s_embed": s_embed,
                 "s_hybrid": s_hybrid
             })
 
         results.sort(key=lambda x: x["s_hybrid"], reverse=True)
-        return results[:top_k]
-
-
-if __name__ == "__main__":
-    import sys
-
-    if len(sys.argv) < 3:
-        print("Usage: python -m symbolic_detective.pipeline.hybrid_search <query_image> <alpha>")
-        sys.exit(1)
-
-    query = Path(sys.argv[1])
-    alpha_val = float(sys.argv[2])
-
-    crop_dir = Path("data/crops")
-    index_file = Path("data/index.npz")
-    index = MotifIndex()
-
-    # Pre-gather paths to compute the current fingerprint
-    all_crops = collect_images(crop_dir, recursive=True)
-
-    if index_file.exists():
-        rebuilt = index.load_or_build(index_file, all_crops)
-        if rebuilt:
-            print(f"Built and saved index with {len(index.corpus)} motifs.")
-        else:
-            print(f"Loaded cached index with {len(index.corpus)} motifs.")
-
-    print(f"\nSearching for {query.name} (Alpha={alpha_val})...")
-    top_matches = index.search(query, alpha=alpha_val, top_k=5)
-
-    for i, res in enumerate(top_matches, start=1):
-        print(f"{i}. {res['path'].name} | Hybrid: {res['s_hybrid']:.4f} (Shape: {res['s_shape']:.2f},"
-              f" Embed: {res['s_embed']:.2f})")
+        if top_k is not None:
+            return results[:top_k]
+        return results
