@@ -67,10 +67,11 @@ graph TD
 <summary>Expand project structure</summary>
 
 ```text
+
 symbolic-detective/
 ├── data/
-│   ├── raw/                         # Downloaded open-access images
-│   ├── crops/                       # Curated motif crops
+│   ├── raw/                              # Downloaded open-access images
+│   ├── crops/                            # Curated motif crops
 │   │   ├── eight_petal_rosette/
 │   │   ├── eight_pointed_star/
 │   │   ├── five_pointed_star/
@@ -78,29 +79,29 @@ symbolic-detective/
 │   │   ├── rosette_other/
 │   │   ├── six_pointed_star/
 │   │   ├── sunburst/
-│   │   ├── unclassified/            # Excluded from evaluation
-│   │   └── crops.json               # Crop metadata and source references
+│   │   ├── unclassified/                 # Excluded from evaluation
+│   │   └── crops.json                    # Crop metadata and source references
 │   ├── splits/
-│   │   └── v0.2_split.json          # Artifact-grouped 80/20 dev/test split
-│   ├── metadata.json                # Provenance, period, material, museum IDs
-│   └── index.npz                    # Generated local feature index (not committed)
+│   │   └── v0.2_split.json               # Artifact-grouped 80/20 dev/test split
+│   ├── metadata.json                     # Provenance, period, material, museum IDs
+│   └── index.npz                         # Generated feature index (not committed)
 │
 ├── notebooks/
 │   ├── v0.2_class_voting_analysis.ipynb
 │   └── v0.2_geometry_ablation_analysis.ipynb
 │
 ├── results/
-│   ├── v0.1/                        # Frozen v0.1 evaluation
+│   ├── v0.1/                             # Frozen v0.1 evaluation
 │   │   ├── evaluation.md
 │   │   ├── error_analysis.json
 │   │   └── figures/
 │   │
-│   ├── v0.2_baseline/               # Initial baseline on v0.1 dataset
+│   ├── v0.2_baseline/                    # Initial baseline on v0.1 dataset
 │   │   ├── evaluation.md
 │   │   ├── error_analysis.json
 │   │   └── figures/
 │   │
-│   ├──  v0.2_dev_baseline/          # Expanded v0.2 dataset, initial representation
+│   ├── v0.2_dev_baseline/                # Expanded dataset, initial representation
 │   │   ├── evaluation.md
 │   │   ├── retrieval_metrics.json
 │   │   ├── error_analysis.json
@@ -109,59 +110,68 @@ symbolic-detective/
 │   │   ├── voting_error_analysis.json
 │   │   └── figures/
 │   │
-│   ├──  v0.2_test_final/            # Held-out test evaluation
-│   │   ├── evaluation.md
-│   │   ├── test_confusion_matrix.png
-│   │   ├── test_error_analysis.json
-│   │   ├── test_metrics.json
-│   │   └── test_predictions.json
+│   ├── v0.2_dev/                         # Feature-improvement experiments
+│   │   ├── exp01_harmonics/
+│   │   ├── exp02_peaks/
+│   │   ├── exp03_pointedness/
+│   │   ├── exp04_radius/
+│   │   ├── exp05_central_structure/
+│   │   └── phase_b_combinations/         # Feature combinations and final selection
 │   │
-│   └── v0.2_dev/                    # Feature-improvement experiments
-│       ├── exp01_harmonics/
-│       ├── exp02_peaks/
-│       ├── exp03_pointedness/
-│       ├── exp04_radius/
-│       ├── exp05_central_structure/
-│       └── phase_b_combinations/
+│   ├── v0.2_dev_rejection/               # Rejection threshold calibration
+│   │
+│   └── v0.2_test_final/                  # Final held-out test evaluation
+│       ├── evaluation.md
+│       ├── test_confusion_matrix.png
+│       ├── test_error_analysis.json
+│       ├── test_metrics.json
+│       └── test_predictions.json
 │
 ├── scripts/
-│   ├── compare_phase_b.py           # Compare phase_b metrics
-│   ├── create_split.py              # Stratified artifact-grouped splitting
-│   ├── data_stats.py                # Dataset and crop statistics
-│   ├── crops_update.py              # Crop class reassignment
-│   ├── plot_evaluation.py           # Benchmark visualizations
-│   ├── list_restricted_images.py    # Image redistribution checks
-│   └── run_experiments.py           # CLI entry point
+│   ├── compare_phase_b.py                # Compare Phase B metrics
+│   ├── create_split.py                   # Stratified artifact-grouped splitting
+│   ├── data_stats.py                     # Dataset and crop statistics
+│   ├── crops_update.py                   # Crop class reassignment
+│   ├── plot_evaluation.py                # Benchmark visualizations
+│   ├── list_restricted_images.py         # Image redistribution checks
+│   └── run_experiments.py                # Experiment CLI entry point
 │
 ├── src/
 │   └── symbolic_detective/
-│       ├── ingestion/               # Museum API harvesters
-│       │   ├── met_api.py           # Met client
-│       │   ├── europeana_api.py     # Europeana REST API
-│       │   └── cleveland_api.py     # Cleveland Museum of Art API
-│       ├── pipeline/
-│       │   ├── preprocess.py        # Image normalization
-│       │   ├── shape_features.py    # OpenCV geometric descriptors
-│       │   ├── embeddings.py        # DINOv2 embeddings
-│       │   ├── hybrid_search.py     # Similarity scoring and retrieval
-│       │   └── class_voting.py      # Top-1, majority, weighted voting
-│       ├── utils/
-│       │   ├── image_crop.py        # Manual motif cropping utility
-│       │   └── image_files.py       # Image discovery and collection
-│       ├── experiment_configs.py
-│       ├── evaluation_metrics.py    # Hit@K, MRR, confusion matrix
-│       ├── evaluate.py              # Stratified artifact-grouped retrieval benchmark
-│       ├── evaluate_test.py         # Final held-out evaluation
-│       └── evaluate_robustness.py   # Synthetic degradation experiments
+│       ├── evaluation/                   # Evaluation and benchmarking
+│       │   ├── configs.py
+│       │   ├── experiment_configs.py
+│       │   ├── experiment_common.py
+│       │   ├── evaluation_metrics.py     # Hit@K, MRR, confusion matrix
+│       │   ├── evaluate.py               # Artifact-grouped retrieval benchmark
+│       │   ├── evaluate_rejection.py     # Negative-query rejection benchmark
+│       │   ├── evaluate_test.py          # Final held-out evaluation
+│       │   └── evaluate_robustness.py    # Synthetic degradation experiments
+│       │
+│       ├── ingestion/                    # Museum API harvesters
+│       │   ├── met_api.py                # Metropolitan Museum of Art API
+│       │   ├── europeana_api.py          # Europeana REST API
+│       │   └── cleveland_api.py          # Cleveland Museum of Art API
+│       │
+│       ├── pipeline/                     # Feature extraction and retrieval
+│       │   ├── preprocess.py             # Image normalization
+│       │   ├── shape_features.py         # OpenCV geometric descriptors
+│       │   ├── embeddings.py             # DINOv2 embeddings
+│       │   ├── hybrid_search.py          # Similarity scoring and retrieval
+│       │   └── class_voting.py           # Top-1, majority, weighted voting
+│       │
+│       └── utils/
+│           ├── image_crop.py             # Manual motif cropping
+│           └── image_files.py            # Image discovery and collection
 │
 ├── ui/
-│   └── app.py                       # Streamlit exploration dashboard
+│   └── app.py                            # Streamlit exploration dashboard
 │
-├── tests/                           # Automated unit tests
+├── tests/                                # Automated unit tests
 │
 ├── .github/
 │   └── workflows/
-│       └── tests.yml                # Continuous integration
+│       └── tests.yml                     # Continuous integration
 │
 ├── .gitignore
 ├── pyproject.toml
@@ -265,12 +275,17 @@ Harvest candidate artifacts from Europeana REST API:
 python -m symbolic_detective.ingestion.europeana_api --query "star" --limit 2
 ```
 
+
 ### 3. Run Benchmark Evaluation
 
-Evaluate DINOv2, OpenCV, and hybrid retrieval using artifact-grouped 5-fold cross-validation on the **v0.2 development split**. The held-out test set remains reserved for final evaluation.
+Evaluate DINOv2, OpenCV, and hybrid retrieval using artifact-grouped
+5-fold cross-validation on the **v0.2 development split**.
+The held-out test set remains reserved for final evaluation.
+
+#### Development Evaluation
 
 ```bash
-# Original v0.2 baseline
+# Initial v0.2 baseline
 python scripts/run_experiments.py --experiment baseline --mode all
 
 # Individual geometric feature ablation
@@ -281,12 +296,40 @@ python scripts/run_experiments.py --all --mode all
 
 # Robustness evaluation
 python -m symbolic_detective.evaluation.evaluate_robustness --data-dir data/crops/
-
-# Held-out test evaluation
-python -m symbolic_detective.evaluation.evaluate_test
 ```
 
-Results are saved under `results/v0.2_dev_baseline/` and `results/v0.2_dev/<experiment_name>/`.
+Compare feature configurations and select the final representation
+using development results from `phase_b_combinations/`.
+
+#### Rejection Threshold Calibration
+
+Calibrate rejection thresholds using development queries only.
+
+```bash
+python -m symbolic_detective.evaluation.evaluate_rejection --mode calibrate
+```
+
+#### Final Held-Out Evaluation
+
+After selecting the representation and freezing rejection thresholds,
+evaluate on the untouched held-out test split.
+
+```bash
+# Final retrieval and classification evaluation
+python -m symbolic_detective.evaluation.evaluate_test
+
+# Held-out negative-query rejection evaluation (no threshold tuning)
+python -m symbolic_detective.evaluation.evaluate_rejection --mode test
+```
+
+#### Results
+
+Evaluation outputs are organized under:
+- `results/v0.2_dev_baseline/` — Initial development baseline
+- `results/v0.2_dev/` — Feature ablations and final representation selection
+- `results/v0.2_dev_rejection/` — Rejection threshold calibration
+- `results/v0.2_test_final/` — Final held-out evaluation
+
 For methodology details, see [Evaluation Protocol](docs/research/evaluation_protocol.md).
 
 ### 4. Launch the Exploration UI

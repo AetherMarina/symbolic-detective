@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.metrics import classification_report, ConfusionMatrixDisplay, accuracy_score
 import matplotlib.pyplot as plt
 
+from symbolic_detective.evaluation.configs import FEATURE_CONFIGS
 from symbolic_detective.evaluation.evaluation_metrics import build_confusion_matrix, calculate_metrics
 from symbolic_detective.pipeline.class_voting import predict_class, deduplicate_rankings
 from symbolic_detective.evaluation.evaluation_common import (
@@ -27,20 +28,7 @@ def evaluate_test_set(data_dir: Path = DEFAULT_DATA_DIR, split_file: Path = DEFA
     # 1. Load Data Splits
     dev_aids, test_aids = load_split_manifest(split_file)
 
-    feature_configs = {
-        "raw_shape_base": {
-            "harmonics": False, "peaks": False, "pointedness": False,
-            "radius": False, "central_structure": False
-        },
-        "raw_shape_harm": {
-            "harmonics": True, "peaks": False, "pointedness": False,
-            "radius": False, "central_structure": False
-        },
-        "raw_shape_point": {
-            "harmonics": False, "peaks": False, "pointedness": True,
-            "radius": False, "central_structure": False
-        }
-    }
+    feature_configs = FEATURE_CONFIGS
 
     # 2. Extract and Scale Features
     print("\\nExtracting features for the Gallery (Dev) split...")
