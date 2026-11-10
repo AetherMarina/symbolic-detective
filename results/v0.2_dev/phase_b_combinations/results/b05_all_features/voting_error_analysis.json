@@ -1,0 +1,3527 @@
+[
+  {
+    "query": "eight_petal_rosette/322617_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/322617_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/4636_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/4636_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "rosette_other",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_pointed_star/156380_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/156380_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "rosette_other",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_pointed_star/156380_primary_occ_02.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/321628_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/327227_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/327289_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/327289_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/553080_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/553080_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_916110_smm_vm_object_09183_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "rosette_other/244102_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/244102_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/246095_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "rosette_other/324683_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/324683_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/324683_primary_occ_02.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/324683_primary_occ_02.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "six_pointed_star/501876_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "sunburst",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_318_marc_nli_004009657_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_318_marc_nli_004009657_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_318_marc_nli_004023265_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_693_https___ttp_jhn_ngo_ttp_Kossovo_20_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_693_https___ttp_jhn_ngo_ttp_Kossovo_20_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_02.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_02.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/52487_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/52487_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/65107_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 1,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/65107_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 1,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_03.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_03.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_04.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_04.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_pointed_star/322552_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/326858_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_pointed_star/326858_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_pointed_star/europeana_2022502__KAMRA_267099_occ_04.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/europeana_2022502__KAMRA_267099_occ_04.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_865523_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_pointed_star/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_865523_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "five_pointed_star/33779_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/545928_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "five_pointed_star/545928_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_15502_MK_180619_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_15502_MK_180619_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_15502_MK_9813a_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_15502_MK_9813a_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2021802_LIMIS_1145533846_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2021802_LIMIS_1145533846_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2022502__KAMRA_267099_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2022502__KAMRA_267099_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2022502__KAMRA_267099_occ_02.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "rosette_other/241517_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/241517_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/444589_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/444589_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/453400_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/453400_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/456088_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "six_pointed_star/447371_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/682963_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/682963_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/cma_124775_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "six_pointed_star/cma_124775_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "six_pointed_star/cma_167666_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_1091_item_XKYDIUVNVR22HHSQBRXIP6KL6V2MCGO3_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_1091_item_XKYDIUVNVR22HHSQBRXIP6KL6V2MCGO3_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "sunburst",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_2021802_LIMIS_531416699_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_2021802_LIMIS_531416699_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/219357_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/3239_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/3239_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/446122_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/446122_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/559118_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "rosette_other",
+      "majority_k5": "sunburst",
+      "majority_k7": "sunburst",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "sunburst",
+      "weighted_k7": "sunburst"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/241554_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/241554_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/251816_primary_occ_03.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/251816_primary_occ_03.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/449617_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "sunburst",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_pointed_star/324608_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "negative_control",
+      "majority_k7": "negative_control",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "eight_pointed_star/324608_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "negative_control",
+      "majority_k7": "negative_control",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "eight_pointed_star/452791_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/452791_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/58419_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/557847_primary_occ_03.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/6058_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/6058_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/6176_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/6176_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_199_item_36CUH2COXBD6RVAYPOYSGA7BZP66XU7P_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "negative_control",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2048221_europeana_fashion_153903_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_2048221_europeana_fashion_153903_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "rosette_other/242119_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "rosette_other/242119_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/243105_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/243105_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/251816_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/251816_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/325517_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "rosette_other/325517_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "six_pointed_star/317466_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/317466_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/66500_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/66500_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/767_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/767_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_2021802_LIMIS_531426351_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_2021802_LIMIS_531426351_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_283_1216_C_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_283_1216_C_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/197461_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/197461_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/443098_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "negative_control",
+      "majority_k7": "negative_control",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "sunburst/443098_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "negative_control",
+      "majority_k7": "sunburst",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "sunburst"
+    }
+  },
+  {
+    "query": "sunburst/443098_primary_occ_02.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "sunburst",
+      "majority_k5": "negative_control",
+      "majority_k7": "sunburst",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "sunburst"
+    }
+  },
+  {
+    "query": "sunburst/443098_primary_occ_02.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "sunburst",
+      "majority_k5": "negative_control",
+      "majority_k7": "sunburst",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "sunburst"
+    }
+  },
+  {
+    "query": "sunburst/67301_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "sunburst",
+      "majority_k5": "sunburst",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "sunburst",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/322628_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/324766_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/324766_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "sunburst",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "sunburst",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/452208_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/452208_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/658923_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/658923_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/13627_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/13627_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/222169_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/222169_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/29144_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/29160_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/europeana_15502_MK_GR_6984_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/554677_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "negative_control",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_916118_S_TEK_photo_TEKA0152367_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "rosette_other/451103_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/451103_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/451103_primary_occ_02.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/451103_primary_occ_02.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/73374_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "sunburst",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "sunburst",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "rosette_other/73374_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "sunburst",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "sunburst",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "six_pointed_star/252560_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/252560_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/321818_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/321818_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/445111_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/445111_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/453429_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/453429_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/454361_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/456261_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/456261_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/890783_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/890783_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_318_marc_nli_004023266_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_318_marc_nli_004023266_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/188074_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/188074_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/252144_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/252144_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/453435_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "sunburst",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/549461_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/549461_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "sunburst",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/558991_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/558991_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/828453_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "negative_control",
+      "majority_k7": "negative_control",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "sunburst/828453_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "negative_control",
+      "majority_k7": "negative_control",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/13876_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/324329_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "negative_control",
+      "majority_k7": "negative_control",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/324329_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "negative_control",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "negative_control"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/39341_primary_occ_02.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "rosette_other",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/39341_primary_occ_02.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/446106_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/458739_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "eight_petal_rosette/458739_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "eight_pointed_star/322352_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/322352_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/659646_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/659646_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/europeana_15502_MK_R__343_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "eight_pointed_star/europeana_15502_MK_R__343_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/22318_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/22318_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/27901_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/327663_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/327663_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/327663_primary_occ_02.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/327663_primary_occ_02.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/550248_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/550248_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "rosette_other/249749_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/249749_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/322488_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "rosette_other/323973_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "rosette_other/324777_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "rosette_other/324777_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "rosette_other/324778_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "rosette_other/324778_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/445072_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/447257_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/452893_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "negative_control",
+      "majority_k3": "negative_control",
+      "majority_k5": "negative_control",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "negative_control",
+      "weighted_k5": "negative_control",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/56431_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/56431_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_15510_EMK_4_562_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "eight_petal_rosette",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_15510_EMK_4_562_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "eight_petal_rosette",
+      "majority_k5": "eight_petal_rosette",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "eight_petal_rosette",
+      "weighted_k5": "eight_petal_rosette",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_693_https___ttp_jhn_ngo_ttp_Druya_75_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "six_pointed_star/europeana_693_https___ttp_jhn_ngo_ttp_Druya_75_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "five_pointed_star",
+      "majority_k3": "five_pointed_star",
+      "majority_k5": "five_pointed_star",
+      "majority_k7": "five_pointed_star",
+      "weighted_k3": "five_pointed_star",
+      "weighted_k5": "five_pointed_star",
+      "weighted_k7": "five_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/24007_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "sunburst",
+      "majority_k5": "sunburst",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "sunburst",
+      "weighted_k7": "sunburst"
+    }
+  },
+  {
+    "query": "sunburst/24007_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/2911_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/2911_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "eight_pointed_star",
+      "majority_k3": "eight_pointed_star",
+      "majority_k5": "eight_pointed_star",
+      "majority_k7": "eight_pointed_star",
+      "weighted_k3": "eight_pointed_star",
+      "weighted_k5": "eight_pointed_star",
+      "weighted_k7": "eight_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/717580_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "rosette_other",
+      "majority_k3": "rosette_other",
+      "majority_k5": "rosette_other",
+      "majority_k7": "rosette_other",
+      "weighted_k3": "rosette_other",
+      "weighted_k5": "rosette_other",
+      "weighted_k7": "rosette_other"
+    }
+  },
+  {
+    "query": "sunburst/717580_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "sunburst",
+      "majority_k3": "sunburst",
+      "majority_k5": "sunburst",
+      "majority_k7": "eight_petal_rosette",
+      "weighted_k3": "sunburst",
+      "weighted_k5": "sunburst",
+      "weighted_k7": "eight_petal_rosette"
+    }
+  },
+  {
+    "query": "sunburst/europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.0,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  },
+  {
+    "query": "sunburst/europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "alpha": 0.25,
+    "voting_predictions": {
+      "top1_k1": "six_pointed_star",
+      "majority_k3": "six_pointed_star",
+      "majority_k5": "six_pointed_star",
+      "majority_k7": "six_pointed_star",
+      "weighted_k3": "six_pointed_star",
+      "weighted_k5": "six_pointed_star",
+      "weighted_k7": "six_pointed_star"
+    }
+  }
+]

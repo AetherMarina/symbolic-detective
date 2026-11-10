@@ -1,0 +1,1142 @@
+[
+  {
+    "query": "eight_petal_rosette/322617_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/322489_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "rosette_other/322488_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "eight_petal_rosette/4636_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "outcome": "geometry_helped",
+    "dino_top1": "rosette_other/322489_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_petal_rosette/256852_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "eight_petal_rosette/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/cma_124775_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "six_pointed_star/cma_124775_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/156380_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_helped",
+    "dino_top1": "six_pointed_star/445111_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "eight_pointed_star/29160_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/156380_primary_occ_02.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_hurt",
+    "dino_top1": "eight_pointed_star/327682_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "six_pointed_star/445111_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/321628_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_helped",
+    "dino_top1": "five_pointed_star/327663_primary_occ_02.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "eight_pointed_star/323757_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/327227_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_helped",
+    "dino_top1": "five_pointed_star/327663_primary_occ_02.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "eight_pointed_star/europeana_15502_MK_R__55462_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/327289_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/327663_primary_occ_02.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/252560_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/553080_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_hurt",
+    "dino_top1": "five_pointed_star/europeana_15502_MK_9813a_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "eight_pointed_star/europeana_15502_MK_R__343_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "rosette_other/246095_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "outcome": "geometry_hurt",
+    "dino_top1": "rosette_other/243105_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_04.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "rosette_other/324683_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "outcome": "geometry_helped",
+    "dino_top1": "eight_petal_rosette/658923_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "rosette_other/444589_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "rosette_other/324683_primary_occ_02.jpg",
+    "true_class": "rosette_other",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_petal_rosette/13876_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "six_pointed_star/501876_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_hurt",
+    "dino_top1": "six_pointed_star/767_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "sunburst/219357_primary_occ_01.jpg",
+    "hybrid_class": "sunburst"
+  },
+  {
+    "query": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_2022502__KAMRA_267099_occ_02.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "eight_pointed_star/659646_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_2022502__KAMRA_267099_occ_02.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_2022502__KAMRA_267099_occ_02.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_693_https___ttp_jhn_ngo_ttp_Kossovo_20_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_hurt",
+    "dino_top1": "six_pointed_star/cma_167666_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "five_pointed_star/6058_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_89_item_MBCHJBNFV5QNUAKOXSET4ZPUOVETST4K_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "outcome": "geometry_helped",
+    "dino_top1": "eight_pointed_star/58419_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_318_marc_nli_004024483_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/557847_primary_occ_03.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "five_pointed_star/557847_primary_occ_03.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0_occ_02.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/557847_primary_occ_03.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "five_pointed_star/557711_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "sunburst/248299_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 1,
+    "outcome": "geometry_hurt",
+    "dino_top1": "sunburst/21949_primary_occ_01.jpg",
+    "dino_class": "sunburst",
+    "hybrid_top1": "negative_control/247177_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "sunburst/52487_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/452208_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/452208_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "sunburst/65107_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 1,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/317466_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "five_pointed_star/560787_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_03.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/322489_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "rosette_other/243105_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_04.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/243105_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "rosette_other/243105_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "eight_pointed_star/322552_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "outcome": "geometry_hurt",
+    "dino_top1": "eight_pointed_star/326984_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "five_pointed_star/553080_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/europeana_2022502__KAMRA_267099_occ_04.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_2022502__KAMRA_267105_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_865523_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/325201_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_petal_rosette/325677_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "five_pointed_star/33779_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/europeana_318_marc_nli_004023266_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_318_marc_nli_004023266_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/545928_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/242119_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "rosette_other/323973_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "five_pointed_star/europeana_15502_MK_180619_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/453429_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "eight_pointed_star/653024_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/europeana_2021802_LIMIS_1145533846_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "outcome": "geometry_helped",
+    "dino_top1": "eight_pointed_star/13627_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "five_pointed_star/6176_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/659646_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "six_pointed_star/454361_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "rosette_other/241517_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/241612_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/241735_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "rosette_other/444589_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "outcome": "geometry_helped",
+    "dino_top1": "eight_petal_rosette/325677_primary_occ_02.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "rosette_other/322489_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "rosette_other/453400_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/452208_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "five_pointed_star/6176_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/447371_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "outcome": "geometry_hurt",
+    "dino_top1": "six_pointed_star/66500_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "eight_pointed_star/854569_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/682963_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/653024_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/653024_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/cma_124775_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "six_pointed_star/cma_167666_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "outcome": "geometry_helped",
+    "dino_top1": "five_pointed_star/europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_317_2a445e9c_faf8_4fb3_8680_246b8a263625_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_1091_item_XKYDIUVNVR22HHSQBRXIP6KL6V2MCGO3_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 2,
+    "outcome": "geometry_hurt",
+    "dino_top1": "six_pointed_star/europeana_318_marc_nli_004009657_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "sunburst/626023_primary_occ_01.jpg",
+    "hybrid_class": "sunburst"
+  },
+  {
+    "query": "sunburst/219357_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "outcome": "geometry_hurt",
+    "dino_top1": "sunburst/25114_primary_occ_01.jpg",
+    "dino_class": "sunburst",
+    "hybrid_top1": "six_pointed_star/501876_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "sunburst/3239_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/244102_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_petal_rosette/324411_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "sunburst/446122_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 2,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/242119_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "rosette_other/242119_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "eight_petal_rosette/241554_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/241517_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "rosette_other/241517_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "eight_petal_rosette/251816_primary_occ_03.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "sunburst/252144_primary_occ_01.jpg",
+    "dino_class": "sunburst",
+    "hybrid_top1": "rosette_other/322489_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "eight_petal_rosette/449617_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 3,
+    "outcome": "geometry_helped",
+    "dino_top1": "sunburst/446122_primary_occ_01.jpg",
+    "dino_class": "sunburst",
+    "hybrid_top1": "eight_petal_rosette/241734_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "sunburst/188074_primary_occ_01.jpg",
+    "dino_class": "sunburst",
+    "hybrid_top1": "eight_petal_rosette/452208_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "eight_pointed_star/324608_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "negative_control/550051_primary_occ_01.jpg",
+    "dino_class": "negative_control",
+    "hybrid_top1": "negative_control/550051_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "eight_pointed_star/452791_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/454361_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "six_pointed_star/454361_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/58419_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 3,
+    "outcome": "geometry_hurt",
+    "dino_top1": "eight_pointed_star/53505_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/557847_primary_occ_03.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "outcome": "geometry_hurt",
+    "dino_top1": "five_pointed_star/557711_primary_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "eight_pointed_star/327289_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/6058_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/323757_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/325627_primary_occ_02.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/6176_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_02.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/europeana_199_item_36CUH2COXBD6RVAYPOYSGA7BZP66XU7P_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 3,
+    "outcome": "geometry_hurt",
+    "dino_top1": "five_pointed_star/33779_primary_occ_02.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "negative_control/445365_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "rosette_other/243105_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_04.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/europeana_2020738_3DICONS_8311_occ_03.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "rosette_other/251816_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "outcome": "geometry_helped",
+    "dino_top1": "eight_petal_rosette/446104_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "rosette_other/456088_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "rosette_other/325517_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/324411_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/324411_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "six_pointed_star/317466_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/587619_primary_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "five_pointed_star/587619_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/66500_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/13902_primary_occ_02.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/13906_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/767_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_283_1216_C_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "eight_pointed_star/653024_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "sunburst/197461_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_15502_MK_180619_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/454361_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "sunburst/443098_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "negative_control/554786_primary_occ_01.jpg",
+    "dino_class": "negative_control",
+    "hybrid_top1": "negative_control/554786_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "sunburst/443098_primary_occ_02.jpg",
+    "true_class": "sunburst",
+    "fold": 3,
+    "outcome": "both_wrong",
+    "dino_top1": "negative_control/554786_primary_occ_01.jpg",
+    "dino_class": "negative_control",
+    "hybrid_top1": "negative_control/554786_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "eight_petal_rosette/322628_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "outcome": "geometry_helped",
+    "dino_top1": "rosette_other/322613_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_petal_rosette/4636_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "eight_petal_rosette/324766_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/324183_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "negative_control/313626_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "eight_petal_rosette/452208_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/767_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "eight_petal_rosette/658923_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/156380_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/13627_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_2021802_LIMIS_1145533846_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_2021802_LIMIS_1145533846_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/222169_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/66500_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/554677_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 4,
+    "outcome": "geometry_hurt",
+    "dino_top1": "five_pointed_star/544560_primary_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "negative_control/246978_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "five_pointed_star/europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/cma_167666_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/europeana_916118_S_TEK_photo_TEKA0152367_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 4,
+    "outcome": "geometry_hurt",
+    "dino_top1": "five_pointed_star/europeana_2021007__SLS_235_SLS_235_171d_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/682963_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "rosette_other/451103_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/458739_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/448531_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "rosette_other/451103_primary_occ_02.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/458739_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/458739_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "rosette_other/73374_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/252560_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/327667_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/327289_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/321818_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/322396_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/327667_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/445111_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/156380_primary_occ_02.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/156380_primary_occ_02.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/453429_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/europeana_15502_MK_180619_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_15502_MK_180619_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/454361_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "outcome": "geometry_helped",
+    "dino_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/445072_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/456261_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "outcome": "geometry_helped",
+    "dino_top1": "five_pointed_star/europeana_15502_MK_180619_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/454745_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/890783_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 4,
+    "outcome": "geometry_hurt",
+    "dino_top1": "six_pointed_star/454745_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "sunburst/188074_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/186246_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "sunburst/252144_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/251816_primary_occ_03.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_pointed_star/327227_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "sunburst/549461_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "outcome": "geometry_helped",
+    "dino_top1": "rosette_other/325201_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "sunburst/446122_primary_occ_01.jpg",
+    "hybrid_class": "sunburst"
+  },
+  {
+    "query": "sunburst/558991_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/325677_primary_occ_02.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/325677_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "sunburst/828453_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 4,
+    "outcome": "both_wrong",
+    "dino_top1": "negative_control/240349_primary_occ_01.jpg",
+    "dino_class": "negative_control",
+    "hybrid_top1": "negative_control/552291_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "eight_petal_rosette/324329_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/242119_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "negative_control/445365_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "eight_petal_rosette/39341_primary_occ_02.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "outcome": "geometry_hurt",
+    "dino_top1": "eight_petal_rosette/4636_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "rosette_other/243105_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "eight_petal_rosette/458739_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/451103_primary_occ_02.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "negative_control/839896_primary_occ_02.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "eight_pointed_star/322352_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "outcome": "geometry_helped",
+    "dino_top1": "eight_petal_rosette/322617_primary_occ_01.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_pointed_star/156380_primary_occ_02.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/659646_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "outcome": "geometry_hurt",
+    "dino_top1": "eight_pointed_star/13897_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "eight_pointed_star/europeana_15502_MK_R__343_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "negative_control/europeana_15502_MK_25692a_occ_01.jpg",
+    "dino_class": "negative_control",
+    "hybrid_top1": "five_pointed_star/553080_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/22318_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "negative_control/544140_primary_occ_01.jpg",
+    "dino_class": "negative_control",
+    "hybrid_top1": "six_pointed_star/europeana_283_1216_C_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/27901_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "outcome": "geometry_helped",
+    "dino_top1": "eight_pointed_star/854569_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "five_pointed_star/europeana_2022502__KAMRA_267099_occ_02.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/327663_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/327664_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/323997_primary_occ_02.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/327663_primary_occ_02.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/327227_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/327289_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/550248_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/322396_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/327228_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "five_pointed_star/europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/767_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "eight_pointed_star/58419_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "rosette_other/249749_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/325677_primary_occ_02.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "eight_petal_rosette/325677_primary_occ_02.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "rosette_other/322488_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "outcome": "geometry_hurt",
+    "dino_top1": "rosette_other/322489_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_petal_rosette/322617_primary_occ_01.jpg",
+    "hybrid_class": "eight_petal_rosette"
+  },
+  {
+    "query": "rosette_other/323973_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "outcome": "geometry_hurt",
+    "dino_top1": "rosette_other/242119_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "five_pointed_star/545928_primary_occ_01.jpg",
+    "hybrid_class": "five_pointed_star"
+  },
+  {
+    "query": "rosette_other/324777_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/326858_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/326858_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "rosette_other/324778_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_pointed_star/326849_primary_occ_01.jpg",
+    "dino_class": "eight_pointed_star",
+    "hybrid_top1": "eight_pointed_star/326858_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/447257_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "outcome": "geometry_helped",
+    "dino_top1": "negative_control/544140_primary_occ_01.jpg",
+    "dino_class": "negative_control",
+    "hybrid_top1": "six_pointed_star/454745_primary_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/452893_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "outcome": "geometry_hurt",
+    "dino_top1": "six_pointed_star/447371_primary_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "negative_control/544140_primary_occ_01.jpg",
+    "hybrid_class": "negative_control"
+  },
+  {
+    "query": "six_pointed_star/56431_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "five_pointed_star/557847_primary_occ_03.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "eight_pointed_star/europeana_15502_MK_GR_6984_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "six_pointed_star/europeana_15510_EMK_4_562_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "eight_petal_rosette/454609_primary_occ_02.jpg",
+    "dino_class": "eight_petal_rosette",
+    "hybrid_top1": "rosette_other/243105_primary_occ_01.jpg",
+    "hybrid_class": "rosette_other"
+  },
+  {
+    "query": "six_pointed_star/europeana_693_https___ttp_jhn_ngo_ttp_Druya_75_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "fold": 5,
+    "outcome": "geometry_helped",
+    "dino_top1": "five_pointed_star/europeana_2021007__SLS_235_SLS_235_171d_occ_01.jpg",
+    "dino_class": "five_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_318_marc_nli_004023265_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  },
+  {
+    "query": "sunburst/24007_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/325517_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_pointed_star/29160_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "sunburst/2911_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "rosette_other/324609_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "eight_pointed_star/29143_primary_occ_01.jpg",
+    "hybrid_class": "eight_pointed_star"
+  },
+  {
+    "query": "sunburst/717580_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "outcome": "geometry_helped",
+    "dino_top1": "rosette_other/322615_primary_occ_01.jpg",
+    "dino_class": "rosette_other",
+    "hybrid_top1": "sunburst/252144_primary_occ_01.jpg",
+    "hybrid_class": "sunburst"
+  },
+  {
+    "query": "sunburst/europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859_occ_01.jpg",
+    "true_class": "sunburst",
+    "fold": 5,
+    "outcome": "both_wrong",
+    "dino_top1": "six_pointed_star/europeana_2021802_LIMIS_531426351_occ_01.jpg",
+    "dino_class": "six_pointed_star",
+    "hybrid_top1": "six_pointed_star/europeana_2021802_LIMIS_531426351_occ_01.jpg",
+    "hybrid_class": "six_pointed_star"
+  }
+]

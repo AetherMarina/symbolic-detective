@@ -1,0 +1,14 @@
+{
+  "max_sim": {
+    "threshold": 0.6977038974227299,
+    "calibration_trr": 0.88,
+    "calibration_frr": 0.32067510548523204,
+    "calibration_balanced_accuracy": 0.779662447257384
+  },
+  "weight_conf": {
+    "threshold": 0.5670598525609368,
+    "calibration_trr": 0.72,
+    "calibration_frr": 0.3966244725738397,
+    "calibration_balanced_accuracy": 0.6616877637130801
+  }
+}

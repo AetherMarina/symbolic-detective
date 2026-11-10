@@ -1,0 +1,926 @@
+[
+  {
+    "query": "eight_petal_rosette\\253574_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "predicted_class": "rosette_other",
+    "neighbors": [
+      {
+        "aid": "243105",
+        "class": "rosette_other",
+        "sim": 0.7237128714534955
+      },
+      {
+        "aid": "europeana_2020738_3DICONS_8311",
+        "class": "eight_petal_rosette",
+        "sim": 0.7169200230238697
+      },
+      {
+        "aid": "322488",
+        "class": "rosette_other",
+        "sim": 0.7004253074341423
+      },
+      {
+        "aid": "322489",
+        "class": "rosette_other",
+        "sim": 0.6835335732039177
+      },
+      {
+        "aid": "251702",
+        "class": "rosette_other",
+        "sim": 0.6783773219275068
+      },
+      {
+        "aid": "322613",
+        "class": "rosette_other",
+        "sim": 0.6669862248130546
+      },
+      {
+        "aid": "324183",
+        "class": "rosette_other",
+        "sim": 0.6647921299101296
+      }
+    ]
+  },
+  {
+    "query": "eight_petal_rosette\\253574_primary_occ_02.jpg",
+    "true_class": "eight_petal_rosette",
+    "predicted_class": "rosette_other",
+    "neighbors": [
+      {
+        "aid": "251702",
+        "class": "rosette_other",
+        "sim": 0.7232212218677527
+      },
+      {
+        "aid": "322489",
+        "class": "rosette_other",
+        "sim": 0.7173903359632798
+      },
+      {
+        "aid": "europeana_2020738_3DICONS_8311",
+        "class": "eight_petal_rosette",
+        "sim": 0.7115868686728273
+      },
+      {
+        "aid": "243105",
+        "class": "rosette_other",
+        "sim": 0.7060023950040255
+      },
+      {
+        "aid": "246095",
+        "class": "rosette_other",
+        "sim": 0.7018711259878904
+      },
+      {
+        "aid": "326858",
+        "class": "eight_pointed_star",
+        "sim": 0.6932153281768569
+      },
+      {
+        "aid": "549461",
+        "class": "sunburst",
+        "sim": 0.6870683654484512
+      }
+    ]
+  },
+  {
+    "query": "eight_petal_rosette\\322616_primary_occ_02.jpg",
+    "true_class": "eight_petal_rosette",
+    "predicted_class": "rosette_other",
+    "neighbors": [
+      {
+        "aid": "322617",
+        "class": "eight_petal_rosette",
+        "sim": 0.7468657585088693
+      },
+      {
+        "aid": "322489",
+        "class": "rosette_other",
+        "sim": 0.7351374505813115
+      },
+      {
+        "aid": "4636",
+        "class": "eight_petal_rosette",
+        "sim": 0.7234581573017442
+      },
+      {
+        "aid": "322615",
+        "class": "rosette_other",
+        "sim": 0.7115323970125289
+      },
+      {
+        "aid": "446106",
+        "class": "eight_petal_rosette",
+        "sim": 0.7087875428954268
+      },
+      {
+        "aid": "456088",
+        "class": "rosette_other",
+        "sim": 0.7013588205738893
+      },
+      {
+        "aid": "242119",
+        "class": "rosette_other",
+        "sim": 0.7009988866873349
+      }
+    ]
+  },
+  {
+    "query": "eight_petal_rosette\\322616_primary_occ_03.jpg",
+    "true_class": "eight_petal_rosette",
+    "predicted_class": "rosette_other",
+    "neighbors": [
+      {
+        "aid": "156380",
+        "class": "eight_pointed_star",
+        "sim": 0.7562850604642549
+      },
+      {
+        "aid": "322615",
+        "class": "rosette_other",
+        "sim": 0.7558843969258633
+      },
+      {
+        "aid": "446106",
+        "class": "eight_petal_rosette",
+        "sim": 0.741252484350172
+      },
+      {
+        "aid": "322489",
+        "class": "rosette_other",
+        "sim": 0.7399695677080714
+      },
+      {
+        "aid": "322613",
+        "class": "rosette_other",
+        "sim": 0.7344884700239658
+      },
+      {
+        "aid": "242119",
+        "class": "rosette_other",
+        "sim": 0.733587365610686
+      },
+      {
+        "aid": "327547",
+        "class": "rosette_other",
+        "sim": 0.7323836624319104
+      }
+    ]
+  },
+  {
+    "query": "eight_petal_rosette\\326826_primary_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "predicted_class": "rosette_other",
+    "neighbors": [
+      {
+        "aid": "326870",
+        "class": "eight_petal_rosette",
+        "sim": 0.7057258289073955
+      },
+      {
+        "aid": "444589",
+        "class": "rosette_other",
+        "sim": 0.6997227973457457
+      },
+      {
+        "aid": "europeana_199_item_36CUH2COXBD6RVAYPOYSGA7BZP66XU7P",
+        "class": "five_pointed_star",
+        "sim": 0.6892501215712128
+      },
+      {
+        "aid": "446122",
+        "class": "sunburst",
+        "sim": 0.685504837332349
+      },
+      {
+        "aid": "322613",
+        "class": "rosette_other",
+        "sim": 0.6730313767603429
+      },
+      {
+        "aid": "322489",
+        "class": "rosette_other",
+        "sim": 0.6697436821373611
+      },
+      {
+        "aid": "456088",
+        "class": "rosette_other",
+        "sim": 0.6666878106426873
+      }
+    ]
+  },
+  {
+    "query": "eight_petal_rosette\\europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_692581_occ_01.jpg",
+    "true_class": "eight_petal_rosette",
+    "predicted_class": "eight_pointed_star",
+    "neighbors": [
+      {
+        "aid": "557847",
+        "class": "five_pointed_star",
+        "sim": 0.6938116684190386
+      },
+      {
+        "aid": "317466",
+        "class": "six_pointed_star",
+        "sim": 0.692172036009258
+      },
+      {
+        "aid": "29215",
+        "class": "eight_pointed_star",
+        "sim": 0.6709282715532767
+      },
+      {
+        "aid": "25850",
+        "class": "sunburst",
+        "sim": 0.6655650631760863
+      },
+      {
+        "aid": "587619",
+        "class": "five_pointed_star",
+        "sim": 0.6579441125054311
+      },
+      {
+        "aid": "327289",
+        "class": "eight_pointed_star",
+        "sim": 0.6574352847566338
+      },
+      {
+        "aid": "323997",
+        "class": "eight_pointed_star",
+        "sim": 0.6531373162692938
+      }
+    ]
+  },
+  {
+    "query": "eight_pointed_star\\226411_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "predicted_class": "six_pointed_star",
+    "neighbors": [
+      {
+        "aid": "682963",
+        "class": "six_pointed_star",
+        "sim": 0.7384226811239251
+      },
+      {
+        "aid": "europeana_318_marc_nli_004009657",
+        "class": "six_pointed_star",
+        "sim": 0.7166663135886266
+      },
+      {
+        "aid": "452208",
+        "class": "eight_petal_rosette",
+        "sim": 0.6976114887159753
+      },
+      {
+        "aid": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S",
+        "class": "six_pointed_star",
+        "sim": 0.6934764147472976
+      },
+      {
+        "aid": "767",
+        "class": "six_pointed_star",
+        "sim": 0.6918706189292569
+      },
+      {
+        "aid": "326982",
+        "class": "eight_pointed_star",
+        "sim": 0.6857684495542571
+      },
+      {
+        "aid": "658923",
+        "class": "eight_petal_rosette",
+        "sim": 0.6842963093288738
+      }
+    ]
+  },
+  {
+    "query": "eight_pointed_star\\326872_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "predicted_class": "rosette_other",
+    "neighbors": [
+      {
+        "aid": "326858",
+        "class": "eight_pointed_star",
+        "sim": 0.7852566963198081
+      },
+      {
+        "aid": "326849",
+        "class": "eight_pointed_star",
+        "sim": 0.7747998007114362
+      },
+      {
+        "aid": "324778",
+        "class": "rosette_other",
+        "sim": 0.738253046121288
+      },
+      {
+        "aid": "324777",
+        "class": "rosette_other",
+        "sim": 0.6781821405397539
+      },
+      {
+        "aid": "326870",
+        "class": "eight_petal_rosette",
+        "sim": 0.669181418824623
+      },
+      {
+        "aid": "243105",
+        "class": "rosette_other",
+        "sim": 0.663632723111488
+      },
+      {
+        "aid": "322617",
+        "class": "eight_petal_rosette",
+        "sim": 0.659263698395547
+      }
+    ]
+  },
+  {
+    "query": "eight_pointed_star\\450438_primary_occ_01.jpg",
+    "true_class": "eight_pointed_star",
+    "predicted_class": "six_pointed_star",
+    "neighbors": [
+      {
+        "aid": "452791",
+        "class": "eight_pointed_star",
+        "sim": 0.7266445251003449
+      },
+      {
+        "aid": "445072",
+        "class": "six_pointed_star",
+        "sim": 0.7131193621761539
+      },
+      {
+        "aid": "653024",
+        "class": "eight_pointed_star",
+        "sim": 0.696352194450479
+      },
+      {
+        "aid": "europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696",
+        "class": "five_pointed_star",
+        "sim": 0.6929336825858013
+      },
+      {
+        "aid": "europeana_15502_MK_180619",
+        "class": "five_pointed_star",
+        "sim": 0.689992575506344
+      },
+      {
+        "aid": "501876",
+        "class": "six_pointed_star",
+        "sim": 0.6875325849395713
+      },
+      {
+        "aid": "445067",
+        "class": "six_pointed_star",
+        "sim": 0.684076248447635
+      }
+    ]
+  },
+  {
+    "query": "five_pointed_star\\543994_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "predicted_class": "eight_pointed_star",
+    "neighbors": [
+      {
+        "aid": "327228",
+        "class": "eight_pointed_star",
+        "sim": 0.7643181638202965
+      },
+      {
+        "aid": "europeana_951_Culturalia_f2a3efdd_be91_4787_841a_ec7b93f5f0e0",
+        "class": "six_pointed_star",
+        "sim": 0.7370971039423239
+      },
+      {
+        "aid": "22318",
+        "class": "five_pointed_star",
+        "sim": 0.7312960410137197
+      },
+      {
+        "aid": "327227",
+        "class": "eight_pointed_star",
+        "sim": 0.7274719135824979
+      },
+      {
+        "aid": "557711",
+        "class": "five_pointed_star",
+        "sim": 0.7263911987540745
+      },
+      {
+        "aid": "327289",
+        "class": "eight_pointed_star",
+        "sim": 0.7123063630092654
+      },
+      {
+        "aid": "327664",
+        "class": "eight_pointed_star",
+        "sim": 0.7099338005420788
+      }
+    ]
+  },
+  {
+    "query": "five_pointed_star\\549700_primary_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "predicted_class": "eight_pointed_star",
+    "neighbors": [
+      {
+        "aid": "europeana_15502_MK_R__343",
+        "class": "eight_pointed_star",
+        "sim": 0.7974333170183928
+      },
+      {
+        "aid": "europeana_15502_MK_R__55462",
+        "class": "eight_pointed_star",
+        "sim": 0.7667030339730636
+      },
+      {
+        "aid": "242119",
+        "class": "rosette_other",
+        "sim": 0.7661941554680113
+      },
+      {
+        "aid": "327227",
+        "class": "eight_pointed_star",
+        "sim": 0.7638914605752307
+      },
+      {
+        "aid": "553080",
+        "class": "five_pointed_star",
+        "sim": 0.7562029109165247
+      },
+      {
+        "aid": "667458",
+        "class": "eight_pointed_star",
+        "sim": 0.7450081480252415
+      },
+      {
+        "aid": "241382",
+        "class": "eight_petal_rosette",
+        "sim": 0.7448233725046247
+      }
+    ]
+  },
+  {
+    "query": "five_pointed_star\\europeana_2021007__SLS_285_SLS_285_14_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "predicted_class": "eight_pointed_star",
+    "neighbors": [
+      {
+        "aid": "653024",
+        "class": "eight_pointed_star",
+        "sim": 0.6845158182862217
+      },
+      {
+        "aid": "452893",
+        "class": "six_pointed_star",
+        "sim": 0.6671033024638291
+      },
+      {
+        "aid": "europeana_2058632_df089c07_7a6a_8c31_bd8f_a85bf19a3f03_media_a3748c78_7263_025e_a404_287b6b0e5ea8",
+        "class": "five_pointed_star",
+        "sim": 0.6659052894713425
+      },
+      {
+        "aid": "53505",
+        "class": "eight_pointed_star",
+        "sim": 0.6658523559181274
+      },
+      {
+        "aid": "682963",
+        "class": "six_pointed_star",
+        "sim": 0.6658074153585557
+      },
+      {
+        "aid": "22318",
+        "class": "five_pointed_star",
+        "sim": 0.661929640919661
+      },
+      {
+        "aid": "558991",
+        "class": "sunburst",
+        "sim": 0.6470416222023885
+      }
+    ]
+  },
+  {
+    "query": "five_pointed_star\\europeana_2048128_419715_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "predicted_class": "six_pointed_star",
+    "neighbors": [
+      {
+        "aid": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S",
+        "class": "six_pointed_star",
+        "sim": 0.7602938906320621
+      },
+      {
+        "aid": "europeana_318_marc_nli_004009657",
+        "class": "six_pointed_star",
+        "sim": 0.7072223796289274
+      },
+      {
+        "aid": "326982",
+        "class": "eight_pointed_star",
+        "sim": 0.7003880614062566
+      },
+      {
+        "aid": "europeana_2048128_252820",
+        "class": "five_pointed_star",
+        "sim": 0.6923218107832146
+      },
+      {
+        "aid": "6176",
+        "class": "five_pointed_star",
+        "sim": 0.6875856797639567
+      },
+      {
+        "aid": "447371",
+        "class": "six_pointed_star",
+        "sim": 0.6818533766620041
+      },
+      {
+        "aid": "767",
+        "class": "six_pointed_star",
+        "sim": 0.6815283784479503
+      }
+    ]
+  },
+  {
+    "query": "five_pointed_star\\europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_01.jpg",
+    "true_class": "five_pointed_star",
+    "predicted_class": "six_pointed_star",
+    "neighbors": [
+      {
+        "aid": "25506",
+        "class": "six_pointed_star",
+        "sim": 0.7128943535006919
+      },
+      {
+        "aid": "europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT",
+        "class": "five_pointed_star",
+        "sim": 0.7109194898432223
+      },
+      {
+        "aid": "cma_124775",
+        "class": "six_pointed_star",
+        "sim": 0.6778537747821707
+      },
+      {
+        "aid": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783",
+        "class": "eight_petal_rosette",
+        "sim": 0.6774849112682452
+      },
+      {
+        "aid": "cma_167666",
+        "class": "six_pointed_star",
+        "sim": 0.67379869040193
+      },
+      {
+        "aid": "197461",
+        "class": "sunburst",
+        "sim": 0.663976686358573
+      },
+      {
+        "aid": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S",
+        "class": "six_pointed_star",
+        "sim": 0.6593261605646288
+      }
+    ]
+  },
+  {
+    "query": "five_pointed_star\\europeana_440_item_TQRWWTFPNCRIKZI7PJF6HYVSKQFA5FDQ_occ_02.jpg",
+    "true_class": "five_pointed_star",
+    "predicted_class": "six_pointed_star",
+    "neighbors": [
+      {
+        "aid": "europeana_463_item_RZ2JBUB7UIN4U7353WABIGSBYRCVIUCT",
+        "class": "five_pointed_star",
+        "sim": 0.837828612823841
+      },
+      {
+        "aid": "europeana_437_item_FINSUS2QFP36IFVVLN2HDNNISTVAGU5S",
+        "class": "six_pointed_star",
+        "sim": 0.6637724333907843
+      },
+      {
+        "aid": "cma_167666",
+        "class": "six_pointed_star",
+        "sim": 0.6632395763111706
+      },
+      {
+        "aid": "cma_124775",
+        "class": "six_pointed_star",
+        "sim": 0.6606714593875866
+      },
+      {
+        "aid": "25506",
+        "class": "six_pointed_star",
+        "sim": 0.6409869692747808
+      },
+      {
+        "aid": "659646",
+        "class": "eight_pointed_star",
+        "sim": 0.6387027724221207
+      },
+      {
+        "aid": "197461",
+        "class": "sunburst",
+        "sim": 0.6351374289147627
+      }
+    ]
+  },
+  {
+    "query": "rosette_other\\246843_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "predicted_class": "eight_petal_rosette",
+    "neighbors": [
+      {
+        "aid": "246095",
+        "class": "rosette_other",
+        "sim": 0.7331004012601628
+      },
+      {
+        "aid": "europeana_2020738_3DICONS_8311",
+        "class": "eight_petal_rosette",
+        "sim": 0.7261576917757345
+      },
+      {
+        "aid": "243105",
+        "class": "rosette_other",
+        "sim": 0.7167199091622887
+      },
+      {
+        "aid": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783",
+        "class": "eight_petal_rosette",
+        "sim": 0.714480621766804
+      },
+      {
+        "aid": "326870",
+        "class": "eight_petal_rosette",
+        "sim": 0.6836595206788522
+      },
+      {
+        "aid": "326849",
+        "class": "eight_pointed_star",
+        "sim": 0.6730028328656231
+      },
+      {
+        "aid": "322489",
+        "class": "rosette_other",
+        "sim": 0.65238203767744
+      }
+    ]
+  },
+  {
+    "query": "rosette_other\\321391_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "predicted_class": "eight_pointed_star",
+    "neighbors": [
+      {
+        "aid": "322352",
+        "class": "eight_pointed_star",
+        "sim": 0.6888223289794687
+      },
+      {
+        "aid": "252144",
+        "class": "sunburst",
+        "sim": 0.659441160970614
+      },
+      {
+        "aid": "322552",
+        "class": "eight_pointed_star",
+        "sim": 0.6552962515412467
+      },
+      {
+        "aid": "324329",
+        "class": "eight_petal_rosette",
+        "sim": 0.6542461896712249
+      },
+      {
+        "aid": "553080",
+        "class": "five_pointed_star",
+        "sim": 0.6535562675972011
+      },
+      {
+        "aid": "446106",
+        "class": "eight_petal_rosette",
+        "sim": 0.6503735554565808
+      },
+      {
+        "aid": "323757",
+        "class": "eight_pointed_star",
+        "sim": 0.6491590096613229
+      }
+    ]
+  },
+  {
+    "query": "rosette_other\\446347_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "predicted_class": "eight_petal_rosette",
+    "neighbors": [
+      {
+        "aid": "4636",
+        "class": "eight_petal_rosette",
+        "sim": 0.7299112181983455
+      },
+      {
+        "aid": "325677",
+        "class": "eight_petal_rosette",
+        "sim": 0.7155170939904825
+      },
+      {
+        "aid": "256852",
+        "class": "eight_petal_rosette",
+        "sim": 0.7086591424503061
+      },
+      {
+        "aid": "156380",
+        "class": "eight_pointed_star",
+        "sim": 0.6921666930777489
+      },
+      {
+        "aid": "449617",
+        "class": "eight_petal_rosette",
+        "sim": 0.6857208857954451
+      },
+      {
+        "aid": "446122",
+        "class": "sunburst",
+        "sim": 0.6825530893962913
+      },
+      {
+        "aid": "322489",
+        "class": "rosette_other",
+        "sim": 0.6752160972116451
+      }
+    ]
+  },
+  {
+    "query": "rosette_other\\45596_primary_occ_01.jpg",
+    "true_class": "rosette_other",
+    "predicted_class": "eight_petal_rosette",
+    "neighbors": [
+      {
+        "aid": "451103",
+        "class": "rosette_other",
+        "sim": 0.7180025305833926
+      },
+      {
+        "aid": "658923",
+        "class": "eight_petal_rosette",
+        "sim": 0.7148668136663854
+      },
+      {
+        "aid": "458739",
+        "class": "eight_petal_rosette",
+        "sim": 0.7037654017219731
+      },
+      {
+        "aid": "454609",
+        "class": "eight_petal_rosette",
+        "sim": 0.7001701916319567
+      },
+      {
+        "aid": "448531",
+        "class": "eight_petal_rosette",
+        "sim": 0.6987377771931318
+      },
+      {
+        "aid": "444589",
+        "class": "rosette_other",
+        "sim": 0.6792534113339157
+      },
+      {
+        "aid": "219357",
+        "class": "sunburst",
+        "sim": 0.6555019713486847
+      }
+    ]
+  },
+  {
+    "query": "six_pointed_star\\393988_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "predicted_class": "five_pointed_star",
+    "neighbors": [
+      {
+        "aid": "europeana_317_e1fa4882_6f04_4b15_ac3d_9e8740917696",
+        "class": "five_pointed_star",
+        "sim": 0.7150240303768698
+      },
+      {
+        "aid": "219357",
+        "class": "sunburst",
+        "sim": 0.7120730365823842
+      },
+      {
+        "aid": "454609",
+        "class": "eight_petal_rosette",
+        "sim": 0.6985312340904547
+      },
+      {
+        "aid": "europeana_2048221_europeana_fashion_153903",
+        "class": "five_pointed_star",
+        "sim": 0.6853662155735002
+      },
+      {
+        "aid": "501876",
+        "class": "six_pointed_star",
+        "sim": 0.6829864688622954
+      },
+      {
+        "aid": "europeana_15502_MK_182922",
+        "class": "negative_control",
+        "sim": 0.6638441312743744
+      },
+      {
+        "aid": "444589",
+        "class": "rosette_other",
+        "sim": 0.6635552601444954
+      }
+    ]
+  },
+  {
+    "query": "six_pointed_star\\742061_primary_occ_01.jpg",
+    "true_class": "six_pointed_star",
+    "predicted_class": "eight_petal_rosette",
+    "neighbors": [
+      {
+        "aid": "545928",
+        "class": "five_pointed_star",
+        "sim": 0.7267115172892854
+      },
+      {
+        "aid": "241734",
+        "class": "eight_petal_rosette",
+        "sim": 0.7020638892767823
+      },
+      {
+        "aid": "324329",
+        "class": "eight_petal_rosette",
+        "sim": 0.7002802129030044
+      },
+      {
+        "aid": "445365",
+        "class": "negative_control",
+        "sim": 0.6985557937041209
+      },
+      {
+        "aid": "241735",
+        "class": "eight_petal_rosette",
+        "sim": 0.6818812262850529
+      },
+      {
+        "aid": "446122",
+        "class": "sunburst",
+        "sim": 0.6810411345432799
+      },
+      {
+        "aid": "456088",
+        "class": "rosette_other",
+        "sim": 0.6795216725737994
+      }
+    ]
+  },
+  {
+    "query": "sunburst\\60249_primary_occ_01.jpg",
+    "true_class": "sunburst",
+    "predicted_class": "six_pointed_star",
+    "neighbors": [
+      {
+        "aid": "cma_124775",
+        "class": "six_pointed_star",
+        "sim": 0.6706109426058395
+      },
+      {
+        "aid": "europeana_826_https___www_searchculture_gr_aggregator_edm_mnam_000150_684783",
+        "class": "eight_petal_rosette",
+        "sim": 0.6650798015180296
+      },
+      {
+        "aid": "25850",
+        "class": "sunburst",
+        "sim": 0.6536094856884099
+      },
+      {
+        "aid": "25506",
+        "class": "six_pointed_star",
+        "sim": 0.6350134263915715
+      },
+      {
+        "aid": "54791",
+        "class": "sunburst",
+        "sim": 0.6328940619099895
+      },
+      {
+        "aid": "europeana_317_2a445e9c_faf8_4fb3_8680_246b8a263625",
+        "class": "six_pointed_star",
+        "sim": 0.6270299003613156
+      },
+      {
+        "aid": "europeana_2064107_Museu_ProvidedCHO_Museum_of_English_Rural_Life__University_of_Reading_859",
+        "class": "sunburst",
+        "sim": 0.6244169274829303
+      }
+    ]
+  }
+]
