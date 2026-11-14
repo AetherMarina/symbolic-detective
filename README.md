@@ -17,6 +17,34 @@ Version `0.1` deliberately isolates the core computer vision and similarity retr
 
 All higher-level reasoning layers (LLM-based explanation, knowledge graphs, automatic detection, and migration claims) are intentionally deferred. v0.1 evaluates visual retrieval alone.
 
+## Motivation: The Enigma of Symbols
+
+Throughout human history, symbols have served as powerful forms of representation, condensing complex ideas, beliefs, identities and experiences into recognizable visual structures.
+
+Across cultures and historical periods, certain geometric forms recur, persist and transform. Why do some patterns emerge repeatedly? What makes particular forms recognizable, memorable or meaningful? And what might these patterns reveal about the human mind?
+
+The central research question behind **Symbolic Detective** is:
+
+> **What can the evolution of human-made symbols reveal about the cognitive processes that generated them?**
+
+A related research question is:
+
+> **Can the visual properties of symbols, their historical and cultural contexts and their evolution over time provide clues about their possible meanings and functions?**
+
+The form of a symbol may reflect not only what humans intended to represent, but also how human perception, memory, abstraction and learning operate. 
+Understanding the cognitive processes behind symbolic evolution can be approached as an **inverse problem**:
+
+`Observed symbolic evolution  →  Hypotheses about cognitive processes`
+
+By examining how visual structures persist and transform across materials, cultures, and historical periods, the project's long-term research direction explores five interconnected dimensions:
+
+* **Recurring Structures:** Which geometric and visual patterns recur across historical periods, cultures, and materials?
+* **Transformation Rules:** Which visual properties remain stable or change over time? What becomes simpler, more regular, or more complex, and under which conditions?
+* **Cognitive Mechanisms:** Can recurring transformation patterns be explained by constraints of human perception, memory, and abstraction?
+* **Cultural Evolution:** How do we distinguish shared cognitive constraints from cultural transmission, independent invention, and material limitations?
+* **Symbolic Interpretation:** How can visual properties, archaeological context and documented historical uses inform hypotheses about a motif's possible meanings and functions?
+
+Visual resemblance alone, however, cannot establish shared symbolic identity, cultural transmission, or common cognitive origins. Investigating these relationships requires competing hypotheses, contextual evidence, and interdisciplinary research.
 
 ## The Core Premise: Investigation Over Assumption
 
@@ -63,6 +91,24 @@ graph TD
 4. **Hybrid Scoring**: Convert shape distance and embedding similarity into normalized similarity scores, then combine them using a weighted linear ensemble ($S_{shape} \in [0, 1]$, $S_{embed} \in [0, 1]$). 
 5. **Top-K Retrieval**: Ranked search over a persisted local feature index. The index is automatically rebuilt when the motif corpus or feature configuration changes.
 
+## Research Direction: Toward Neuro-Symbolic Reasoning
+
+Symbolic Detective begins with computer vision, establishing a measurable foundation for comparing visual forms.
+
+In v0.1, the system combines DINOv2 visual embeddings with explicit OpenCV geometric descriptors through hybrid similarity scoring. This enables empirical investigation of how learned visual representations and handcrafted geometric features complement one another.
+
+The longer-term research direction explores **Neuro-Symbolic AI** as a framework for investigating possible symbolic meanings and functions through visual properties, historical and cultural context, and patterns of transformation.
+
+This approach aims to connect:
+
+1. **Neural perception:** Recognizing visual patterns and their variations across noisy material conditions.
+2. **Structured representation:** Describing geometric properties, motif relationships, and historical context.
+3. **Symbolic reasoning:** Formulating and evaluating hypotheses about relationships, transformations, and possible symbolic meanings and functions.
+4. **Evidence-based interpretation:** Evaluating hypotheses against archaeological and historical evidence, while distinguishing visual resemblance from historically supported symbolic interpretations.
+
+*Note: These high-level reasoning capabilities are long-term research objectives, not features of the v0.1 implementation.*
+
+Ultimately, the goal is to move beyond identifying recurring visual motifs toward evidence-grounded hypotheses about their possible meanings, functions and historical relationships — and, in the longer term, to investigate what their evolution might reveal about human cognition and cultural evolution.
 
 ## 📂 Project Structure
 
@@ -102,7 +148,7 @@ symbolic-detective/
 │       ├── utils/
 │       │   ├── image_crop.py       # Manual motif cropping utility
 │       │   └── image_files.py      # Image discovery and collection
-│       │── evaluate.py             # Artifact-grouped retrieval benchmark
+│       ├── evaluate.py             # Artifact-grouped retrieval benchmark
 │       └── evaluate_robustness.py  # Synthetic degradation experiments
 ├── ui/
 │   └── app.py                      # Streamlit exploration dashboard
@@ -203,7 +249,7 @@ Harvest candidate artifacts from The Metropolitan Museum of Art Open Access API 
 ```bash
 python -m symbolic_detective.ingestion.met_api --query "star" --department 33 --limit 2
 ```
-Harvest candidate artifacts from The Metropolitan Museum of Art Open Access API (using the paginated v1.1 endpoint):
+Harvest candidate artifacts from the Europeana API:
 ```bash
 python -m symbolic_detective.ingestion.europeana_api --query "star" --limit 2
 ```
@@ -237,16 +283,16 @@ Replace the path below with a valid crop from your `data/crops/` directory:
 
 ```bash
 # 1. Test OpenCV normalization (CLAHE + Padding)
-python -m symbolic_detective.pipeline.preprocess data/crops/eight_pointed/YOUR_IMAGE.jpg
+python -m symbolic_detective.pipeline.preprocess data/crops/eight_pointed_star/YOUR_IMAGE.jpg
 
 # 2. Extract interpretable geometric features and save an edge debug image
-python -m symbolic_detective.pipeline.shape_features data/crops/eight_pointed/YOUR_IMAGE.jpg
+python -m symbolic_detective.pipeline.shape_features data/crops/eight_pointed_star/YOUR_IMAGE.jpg
 
 # 3. Extract the DINOv2 dense latent representation
-python -m symbolic_detective.pipeline.embeddings data/crops/eight_pointed/YOUR_IMAGE.jpg
+python -m symbolic_detective.pipeline.embeddings data/crops/eight_pointed_star/YOUR_IMAGE.jpg
 
 # 4. Build the local motif index and retrieve the Top-K matches
-python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMAGE_1.jpg 0.5
+python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed_star/IMAGE_1.jpg 0.5
 ```
 
 ## Roadmap
@@ -274,6 +320,11 @@ python -m symbolic_detective.pipeline.hybrid_search data/crops/eight_pointed/IMA
 * **v0.6 — Spatiotemporal Graph:** Knowledge graph layer connecting motifs, places, periods, materials, and documented relationships.
 * **v0.7 — Evidence & Local RAG:** Grounded synthesis of scholarly sources using local LLMs.
 * **v1.0 — Symbolic Detective:** Full-stack computational iconography engine.
+
+### Beyond v1.0 — Cognitive Evolution of Symbols
+
+Investigate whether recurring visual structures and their historical transformations can provide insights into underlying cognitive mechanisms, including perception, memory, abstraction, and learning.
+This research direction will explore competing explanations for symbolic evolution, integrating computational motif analysis, cultural-historical evidence and findings from cognitive science.
 
 ## License
 
